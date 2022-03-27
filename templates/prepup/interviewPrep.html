@@ -39,7 +39,11 @@
       <div class="card-content">
         <div class="content">
           <p class="is-size-5 m-0">{{i.name}}</p>
-          <p class="m-0 is-size-7 has-text-lightgrey">Notes</p>
+          <p class="m-0 is-size-7 has-text-lightgrey">
+            {% for i in i.tags.all %}
+           <span class="tag__small">{{ i.name }} </span>
+           {% endfor %} 
+          </p>
           <p class="m-0 is-size-6 mb-2">{{i.category.name}}</p>
           <a href="#"><i class="fa fa-eye"></i></a> &nbsp;
           <a href="#"><i class="fa fa-download"></i></a>

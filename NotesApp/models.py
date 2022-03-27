@@ -7,10 +7,10 @@ from django.contrib.auth.models import User
 # models of study materials
 class StudyMaterials(models.Model):
     Years=(
-        ("FirstYear","FirstYear"),
-        ("SecondYear","SecondYear"),
-        ("ThirdYear","ThirdYear"),
-        ("FourthYear","FourthYear"),
+        ("1st","1st"),
+        ("2nd","2nd"),
+        ("3rd","3rd"),
+        ("4th","4th"),
     )
     Banches=(
         ("CSE","CSE"),
@@ -29,13 +29,24 @@ class StudyMaterials(models.Model):
     createdBy=models.ForeignKey(User, on_delete=models.CASCADE)
     IsApproved=models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.Name
+
+
+
 # models of Interview Prep
 class Tags(models.Model):
     name=models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
     
 class Category(models.Model):
     name=models.CharField(max_length=100)
  
+    def __str__(self):
+        return self.name
+
 class InterviewPrep(models.Model):
     name=models.CharField(max_length=200)
     category=models.ForeignKey(Category,on_delete=models.CASCADE)
@@ -45,3 +56,5 @@ class InterviewPrep(models.Model):
     IsApproved=models.BooleanField(default=False)
     tags=models.ManyToManyField(Tags)
     
+    def __str__(self):
+        return self.name

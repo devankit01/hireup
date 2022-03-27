@@ -1,0 +1,9 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+NotesApp/__pycache__/
+UserApp/__pycache__/
+HireApp/__pycache__/
+MainApp/__pycache__/

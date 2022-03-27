@@ -14,6 +14,12 @@
 .section {
     padding: 1rem 0rem;
 }
+.tag__small{
+  background-color:lightgray;
+  padding:3px 8px;
+  margin: 0 4px 0 0;
+  border-radius: 2px;
+}
 @media all and (max-width: 968px) {
   .set {
     padding: 0 12px;
