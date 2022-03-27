@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="{% static 'css/nav.css' %}" />
+
+  {% block css %} {% endblock %}
+  <title>Hireup</title>
+</head>
+
+<body class="">
+  <!-- Navbar -->
+  <nav class="navbar ">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="">
+          <p class="title is-4">Hireup</p>
+        </a>
+
+        <div class="navbar-burger burger" data-target="navMenubd-example">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div id="navMenubd-example" class="navbar-menu">
+        <div class="navbar-end">
+          <a class="navbar-item is-active " href="/"> Home </a>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link is-active" href="">
+              Hireup
+            </a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="{% url 'Usersignup' %}"> For Seekers </a>
+              <a class="navbar-item" href="{% url 'Recruitersignup' %}"> For Companies </a>
+            </div>
+          </div>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link is-active"> Prepup </a>
+
+            <div class="navbar-dropdown">
+              <a class="navbar-item"> Study Materials </a>
+              <a class="navbar-item"> Interview Prep </a>
+            </div>
+          </div>
+          <a class="navbar-item is-active" href="/"> Contact </a>
+
+
+          <a class="button is-primary m-2" type="button" href="{% url 'signin' %}">
+            Login
+          </a>
+        </div>
+      </div>
+  </nav>
+  </div>
+
+
+  <!--  -->
+
+  {% block body %}
+  {% endblock %}
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Get all "navbar-burger" elements
+      var $navbarBurgers = Array.prototype.slice.call(
+        document.querySelectorAll(".navbar-burger"),
+        0
+      );
+
+      // Check if there are any nav burgers
+      if ($navbarBurgers.length > 0) {
+        // Add a click event on each of them
+        $navbarBurgers.forEach(function ($el) {
+          $el.addEventListener("click", function () {
+            // Get the target from the "data-target" attribute
+            var target = $el.dataset.target;
+            var $target = document.getElementById(target);
+
+            // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+            $el.classList.toggle("is-active");
+            $target.classList.toggle("is-active");
+          });
+        });
+      }
+    });
+
+    var dropdown = document.querySelector(".dropdown");
+    dropdown.addEventListener("click", function (event) {
+      event.stopPropagation();
+      dropdown.classList.toggle("is-active");
+    });
+  </script>
+</body>
+
+</html>

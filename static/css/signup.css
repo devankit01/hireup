@@ -1,0 +1,41 @@
+.form__container {
+  width: 100%;
+  margin: 80px auto;
+  display: flex;
+  justify-content: space-between;
+}
+.form__container div {
+  width: 50%;
+}
+.form__container div form,
+.field a,
+hr {
+  width: 120%;
+}
+form input {
+  width: 100%;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+@media all and (max-width: 968px) {
+  .form__image {
+    display: none;
+  }
+  .form__container div {
+    width: 100%;
+  }
+  .form__container div form,
+  .field a,
+  hr {
+    width: 90%;
+    margin: 0 20px;
+  }
+  .form__container {
+    margin: 20px auto;
+  }
+  h3 {
+    margin: 0 14px;
+  }
+}

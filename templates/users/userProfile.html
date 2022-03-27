@@ -1,0 +1,153 @@
+{% extends "layout.html" %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/job.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/userprofile.css' %}" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+/>
+{% endblock %} {% block body %}
+
+<div class="user__profile container">
+  <div class="profile__header">
+    <div>
+      <img src="{% static 'images/profile/download.svg' %}" />
+    </div>
+    <div>
+      <h2>Anubhav Singh</h2>
+      <p class="headline">DevOps Engineer</p>
+      <p class="bio">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil
+        asperiores cupiditate repellat quidem doloremque!
+      </p>
+      <div class="social__icons">
+        <span><i class="fab fa-facebook-square" aria-hidden="true"></i></span>
+        <span><i class="fab fa-instagram" aria-hidden="true"></i></span>
+        <span><i class="fab fa-twitter-square" aria-hidden="true"></i></span>
+        <span><i class="fab fa-github-square" aria-hidden="true"></i></span>
+        <span><i class="fab fa-hackerrank"></i></span>
+      </div>
+      <div class="connect__btn">
+        <a href="" class="button is-primary">Resume</a>
+        <a href="" class="button is-primary-outline has-text-color-primary"
+          >Contact</a
+        >
+      </div>
+    </div>
+  </div>
+  <div class="profile__body">
+    <div class="profile__div">
+      <h2 class="mt-5 mb-4 is-size-5"><b>Skills</b></h2>
+      <span class="skill">NodeJS</span>
+      <span class="skill">JavaScript</span>
+      <span class="skill">ReactJS</span>
+      <span class="skill">Python</span>
+      <span class="skill">AWS</span>
+      <span class="skill">CSS</span>
+      <span class="skill">HTML</span>
+      <span class="skill">Web Design</span>
+    </div>
+
+    <div class="profile__div">
+      <h2 class="mt-5 mb-4 is-size-5"><b>Education</b></h2>
+      <ul class="timeline">
+        <li class="timeline-item is-primary">
+          <div class="timeline-tag"></div>
+          <div class="timeline-content">
+            <p class="is-size-7">March 2015 - March 2016</p>
+            <p>Bal Nikunj Inter College</p>
+
+            <p class="is-size-6">10th</p>
+          </div>
+        </li>
+
+        <li class="timeline-item is-primary">
+          <div class="timeline-tag"></div>
+          <div class="timeline-content">
+            <p class="is-size-7">March 2016 - March 2018</p>
+            <p>Bal Nikunj Inter College</p>
+
+            <p class="is-size-6">12th ( Science )</p>
+          </div>
+        </li>
+
+        <li class="timeline-item is-primary">
+          <div class="timeline-tag"></div>
+          <div class="timeline-content">
+            <p class="is-size-7">March 2018 - March 2022</p>
+            <p>SR Institute of Management & Technology</p>
+
+            <p class="is-size-6">B.Tech ( CSE )</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="profile__div">
+      <h2 class="mt-5 mb-4 is-size-5"><b>Work Experience</b></h2>
+      <ul class="timeline">
+        <li class="timeline-item is-danger">
+          <div class="timeline-tag"></div>
+          <div class="timeline-content">
+            <p class="is-size-7">July 2021 - Dec 2021</p>
+            <p>Yokoso Pvt. Ltd</p>
+
+            <p class="is-size-6">Full Stack Developer</p>
+          </div>
+        </li>
+
+        <li class="timeline-item is-danger">
+          <div class="timeline-tag"></div>
+          <div class="timeline-content">
+            <p class="is-size-7">Feb 2022 - Present</p>
+            <p class="">Appventurez Mobitech Pvt. Ltd.</p>
+
+            <p class="is-size-6">Python Developer</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="profile__div">
+      <h2 class="mt-5 mb-4 is-size-5"><b>Certifications</b></h2>
+      <div class="mb-3 ml-3 certficate">
+        <div class="timeline-content">
+          <p class="is-size-6"><b>HTML Certificate</b></p>
+          <p class="is-size-7">Sololearn on Jan 2020</p>
+          <a href="http://" class="is-size-7">View Certificate</a>
+        </div>
+      </div>
+
+      <div class="mb-3 ml-3 certficate">
+        <div class="timeline-content">
+          <p class="is-size-6"><b>Python Certificate</b></p>
+          <p class="is-size-7">Sololearn on Jan 2020</p>
+          <a href="http://" class="is-size-7">View Certificate</a>
+        </div>
+      </div>
+
+      <div class="mb-3 ml-3 certficate">
+        <div class="timeline-content">
+          
+          <p class="is-size-6"><b>Web Design </b></p>
+          <p class="is-size-7">Freecodecamp on Jan 2020</p>
+          <a href="http://" class="is-size-7">View Certificate</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="profile__div">
+      <h2 class="mt-5 mb-4 is-size-5"><b>Languages</b></h2>
+      <span class="skill">Hindi</span>
+
+      <span class="skill">English</span>
+    </div>
+  </div>
+
+  {% endblock %} {% block script %} {% endblock %}
+</div>

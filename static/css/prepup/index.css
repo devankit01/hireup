@@ -1,0 +1,21 @@
+.card__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 1em;
+}
+
+.card {
+  height: max-content;
+  box-shadow: 0px 0px 36px -5px rgba(0, 0, 0, 0.3);
+}
+.card a {
+  color: rgb(0, 175, 123);
+}
+.section {
+    padding: 1rem 0rem;
+}
+@media all and (max-width: 968px) {
+  .set {
+    padding: 0 12px;
+  }
+}

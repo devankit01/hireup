@@ -1,0 +1,99 @@
+{% extends "layout.html" %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/prepup/index.css' %}" />
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+/>
+{% endblock %} {% block body %}
+
+<div class="has-background-primary set">
+  <div class="container py-5">
+    <h1 class="is-size-3 has-text-white m-0"><b>Prepup</b></h1>
+    <h2 class="is-size-5 has-text-white"><b>Prepup / Interview Prep</b></h2>
+  </div>
+</div>
+
+<div class="container field is-grouped mt-5 set">
+  <div class="field mr-1">
+    <p class="control has-icons-left has-icons-right">
+      <input class="input" type="text" placeholder="Search notes here..." />
+      <span class="icon is-small is-left">
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </span>
+    </p>
+  </div>
+
+  <button class="button is-primary" type="button" href="">Search</button>
+</div>
+
+<!-- Notes -->
+<section class="section container set">
+  <div class="card__container">
+    <div class="card">
+      <div class="card-content">
+        <div class="content">
+          <p class="is-size-5 m-0">Compiler Design</p>
+          <p class="m-0 is-size-7 has-text-lightgrey">Notes</p>
+          <p class="m-0 is-size-6 mb-2">Btech / CSE / 2nd</p>
+
+          <a href="#"><i class="fa fa-eye"></i></a> &nbsp;
+          <a href="#"><i class="fa fa-download"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <div class="content">
+          <p class="is-size-5 m-0">Compiler Design</p>
+          <p class="m-0 is-size-7 has-text-lightgrey">PUT</p>
+          <p class="m-0 is-size-6 mb-2">Btech / CSE / 3rd</p>
+
+          <a href="#"><i class="fa fa-eye"></i></a> &nbsp;
+          <a href="#"><i class="fa fa-download"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <div class="content">
+          <p class="is-size-5 m-0">DAA</p>
+          <p class="m-0 is-size-7 has-text-lightgrey">Sessional Paper</p>
+          <p class="m-0 is-size-6 mb-2">Btech / CSE / 3rd</p>
+
+          <a href="#"><i class="fa fa-eye"></i></a> &nbsp;
+          <a href="#"><i class="fa fa-download"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <div class="content">
+          <p class="is-size-5 m-0">DBMS</p>
+          <p class="m-0 is-size-7 has-text-lightgrey">Notes</p>
+          <p class="m-0 is-size-6 mb-2">Btech / CSE / 3rd</p>
+
+          <a href="#"><i class="fa fa-eye"></i></a> &nbsp;
+          <a href="#"><i class="fa fa-download"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <div class="content">
+          <p class="is-size-5 m-0">Web Design</p>
+          <p class="m-0 is-size-7 has-text-lightgrey">Sessional Paper</p>
+          <p class="m-0 is-size-6 mb-2">Btech / CSE / 3rd</p>
+
+          <a href="#"><i class="fa fa-eye"></i></a> &nbsp;
+          <a href="#"><i class="fa fa-download"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %} {% block script %} {% endblock %}

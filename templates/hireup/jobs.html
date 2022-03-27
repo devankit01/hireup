@@ -1,0 +1,306 @@
+{% extends "layout.html" %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}" />
+<link rel="stylesheet" href="{% static 'css/job.css' %}" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+{% endblock %} {% block body %}
+
+<div class="job__page container mt-5 pt-5">
+  <div class="filter">
+    <h2 class="is-size-4 mb-5" align="center">
+      <b><i class="fa fa-filter" aria-hidden="true"></i> Filters</b>
+    </h2>
+    <div class="filter__div">
+      <label for=""><b>Category</b></label>
+      <input
+        class="input mt-2"
+        type="text"
+        placeholder="Type Web, Android, "
+        class="is-small"
+      />
+    </div>
+
+    <div class="filter__div">
+      <label for=""><b>Location</b></label>
+      <input
+        class="input mt-2"
+        type="text"
+        placeholder="Lucknow"
+        class="is-small"
+      />
+    </div>
+    <button class="button is-primary" type="button" href="">Search</button>
+  </div>
+
+  <div class="jobs__container">
+    <button
+      class="js-modal-trigger is-hidden-desktop button is-primary mb-5"
+      data-target="modal-js-example"
+    >
+      Filters
+    </button>
+    <div id="modal-js-example" class="modal">
+      <div class="modal-background"></div>
+
+      <div class="modal-content">
+        <div class="box">
+          <div class="filter__modal m-3">
+            <h2 class="is-size-4 mb-5">
+              <b><i class="fa fa-filter" aria-hidden="true"></i> Filters</b>
+            </h2>
+            <div class="filter__div">
+              <label for=""><b>Category</b></label>
+              <input
+                class="input mt-2"
+                type="text"
+                placeholder="Type Web, Android, "
+                class="is-small"
+              />
+            </div>
+
+            <div class="filter__div">
+              <label for=""><b>Location</b></label>
+              <input
+                class="input mt-2"
+                type="text"
+                placeholder="Lucknow"
+                class="is-small"
+              />
+            </div>
+            <button class="button is-primary" type="button" href="">
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    <div class="job__card">
+      <div class="card">
+        <div class="card__header">
+          <div>
+            <img
+              class=""
+              src="https://media-exp1.licdn.com/dms/image/C4D0BAQG_5pFNSWWLbw/company-logo_200_200/0/1641548084393?e=2147483647&v=beta&t=-gtnFLe3eA7xmYImFwNHsOUHBHNXJQyI9dfqq2ylEQ0"
+            />
+          </div>
+          <div class="card__info">
+            <h2 class="title is-6 m-0">NodeJS Developer</h2>
+            <p>Noida, Lucknow</p>
+          </div>
+        </div>
+        <div class="card__flex">
+          <div class="break">
+            <div>
+              <p><i class="fa fa-play" aria-hidden="true"></i> &nbsp;Joining</p>
+              <h3>Immediate</h3>
+            </div>
+
+            <div>
+              <p>
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                &nbsp;Experience
+              </p>
+              <h3>1-2 Years</h3>
+            </div>
+          </div>
+          <div class="break">
+            <div>
+              <p>
+                <i class="fa fa-briefcase" aria-hidden="true"></i> &nbsp;Job
+                Type
+              </p>
+              <h3>Full-Time</h3>
+            </div>
+
+            <div>
+              <p><i class="fa fa-money" aria-hidden="true"></i> &nbsp;Salary</p>
+              <h3>4 LPA - 5LPA</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card__apply mt-3">
+          <a class="button is-white py-1 px-0 is-size-6"
+            ><p class="date is-size-4" style="font-size: 14px !important">
+              August 20, 2021 &dot; 06:45 AM
+            </p></a
+          >
+          <button class="button is-primary py-1" type="button" href="">
+            Apply Now
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="job__card">
+      <div class="card">
+        <div class="card__header">
+          <div>
+            <img
+              class=""
+              src="https://media-exp1.licdn.com/dms/image/C4D0BAQG_5pFNSWWLbw/company-logo_200_200/0/1641548084393?e=2147483647&v=beta&t=-gtnFLe3eA7xmYImFwNHsOUHBHNXJQyI9dfqq2ylEQ0"
+            />
+          </div>
+          <div class="card__info">
+            <h2 class="title is-6 m-0">NodeJS Developer</h2>
+            <p>Noida, Lucknow</p>
+          </div>
+        </div>
+        <div class="card__flex">
+          <div class="break">
+            <div>
+              <p><i class="fa fa-play" aria-hidden="true"></i> &nbsp;Joining</p>
+              <h3>Immediate</h3>
+            </div>
+
+            <div>
+              <p>
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                &nbsp;Experience
+              </p>
+              <h3>1-2 Years</h3>
+            </div>
+          </div>
+          <div class="break">
+            <div>
+              <p>
+                <i class="fa fa-briefcase" aria-hidden="true"></i> &nbsp;Job
+                Type
+              </p>
+              <h3>Full-Time</h3>
+            </div>
+
+            <div>
+              <p><i class="fa fa-money" aria-hidden="true"></i> &nbsp;Salary</p>
+              <h3>4 LPA - 5LPA</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card__apply mt-3">
+          <a class="button is-white py-1 px-0 is-size-6"
+            ><p class="date is-size-4" style="font-size: 14px !important">
+              August 20, 2021 &dot; 06:45 AM
+            </p></a
+          >
+          <button class="button is-primary py-1" type="button" href="">
+            Apply Now
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="job__card">
+      <div class="card">
+        <div class="card__header">
+          <div>
+            <img
+              class=""
+              src="https://media-exp1.licdn.com/dms/image/C4D0BAQG_5pFNSWWLbw/company-logo_200_200/0/1641548084393?e=2147483647&v=beta&t=-gtnFLe3eA7xmYImFwNHsOUHBHNXJQyI9dfqq2ylEQ0"
+            />
+          </div>
+          <div class="card__info">
+            <h2 class="title is-6 m-0">NodeJS Developer</h2>
+            <p>Noida, Lucknow</p>
+          </div>
+        </div>
+        <div class="card__flex">
+          <div class="break">
+            <div>
+              <p><i class="fa fa-play" aria-hidden="true"></i> &nbsp;Joining</p>
+              <h3>Immediate</h3>
+            </div>
+
+            <div>
+              <p>
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                &nbsp;Experience
+              </p>
+              <h3>1-2 Years</h3>
+            </div>
+          </div>
+          <div class="break">
+            <div>
+              <p>
+                <i class="fa fa-briefcase" aria-hidden="true"></i> &nbsp;Job
+                Type
+              </p>
+              <h3>Full-Time</h3>
+            </div>
+
+            <div>
+              <p><i class="fa fa-money" aria-hidden="true"></i> &nbsp;Salary</p>
+              <h3>4 LPA - 5LPA</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card__apply mt-3">
+          <a class="button is-white py-1 px-0 is-size-6"
+            ><p class="date is-size-4" style="font-size: 14px !important">
+              August 20, 2021 &dot; 06:45 AM
+            </p></a
+          >
+          <button class="button is-primary py-1" type="button" href="">
+            Apply Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Functions to open and close a modal
+    function openModal($el) {
+      $el.classList.add("is-active");
+    }
+
+    function closeModal($el) {
+      $el.classList.remove("is-active");
+    }
+
+    function closeAllModals() {
+      (document.querySelectorAll(".modal") || []).forEach(($modal) => {
+        closeModal($modal);
+      });
+    }
+
+    // Add a click event on buttons to open a specific modal
+    (document.querySelectorAll(".js-modal-trigger") || []).forEach(
+      ($trigger) => {
+        const modal = $trigger.dataset.target;
+        const $target = document.getElementById(modal);
+        console.log($target);
+
+        $trigger.addEventListener("click", () => {
+          openModal($target);
+        });
+      }
+    );
+
+    // Add a click event on various child elements to close the parent modal
+    (
+      document.querySelectorAll(
+        ".modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button"
+      ) || []
+    ).forEach(($close) => {
+      const $target = $close.closest(".modal");
+
+      $close.addEventListener("click", () => {
+        closeModal($target);
+      });
+    });
+
+    // Add a keyboard event to close all modals
+    document.addEventListener("keydown", (event) => {
+      const e = event || window.event;
+
+      if (e.keyCode === 27) {
+        // Escape key
+        closeAllModals();
+      }
+    });
+  });
+</script>
+{% endblock %} {% block script %} {% endblock %}
