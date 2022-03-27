@@ -9,25 +9,25 @@
 {% endblock %} {% block body %}
 
 <div class="form__container">
-  <div class="form__image" style="width: 550px; height:auto;">
-    <img src="{% static 'images/auth.png' %}" alt="signup"   />
+  <div class="form__image" style="width: 550px; height: auto">
+    <img src="{% static 'images/auth.png' %}" alt="signup" />
   </div>
   <div class="">
     <h3 class="is-size-4"><b>Welcome back !</b></h3>
     <br />
     <form action="" method="post" class="container">
-
+      {% csrf_token %}
       <div class="field">
         <label class="label" for="the_email">Email Address</label>
         <input type="email" name="email" id="the_email" class="input" />
       </div>
       <div class="field">
         <label class="label" for="the_email">Password</label>
-        <input type="email" name="email" id="the_email" class="input" />
+        <input type="password" name="password" id="the_email" class="input" />
       </div>
 
       <div class="field">
-        <input type="submit" class="button is-primary"value="Login now" />
+        <input type="submit" class="button is-primary" value="Login now" />
       </div>
     </form>
   </div>

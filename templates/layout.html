@@ -33,7 +33,7 @@
       <div id="navMenubd-example" class="navbar-menu">
         <div class="navbar-end">
           <a class="navbar-item is-active " href="/"> Home </a>
-
+          {% if not request.user.is_authenticated %}
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link is-active" href="">
               Hireup
@@ -43,7 +43,10 @@
               <a class="navbar-item" href="{% url 'Recruitersignup' %}"> For Companies </a>
             </div>
           </div>
+          {% else %}
+          <a class="navbar-item is-active " href="{% url 'jobs' %}"> Jobs </a>
 
+          {% endif %}
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link is-active"> Prepup </a>
 
@@ -54,10 +57,20 @@
           </div>
           <a class="navbar-item is-active" href="/"> Contact </a>
 
+          {% if request.user.is_authenticated %}
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link is-active"> My Account </a>
 
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="{% url 'userprofile' %}">Profile </a>
+              <a class="navbar-item" href="{% url 'logout' %}"> Logout </a>
+            </div>
+          </div>
+          {% else %}
           <a class="button is-primary m-2" type="button" href="{% url 'signin' %}">
             Login
           </a>
+          {% endif %}
         </div>
       </div>
   </nav>
