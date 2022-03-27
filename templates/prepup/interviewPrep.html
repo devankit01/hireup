@@ -34,66 +34,19 @@
 <!-- Notes -->
 <section class="section container set">
   <div class="card__container">
+    {% for i in data %}
     <div class="card">
       <div class="card-content">
         <div class="content">
-          <p class="is-size-5 m-0">Compiler Design</p>
+          <p class="is-size-5 m-0">{{i.name}}</p>
           <p class="m-0 is-size-7 has-text-lightgrey">Notes</p>
-          <p class="m-0 is-size-6 mb-2">Btech / CSE / 2nd</p>
-
+          <p class="m-0 is-size-6 mb-2">{{i.category.name}}</p>
           <a href="#"><i class="fa fa-eye"></i></a> &nbsp;
           <a href="#"><i class="fa fa-download"></i></a>
         </div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-content">
-        <div class="content">
-          <p class="is-size-5 m-0">Compiler Design</p>
-          <p class="m-0 is-size-7 has-text-lightgrey">PUT</p>
-          <p class="m-0 is-size-6 mb-2">Btech / CSE / 3rd</p>
-
-          <a href="#"><i class="fa fa-eye"></i></a> &nbsp;
-          <a href="#"><i class="fa fa-download"></i></a>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-content">
-        <div class="content">
-          <p class="is-size-5 m-0">DAA</p>
-          <p class="m-0 is-size-7 has-text-lightgrey">Sessional Paper</p>
-          <p class="m-0 is-size-6 mb-2">Btech / CSE / 3rd</p>
-
-          <a href="#"><i class="fa fa-eye"></i></a> &nbsp;
-          <a href="#"><i class="fa fa-download"></i></a>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-content">
-        <div class="content">
-          <p class="is-size-5 m-0">DBMS</p>
-          <p class="m-0 is-size-7 has-text-lightgrey">Notes</p>
-          <p class="m-0 is-size-6 mb-2">Btech / CSE / 3rd</p>
-
-          <a href="#"><i class="fa fa-eye"></i></a> &nbsp;
-          <a href="#"><i class="fa fa-download"></i></a>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-content">
-        <div class="content">
-          <p class="is-size-5 m-0">Web Design</p>
-          <p class="m-0 is-size-7 has-text-lightgrey">Sessional Paper</p>
-          <p class="m-0 is-size-6 mb-2">Btech / CSE / 3rd</p>
-
-          <a href="#"><i class="fa fa-eye"></i></a> &nbsp;
-          <a href="#"><i class="fa fa-download"></i></a>
-        </div>
-      </div>
-    </div>
+    {% endfor %}
   </div>
 </section>
 {% endblock %} {% block script %} {% endblock %}

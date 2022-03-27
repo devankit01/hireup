@@ -1,9 +1,13 @@
 from django.shortcuts import render
-
+from . models import *
 # Create your views here.
 def prepIndex(request):
-    return render(request, 'prepup/index.html')
+    studymaterials=StudyMaterials.objects.filter(IsApproved=True)
+    print(studymaterials)
+    return render(request, 'prepup/index.html',{'data':studymaterials})
 
 
 def interviewIndex(request):
-    return render(request, 'prepup/interviewPrep.html')
+    Interviews=InterviewPrep.objects.filter(IsApproved=True)
+    print(Interviews)
+    return render(request, 'prepup/interviewPrep.html',{'data':Interviews})
