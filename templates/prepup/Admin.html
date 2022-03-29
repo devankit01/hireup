@@ -9,15 +9,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <link rel="stylesheet" href="{% static 'css/nav.css' %}" />
-  <link rel="stylesheet" href="{% static 'css/Admin.css' %}"/>
-  <link
-  rel="stylesheet"
-  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-/>
+  <link rel="stylesheet" href="{% static 'css/Admin.css' %}" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
 
   {% block css %}
-  
-  
+
+
   {% endblock %}
   <title>Hireup</title>
 </head>
@@ -81,54 +78,56 @@
       <h2 class="is-size-5 has-text-white"><b>Prepup / Notes Admin / Study Materials</b></h2>
     </div>
   </div>
-    <!-- <button class="button is-primary" type="button" href="">Search</button> -->
+  <!-- <button class="button is-primary" type="button" href="">Search</button> -->
   </div>
   <section class="section-Admin">
     <table class="styled-table">
       <thead>
-          <tr>
-              <th>Name</th>
-              <th>Subject</th>
-              <th>Year</th>
-              <th>Branch</th>
-              <th>File</th>
-              <th>URL</th>
-              <th>Created By</th>
-              <th>IsApproved</th>
-              <th>Delete</th>
-              
-          </tr>
+        <tr>
+          <th>Name</th>
+          <th>Subject</th>
+          <th>Year</th>
+          <th>Branch</th>
+          <th>File</th>
+          <th>URL</th>
+          <th>Created By</th>
+          <th>IsApproved</th>
+          <th>Delete</th>
+
+        </tr>
       </thead>
       <tbody>
         {% for i in data %}
-          <tr class="active-row">
-              <td>{{i.Name}}</td>
-              <td>{{i.subject}}</td>
-              <td>{{i.years}}</td>
-              <td>{{i.Branch}}</td>
-              {% if i.file %}
-              <td><a href="{% url 'OpenFIle' id=i.id %}"><i class="fa fa-eye"></i></a> &nbsp;
-                <a href="{{fileUrl}}" onclick='Download("{{fileUrl}}","{{i.file}}")'><i class="fa fa-download"></i></a>
-              </td>
-              {% else %}
-              <td>{{i.file}}</td>
-              {% endif %}
-              {% if i.url %}
-              <td>
-                <a href="#"><i class="fa fa-eye"></i></a> &nbsp;  
-                <a href="#"><i class="fa fa-download"></i></a></td>
-              {% else %}
-              <td>{{i.url}}</td>
-                {% endif %}
-              <td>{{i.createdBy}}</td>
-              <td>{{i.IsApproved}}</td>
-              <td><Button class="DeleteBtn">Delete</Button></td>
-          </tr>
+        <tr class="active-row">
+          <td>{{i.Name}}</td>
+          <td>{{i.subject}}</td>
+          <td>{{i.years}}</td>
+          <td>{{i.Branch}}</td>
+          {% if i.file %}
+          <td>
+            <!-- <a href="{% url 'OpenFIle' id=i.id %}"><i class="fa fa-eye"></i></a> &nbsp; -->
+            <a href="http://localhost:8000/media/{{i.file}}" onclick="window.download('http://localhost:8000/media/{{i.file}}');" target="_blank"><i class="fa fa-download"></i></a>
 
-          {% endfor %}
-          <!-- and so on... -->
+          </td>
+          {% else %}
+          <td>{{i.file}}</td>
+          {% endif %}
+          {% if i.url %}
+          <td>
+            <a href="#"><i class="fa fa-eye"></i></a> &nbsp;
+            <a href="#"><i class="fa fa-download"></i></a></td>
+          {% else %}
+          <td>{{i.url}}</td>
+          {% endif %}
+          <td>{{i.createdBy}}</td>
+          <td>{{i.IsApproved}}</td>
+          <td><Button class="DeleteBtn">Delete</Button></td>
+        </tr>
+
+        {% endfor %}
+        <!-- and so on... -->
       </tbody>
-  </table>
+    </table>
   </section>
   {% endblock %}
   <script>
@@ -163,32 +162,32 @@
     });
 
     // Download pdf script
-    function Download(url,names){
-      fetch(url).then(async(res)=>{
-        const name1=names.toString()
-       
-        const name="media/StudyMaterials/Fileuploads/rad8E37C_yKogXP6.pdf";
-        
-        console.log(name)
-        const dfile=await res.blob();
-        var bloburl=
-        window.URL && window.URL.createObjectURL
-        ? window.URL.createObjectURL(dfile)
-        : window.webkitURL.createObjectURL(dfile);
+    function Download(url, names) {
+      fetch(url).then(async (res) => {
+        const name1 = names.toString()
 
-      var tempLink=document.createElement("a");
-      tempLink.style.display="none";
-      tempLink.href=bloburl;
-      tempLink.setAttribute("download",name);
-      if (typeof tempLink.download ==="undefined"){
-        tempLink.setAttribute("target","_blank")
-      }
-      document.body.appendChild(tempLink);
-      tempLink.click();
-      setTimeout(function(){
-        document.body.removeChild(tempLink);
-        window.URL.revokeObjectURL(bloburl)
-      },200);
+        const name = "media/StudyMaterials/Fileuploads/rad8E37C_yKogXP6.pdf";
+
+        console.log(name)
+        const dfile = await res.blob();
+        var bloburl =
+          window.URL && window.URL.createObjectURL ?
+          window.URL.createObjectURL(dfile) :
+          window.webkitURL.createObjectURL(dfile);
+
+        var tempLink = document.createElement("a");
+        tempLink.style.display = "none";
+        tempLink.href = bloburl;
+        tempLink.setAttribute("download", name);
+        if (typeof tempLink.download === "undefined") {
+          tempLink.setAttribute("target", "_blank")
+        }
+        document.body.appendChild(tempLink);
+        tempLink.click();
+        setTimeout(function () {
+          document.body.removeChild(tempLink);
+          window.URL.revokeObjectURL(bloburl)
+        }, 200);
       })
     }
   </script>
