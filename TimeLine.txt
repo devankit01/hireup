@@ -7,4 +7,4 @@ Ankit :
 
 Piyush : 
     - Notes Admin Panel ( Interview Prep and Study Materials CRUD )
-    - 
+    - Profile Update User 
