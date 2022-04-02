@@ -1,0 +1,160 @@
+{% extends "layout.html" %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/prepup/index.css' %}" />
+<link rel="stylesheet" href="{% static 'css/hireup/createJob.css' %}" />
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+/>
+{% endblock %} {% block body %}
+
+<div class="has-background-primary set">
+  <div class="container py-5">
+    <h1 class="is-size-3 has-text-white m-0"><b>Hireup</b></h1>
+    <h2 class="is-size-5 has-text-white"><b>Hireup / Create Job</b></h2>
+  </div>
+</div>
+
+<section class="section container set">
+  <h2 class="is-size-4 mb-3">Create Job</h2>
+
+  <div class="field is-horizontal">
+    <div class="field-body">
+      <div class="field">
+        <p class="mb-2 ml-1">Job Name</p>
+        <p class="control is-expanded is-fullwidth">
+          <input
+            class="input mx-1"
+            type="text"
+            placeholder="Job Title"
+            name="id"
+            id="id"
+          />
+        </p>
+      </div>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="mb-2">Employment Type</p>
+        <p class="control is-expanded select is-fullwidth">
+          <select id="selectbasic-0" name="selectbasic-0" class="is-large">
+            <option value="Full Time">Full Time</option>
+          </select>
+        </p>
+      </div>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="mb-2">Internship or Job</p>
+
+        <p class="control is-expanded select is-fullwidth">
+          <select id="selectbasic-0" name="selectbasic-0" class="is-large">
+            <option value="Internship">Internship</option>
+            <option value="Job">Job</option>
+          </select>
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="field is-horizontal">
+    <div class="field-body">
+      <div class="field">
+        <p class="mb-2 ml-1">Location (Remote/City)</p>
+        <p class="control is-expanded is-fullwidth">
+          <input
+            class="input mx-1"
+            type="text"
+            placeholder="location"
+            name="id"
+            id="id"
+          />
+        </p>
+      </div>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="mb-2">Salary</p>
+        <p class="control is-expanded select is-fullwidth">
+          <select id="selectbasic-0" name="selectbasic-0" class="is-large">
+            <option value="Full Time">Negotiable</option>
+            <option value="Full Time">1 LPA - 3 LPA</option>
+            <option value="Full Time">3 LPA - 5 LPA</option>
+            <option value="Full Time">5 LPA - 8 LPA</option>
+            <option value="Full Time">10 LPA +</option>
+          </select>
+        </p>
+      </div>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="mb-2">Experience</p>
+
+        <p class="control is-expanded select is-fullwidth">
+          <select id="selectbasic-0" name="selectbasic-0" class="is-large">
+            <option value="Internship">Fresher</option>
+            <option value="Internship">1yr- 2yr</option>
+            <option value="Internship">3yr- 5yr</option>
+            <option value="Internship">5yr- 10yr</option>
+            
+          </select>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-horizontal">
+    <div class="field-body">
+      <div class="field">
+        <p class="mb-2 ml-1">Skills Required</p>
+        <p class="control is-expanded is-fullwidth">
+          <div class="select is-multiple">
+            <select multiple size="5">
+                <option value="webdev">Web Technology</option>
+                <option value="html">HTML</option>
+                <option value="css">CSS</option>
+                <option value="js">JavaScript</option>
+                <option value="php">PHP</option>
+            </select>
+        </div>
+        </p>
+      </div>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="mb-2">No. of Openings</p>
+        <p class="control is-expanded  is-fullwidth">
+       
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="No. pf Openings"
+              name="id"
+              id="id"
+            />
+      
+        </p>
+      </div>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="mb-2">Job Status</p>
+
+        <p class="control is-expanded select is-fullwidth">
+          <select id="selectbasic-0" name="selectbasic-0" class="is-large">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+
+            
+          </select>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %} {% block script %} {% endblock %}
