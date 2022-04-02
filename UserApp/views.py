@@ -116,16 +116,20 @@ def signin(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         print(email, password)
-        user = User.objects.filter(username=email).first()
-        user_authenticate = auth.authenticate(
-            username=email, password=password)
-        print(user, user_authenticate)
-        if user.is_active:
-            auth.login(request, user)
-            request.session['username'] = email
-            getUser = user.email
-            print()
-            return redirect('userprofile')
+        try:
+            user = User.objects.filter(username=email).first()
+            user_authenticate = auth.authenticate(
+                username=email, password=password)
+            print(user, user_authenticate)
+            if user.is_active:
+                auth.login(request, user)
+                request.session['username'] = email
+                getUser = user.email
+                print()
+                return redirect('userprofile')
+        except Exception as e:
+            print('Login Failed')
+            return redirect('signin')
 
 
     return render(request, 'users/signin.html')
@@ -137,9 +141,11 @@ def userprofile(request):
             print(request.session['username'], request.user)
             user = get_object_or_404(User, username=request.user)
             if UserProfile.objects.filter(username=user).count():
+                print('User')
                 return render(request, 'users/userProfile.html')
 
             if RecruiterProfile.objects.filter(username=user).count():
+                print('Recruiter')
                 return render(request, 'users/recruiterProfile.html')
 
     except:

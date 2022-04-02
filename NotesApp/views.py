@@ -18,10 +18,11 @@ def interviewIndex(request):
 from django.http import FileResponse, Http404
 from django.core.files.storage import FileSystemStorage
 
-def NotesAdmin(request):
+def PrepupAdmin(request):
     studymaterials=StudyMaterials.objects.all()
     print(studymaterials)
     return render(request,'prepup/Admin.html',{'data':studymaterials})
+    
 from django.http import FileResponse, Http404
 from django.core.files.storage import FileSystemStorage
 

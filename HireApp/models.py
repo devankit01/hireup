@@ -61,12 +61,13 @@ class Education(models.Model):
 # Create your models here.
 class CompanyProfile(models.Model):
     ''' Model for Company Profile '''
-    company_type = models.CharField(max_length=30)
-    company_specialization = models.CharField(max_length=30)
-    phone = models.CharField(max_length=20)
-    company_logo = models.ImageField(upload_to="company_logo")
-    about_company = models.TextField(max_length=300)
-    company_site = models.CharField(max_length=50)
+    company_name = models.CharField(max_length=255, null=True)
+    company_type = models.CharField(max_length=30, null=True)
+    company_specialization = models.CharField(max_length=30, null=True)
+    phone = models.CharField(max_length=20, null=True)
+    company_logo = models.ImageField(upload_to="company_logo", null=True)
+    about_company = models.TextField(max_length=300, null=True)
+    company_site = models.CharField(max_length=50, null=True)
 
 
 class RecruiterProfile(models.Model):
@@ -85,17 +86,18 @@ class Work(models.Model):
     emp_type = models.CharField(max_length=50)
     work_name = models.CharField(max_length=100)
     company = models.ForeignKey('CompanyProfile', on_delete=models.CASCADE)
+    experience_or_time = models.CharField(max_length=10)
+    location = models.CharField(max_length=100)
+    salary_or_stipend = models.CharField(max_length=20)
+
     about = RichTextField()
     min_requirement = RichTextField()
     # Work from Home , Remote or Delhi, India
-    location = models.CharField(max_length=100)
     # Expererience in Job and INtern time in Internship
-    experience_or_time = models.CharField(max_length=10)
     tech_stack = models.CharField(max_length=100)
     posted = models.DateField(auto_now_add=True)
     number_of_vacancy = models.CharField(max_length=3)
     status = models.BooleanField(default=True)
-    salary_or_stipend = models.CharField(max_length=20)
     applicants = models.ManyToManyField(UserProfile)
     resume_selected = models.ManyToManyField(
         UserProfile, related_name='resume_selected')

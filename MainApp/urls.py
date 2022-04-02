@@ -10,4 +10,4 @@ urlpatterns = [
     # path('accounts/', include('UserApp.urls')),
     path('hireup/', include('HireApp.urls')),
     path('prepup/', include('NotesApp.urls')),
-]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

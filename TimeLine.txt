@@ -1,0 +1,10 @@
+Ankit :
+    -  Login, Register, Home, Prep Index Design (Done)
+    -  Profile Design User ( Done )
+    -  Profile Design Recruiter (Pending)
+
+
+
+Piyush : 
+    - Notes Admin Panel ( Interview Prep and Study Materials CRUD )
+    - Profile Update User 
