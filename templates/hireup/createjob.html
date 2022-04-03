@@ -61,7 +61,6 @@
     </div>
   </div>
 
-
   <div class="field is-horizontal">
     <div class="field-body">
       <div class="field">
@@ -101,7 +100,6 @@
             <option value="Internship">1yr- 2yr</option>
             <option value="Internship">3yr- 5yr</option>
             <option value="Internship">5yr- 10yr</option>
-            
           </select>
         </p>
       </div>
@@ -112,32 +110,111 @@
     <div class="field-body">
       <div class="field">
         <p class="mb-2 ml-1">Skills Required</p>
-        <p class="control is-expanded is-fullwidth">
-          <div class="select is-multiple">
-            <select multiple size="5">
-                <option value="webdev">Web Technology</option>
-                <option value="html">HTML</option>
-                <option value="css">CSS</option>
-                <option value="js">JavaScript</option>
-                <option value="php">PHP</option>
-            </select>
-        </div>
+        <p class="control is-expanded is-fullwidth skills">
+          <span class="control">
+            <label class="is-checkbox is-rounded">
+              <input id="mycheckbox" type="checkbox" value="Python" />
+
+              <span>Python</span>
+            </label> </span
+          >&nbsp;
+          <span class="control">
+            <label class="is-checkbox is-rounded">
+              <input id="mycheckbox" type="checkbox" value="JavaScript" />
+              <span>JavaScript</span>
+            </label>
+          </span>
+          &nbsp;
+          <span class="control">
+            <label class="is-checkbox is-rounded">
+              <input id="mycheckbox" type="checkbox" value="PHP" />
+              <span>PHP</span>
+            </label>
+          </span>
+          &nbsp;
+          <span class="control">
+            <label class="is-checkbox is-rounded">
+              <input id="mycheckbox" type="checkbox" value="NodeJS" />
+              <span>NodeJS</span>
+            </label>
+          </span>
+          &nbsp;
+          <span class="control">
+            <label class="is-checkbox is-rounded">
+              <input id="mycheckbox" type="checkbox" value="ExpressJS" />
+              <span>ExpressJS</span>
+            </label>
+          </span>
+          &nbsp;
+          <span class="control">
+            <label class="is-checkbox is-rounded">
+              <input id="mycheckbox" type="checkbox" value="HTML" />
+              <span>HTML</span>
+            </label>
+          </span>
+          &nbsp;
+          <span class="control">
+            <label class="is-checkbox is-rounded">
+              <input id="mycheckbox" type="checkbox" value="CSS" />
+              <span>CSS</span>
+            </label>
+          </span>
+          &nbsp;
+          <span class="control">
+            <label class="is-checkbox is-rounded">
+              <input id="mycheckbox" type="checkbox" value="ReactJS" />
+              <span>ReactJS</span>
+            </label>
+          </span>
+          &nbsp;
+          <span class="control">
+            <label class="is-checkbox is-rounded">
+              <input id="mycheckbox" type="checkbox" value="React Native" />
+              <span>React Native</span>
+            </label>
+          </span>
+          &nbsp;
+          <span class="control">
+            <label class="is-checkbox is-rounded">
+              <input id="mycheckbox" type="checkbox" value="Flutter" />
+              <span>Flutter</span>
+            </label>
+          </span>
+          &nbsp;
+          <span class="control">
+            <label class="is-checkbox is-rounded">
+              <input id="mycheckbox" type="checkbox" value="MySQL" />
+              <span>MySQL</span>
+            </label>
+          </span>
+          &nbsp;
+          <span class="control">
+            <label class="is-checkbox is-rounded">
+              <input id="mycheckbox" type="checkbox" value="MongoDB" />
+              <span>MongoDB</span>
+            </label>
+          </span>
+          &nbsp;
+          <span class="control">
+            <label class="is-checkbox is-rounded">
+              <input id="mycheckbox" type="checkbox" value="Go" />
+              <span>Go</span>
+            </label>
+          </span>
         </p>
       </div>
     </div>
     <div class="field-body">
       <div class="field">
         <p class="mb-2">No. of Openings</p>
-        <p class="control is-expanded  is-fullwidth">
-       
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="No. pf Openings"
-              name="id"
-              id="id"
-            />
-      
+        <p class="control is-expanded is-fullwidth">
+          <input
+            class="input mx-1"
+            type="text"
+            placeholder="No. pf Openings"
+            name="id"
+            id="id"
+          />
         </p>
       </div>
     </div>
@@ -149,12 +226,11 @@
           <select id="selectbasic-0" name="selectbasic-0" class="is-large">
             <option value="Active">Active</option>
             <option value="Inactive">Inactive</option>
-
-            
           </select>
         </p>
       </div>
     </div>
   </div>
 </section>
+
 {% endblock %} {% block script %} {% endblock %}
