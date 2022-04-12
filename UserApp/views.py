@@ -13,6 +13,7 @@ from django.core.mail import EmailMultiAlternatives
 from HireApp.models import RecruiterProfile, UserProfile
 from django.contrib import auth
 from django.contrib.auth.models import User
+from django.db.models import F
 
 
 class TokenGenerator(PasswordResetTokenGenerator):
@@ -145,9 +146,15 @@ def userprofile(request):
 
             if RecruiterProfile.objects.filter(username=user).count():
                 print('Recruiter')
-                return render(request, 'users/recruiterProfile.html')
 
-    except:
+                companyDetail = RecruiterProfile.objects.filter(
+                    username=user).values(company_name=F('company__company_name'), company_type=F('company__company_type'), company_specialization=F('company__company_specialization'), company_phone=F('company__phone'), company_logo=F('company__company_logo'), about_company=F('company__about_company'), company_site=F('company__company_site'), user_phone=F('phone')).first()
+                companyDetail['first_name'] = user.first_name
+                companyDetail['last_name'] = user.last_name
+                return render(request, 'users/recruiterProfile.html', companyDetail)
+
+    except Exception as e:
+        print(e)
         return render(request, 'users/signin.html')
 
 

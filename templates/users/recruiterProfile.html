@@ -1,4 +1,5 @@
 {% extends "layout.html" %} {% load static %} {% block css %}
+{% load static %}
 <link rel="stylesheet" href="{% static 'css/job.css' %}" />
 
 <link rel="stylesheet" href="{% static 'css/userprofile.css' %}" />
@@ -18,8 +19,8 @@
       <img src="{% static 'images/profile/download.svg' %}" />
     </div>
     <div>
-      <h2>Adil Khan</h2>
-      <p class="headline">Appventurez Mobitech</p>
+      <h2>{{first_name}} {{last_name}}</h2>
+      <p class="headline">{{company_name}}</p>
       <p class="bio">
         <b>Lucknow, India</b>
       </p>
@@ -39,23 +40,20 @@
     <div class="profile__div">
       <h2 class="mt-5 mb-4 is-size-5"><b>Company Info</b></h2>
       <img
-        src="https://media-exp1.licdn.com/dms/image/C4D0BAQG_5pFNSWWLbw/company-logo_200_200/0/1641548084393?e=2147483647&v=beta&t=-gtnFLe3eA7xmYImFwNHsOUHBHNXJQyI9dfqq2ylEQ0"
+        src="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/media/{{company_logo}}"
         alt=""
   
         
       />
       
-      <h3 class="is-size-5">Appventurez Mobitech Pvt. Ltd</h3>
-      <h3 class="is-size-7">Product Based</h3>
+      <h3 class="is-size-5">{{company_name}}</h3>
+      <h3 class="is-size-7">{{company_type}}</h3>
       <h4 class="is-size-6">Lucknow, India</h4>
       <h5 class="is-size-7 my-1">
-        <b><a href="">Website</a></b>
+        <b><a href={{company_site}} target="blank">Website</a></b>
       </h5>
       <h5 class="is-size-6">
-        Appventurez is a leading Software Development company which was
-        established with a motto of imparting end-to-end technology-oriented
-        services to all large and small businesses and bestow enormously in
-        enhancing their overall business lifecycle.
+        {{about_company}}
       </h5>
       <a href="" class="button is-primary has-text-color-primary mt-4"
           >Edit Company Info</a

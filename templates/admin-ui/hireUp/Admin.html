@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="{% static 'css/nav.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/Admin.css' %}" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+
+  {% block css %}
+
+
+  {% endblock %}
+  <title>Hireup</title>
+</head>
+
+<body class="">
+  <!-- Navbar -->
+  <nav class="navbar ">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="">
+          <p class="title is-4">Hireup</p>
+        </a>
+
+        <div class="navbar-burger burger" data-target="navMenubd-example">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div id="navMenubd-example" class="navbar-menu">
+        <div class="navbar-end">
+          <a class="navbar-item is-active " href="/"> Home </a>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link is-active" href="">
+              Hireup
+            </a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="{% url 'Usersignup' %}"> For Seekers </a>
+              <a class="navbar-item" href="{% url 'Recruitersignup' %}"> For Companies </a>
+            </div>
+          </div>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link is-active"> HireUp </a>
+
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="{% url 'prepIndex' %}"> Study Materials </a>
+              <a class="navbar-item" href="{% url 'interviewIndex' %}"> Interview Prep </a>
+            </div>
+          </div>
+          <a class="navbar-item is-active" href="/"> Contact </a>
+
+
+          <a class="button is-primary m-2" type="button" href="{% url 'signin' %}">
+            Login
+          </a>
+        </div>
+      </div>
+  </nav>
+  </div>
+
+
+  <!--  -->
+
+  {% block body %}
+  <div class="has-background-primary set">
+    <div class="container py-5">
+      <h1 class="is-size-3 has-text-white m-0"><b>HireUp</b></h1>
+      <h2 class="is-size-5 has-text-white"><b>HireUp / Recruiter / Jobs</b></h2>
+    </div>
+  </div>
+  <!-- <button class="button is-primary" type="button" href="">Search</button> -->
+  </div>
+  <section class="section-Admin">
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Sr. no</th>
+          <th>Profile</th>
+          <th>Job Type</th>
+          <th>Employee Type</th>
+          <th>Company</th>
+          <th>Experience</th>
+          <th>Location</th>
+          <th>CTC</th>
+          <th>Delete</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in data %}
+        <tr class="active-row">
+          <td>{{i.Name}}</td>
+          <td>{{i.subject}}</td>
+          <td>{{i.years}}</td>
+          <td>{{i.Branch}}</td>
+          {% if i.file %}
+          <td>
+            <!-- <a href="{% url 'OpenFIle' id=i.id %}"><i class="fa fa-eye"></i></a> &nbsp; -->
+            <a href="http://localhost:8000/media/{{i.file}}" onclick="window.download('http://localhost:8000/media/{{i.file}}');" target="_blank"><i class="fa fa-download"></i></a>
+
+          </td>
+          {% else %}
+          <td>{{i.file}}</td>
+          {% endif %}
+          {% if i.url %}
+          <td>
+            <a href="#"><i class="fa fa-eye"></i></a> &nbsp;
+            <a href="#"><i class="fa fa-download"></i></a></td>
+          {% else %}
+          <td>{{i.url}}</td>
+          {% endif %}
+          <td>{{i.createdBy}}</td>
+          <td>{{i.IsApproved}}</td>
+          <td><Button class="DeleteBtn">Delete</Button></td>
+        </tr>
+
+        {% endfor %}
+        <!-- and so on... -->
+      </tbody>
+    </table>
+  </section>
+  {% endblock %}
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Get all "navbar-burger" elements
+      var $navbarBurgers = Array.prototype.slice.call(
+        document.querySelectorAll(".navbar-burger"),
+        0
+      );
+
+      // Check if there are any nav burgers
+      if ($navbarBurgers.length > 0) {
+        // Add a click event on each of them
+        $navbarBurgers.forEach(function ($el) {
+          $el.addEventListener("click", function () {
+            // Get the target from the "data-target" attribute
+            var target = $el.dataset.target;
+            var $target = document.getElementById(target);
+
+            // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+            $el.classList.toggle("is-active");
+            $target.classList.toggle("is-active");
+          });
+        });
+      }
+    });
+
+    var dropdown = document.querySelector(".dropdown");
+    dropdown.addEventListener("click", function (event) {
+      event.stopPropagation();
+      dropdown.classList.toggle("is-active");
+    });
+
+    // Download pdf script
+    function Download(url, names) {
+      fetch(url).then(async (res) => {
+        const name1 = names.toString()
+
+        const name = "media/StudyMaterials/Fileuploads/rad8E37C_yKogXP6.pdf";
+
+        console.log(name)
+        const dfile = await res.blob();
+        var bloburl =
+          window.URL && window.URL.createObjectURL ?
+          window.URL.createObjectURL(dfile) :
+          window.webkitURL.createObjectURL(dfile);
+
+        var tempLink = document.createElement("a");
+        tempLink.style.display = "none";
+        tempLink.href = bloburl;
+        tempLink.setAttribute("download", name);
+        if (typeof tempLink.download === "undefined") {
+          tempLink.setAttribute("target", "_blank")
+        }
+        document.body.appendChild(tempLink);
+        tempLink.click();
+        setTimeout(function () {
+          document.body.removeChild(tempLink);
+          window.URL.revokeObjectURL(bloburl)
+        }, 200);
+      })
+    }
+  </script>
+</body>
+
+</html>
