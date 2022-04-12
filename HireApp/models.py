@@ -98,8 +98,6 @@ class Work(models.Model):
 
     about = RichTextField()
     min_requirement = RichTextField()
-    # Work from Home , Remote or Delhi, India
-    # Expererience in Job and INtern time in Internship
     tech_stack = models.CharField(max_length=100)
     posted = models.DateField(auto_now_add=True)
     number_of_vacancy = models.CharField(max_length=3)

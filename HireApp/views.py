@@ -4,7 +4,8 @@ from .models import Work, CompanyProfile, RecruiterProfile
 
 
 def jobs(request):
-    return render(request, 'hireup/jobs.html')
+    jobs = Work.objects.all().order_by('posted')
+    return render(request, 'hireup/jobs.html',{'jobs':jobs})
 
 
 def jobInfo(request, id):
