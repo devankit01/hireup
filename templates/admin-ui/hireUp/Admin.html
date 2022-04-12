@@ -88,40 +88,30 @@
           <th>Profile</th>
           <th>Job Type</th>
           <th>Employee Type</th>
-          <th>Company</th>
           <th>Experience</th>
           <th>Location</th>
           <th>CTC</th>
-          <th>Delete</th>
+          <th>Status</th>
+          <th>Action</th>
 
         </tr>
       </thead>
       <tbody>
         {% for i in data %}
         <tr class="active-row">
-          <td>{{i.Name}}</td>
-          <td>{{i.subject}}</td>
-          <td>{{i.years}}</td>
-          <td>{{i.Branch}}</td>
-          {% if i.file %}
-          <td>
-            <!-- <a href="{% url 'OpenFIle' id=i.id %}"><i class="fa fa-eye"></i></a> &nbsp; -->
-            <a href="http://localhost:8000/media/{{i.file}}" onclick="window.download('http://localhost:8000/media/{{i.file}}');" target="_blank"><i class="fa fa-download"></i></a>
-
-          </td>
+          <td>{{ forloop.counter }}</td>
+          <td>{{i.work_name}}</td>
+          <td>{{i.Type}}</td>
+          <td>{{i.emp_type}}</td>
+          <td>{{i.experience_or_time}}</td>
+          <td>{{i.location}}</td>
+          <td>{{i.salary_or_stipend}}</td>
+          {% if i.status %}
+          <td>Active</td>
           {% else %}
-          <td>{{i.file}}</td>
+          <td>Inactive</td>
           {% endif %}
-          {% if i.url %}
-          <td>
-            <a href="#"><i class="fa fa-eye"></i></a> &nbsp;
-            <a href="#"><i class="fa fa-download"></i></a></td>
-          {% else %}
-          <td>{{i.url}}</td>
-          {% endif %}
-          <td>{{i.createdBy}}</td>
-          <td>{{i.IsApproved}}</td>
-          <td><Button class="DeleteBtn">Delete</Button></td>
+          <td><a class="btn btn-primary" href="{% url 'recruiterJobs' %}">Admin view</a></td>
         </tr>
 
         {% endfor %}

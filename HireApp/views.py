@@ -43,22 +43,5 @@ def createJob(request):
 
 def recruiterJobs(request):
     works = Work.objects.all()
-    work_list = []
-    for work in works:
-        work_dict = {}
-        work_dict['work_name'] = work.work_name
-        work_dict['Type'] = work.Type
-        work_dict['emp_type'] = work.emp_type
-        work_dict['company'] = work.company
-        work_dict['experience_or_time'] = work.experience_or_time
-        work_dict['location'] = work.location
-        work_dict['salary_or_stipend'] = work.salary_or_stipend
-        work_dict['tech_stack'] = eval(work.tech_stack)
-        work_dict['number_of_vacancy'] = work.number_of_vacancy
-        work_dict['status'] = work.status
-        work_dict['applicants'] = work.applicants
-        work_dict['resume_selected'] = work.resume_selected
-        work_dict['hired'] = work.hired
-        work_list.append(work_dict)
-    data = {'data': work_list}
+    data = {'data': works}
     return render(request, 'admin-ui/hireUp/Admin.html', data)
