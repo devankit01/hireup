@@ -66,10 +66,21 @@ WSGI_APPLICATION = 'MainApp.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': str(BASE_DIR / "db.sqlite3"),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(BASE_DIR / "db.sqlite3"),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'oslclmiv',
+        'USER': 'oslclmiv',
+        'PASSWORD': 'qq-s1raQwNLphI0hQ5gS73q82-ghhLbz',
+        'HOST': 'ziggy.db.elephantsql.com',
+        'PORT': '5432',
     }
 }
 
@@ -106,12 +117,11 @@ USE_L10N = True
 USE_TZ = True
 
 
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR , 'static'),
+    os.path.join(BASE_DIR, 'static'),
 ]
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # Email Setup

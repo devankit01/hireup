@@ -1,5 +1,4 @@
-{% extends "layout.html" %} {% load static %} {% block css %}
-{% load static %}
+{% extends "layout.html" %} {% load static %} {% block css %} {% load static %}
 <link rel="stylesheet" href="{% static 'css/job.css' %}" />
 
 <link rel="stylesheet" href="{% static 'css/userprofile.css' %}" />
@@ -14,6 +13,14 @@
 {% endblock %} {% block body %}
 
 <div class="user__profile container">
+  {% if company %}
+  <article class="message is-primary" id="popUPMsg">
+    <div class="message-header">
+      <p>Please complete your profile to start further journey.</p>
+      <button class="delete" aria-label="delete"></button>
+    </div>
+  </article>
+  {% endif %}
   <div class="profile__header">
     <div>
       <img src="{% static 'images/profile/download.svg' %}" />
@@ -28,37 +35,48 @@
         Talent Acquisition | Jobs for Python, Java and Web Developer
       </p>
       <div class="connect__btn">
-        <a href="{% url 'createJob' %}" class="button is-primary">Create Job</a>
+        <a
+          href="{% url 'createJob' %}"
+          class="button is-primary"
+          {%
+          if
+          company
+          %}
+          style="pointer-events: none"
+          {%
+          endif
+          %}
+          >Create Job</a
+        >
+
         <!-- <a href="" class="button is-primary-outline has-text-color-primary"
           >Edit Company Info</a
         > -->
       </div>
     </div>
   </div>
+  <div class="profile__header mt-5">
+    <div class="profile__body">
+      <div class="profile__div">
+        <h2 class="is-size-5"><b>Company Info</b></h2>
+        <img
+          src="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/media/{{company_logo}}"
+          alt=""
+        />
 
-  <div class="profile__body">
-    <div class="profile__div">
-      <h2 class="mt-5 mb-4 is-size-5"><b>Company Info</b></h2>
-      <img
-        src="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/media/{{company_logo}}"
-        alt=""
-  
-        
-      />
-      
-      <h3 class="is-size-5">{{company_name}}</h3>
-      <h3 class="is-size-7">{{company_type}}</h3>
-      <h4 class="is-size-6">Lucknow, India</h4>
-      <h5 class="is-size-7 my-1">
-        <b><a href={{company_site}} target="blank">Website</a></b>
-      </h5>
-      <h5 class="is-size-6">
-        {{about_company}}
-      </h5>
-      <a href="" class="button is-primary has-text-color-primary mt-4"
+        <h3 class="is-size-5">{{company_name}}</h3>
+        <h3 class="is-size-7">{{company_type}}</h3>
+        <h4 class="is-size-6">Lucknow, India</h4>
+        <h5 class="is-size-7 my-1">
+          <b><a href="{{company_site}}" target="blank">Website</a></b>
+        </h5>
+        <h5 class="is-size-6">{{about_company}}</h5>
+        <a href="" class="button is-primary has-text-color-primary mt-4"
           >Edit Company Info</a
         >
+      </div>
     </div>
   </div>
 </div>
+
 {% endblock %} {% block script %} {% endblock %}

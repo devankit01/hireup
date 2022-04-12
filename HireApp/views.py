@@ -38,6 +38,7 @@ def createJob(request):
         print("Job Created........")
 
         return render(request, 'hireup/createjob.html')
+
     return render(request, 'hireup/createjob.html')
 
 

@@ -137,8 +137,9 @@ def signin(request):
 
 def userprofile(request):
     try:
-        if request.session['username']:
-            print(request.session['username'], request.user)
+        print('--------------------')
+        if request.session.get('username', None):
+            # print(request.session['username'], request.user)
             user = get_object_or_404(User, username=request.user)
             if UserProfile.objects.filter(username=user).count():
                 print('User')
@@ -151,7 +152,13 @@ def userprofile(request):
                     username=user).values(company_name=F('company__company_name'), company_type=F('company__company_type'), company_specialization=F('company__company_specialization'), company_phone=F('company__phone'), company_logo=F('company__company_logo'), about_company=F('company__about_company'), company_site=F('company__company_site'), user_phone=F('phone')).first()
                 companyDetail['first_name'] = user.first_name
                 companyDetail['last_name'] = user.last_name
+                if companyDetail['company_name'] != '' and companyDetail['company_name'] != None:
+                    companyDetail['company'] = False
+                else:
+                    companyDetail['company'] = True
                 return render(request, 'users/recruiterProfile.html', companyDetail)
+        else:
+            return render(request, 'users/recruiterProfile.html')
 
     except Exception as e:
         print(e)

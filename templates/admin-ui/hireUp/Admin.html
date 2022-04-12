@@ -111,7 +111,9 @@
           {% else %}
           <td>Inactive</td>
           {% endif %}
-          <td><a class="btn btn-primary" href="{% url 'recruiterJobs' %}">Admin view</a></td>
+          <td><span class="icon">
+            <i class="fas fa-edit"></i>
+          </span></td>
         </tr>
 
         {% endfor %}
