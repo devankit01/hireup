@@ -131,7 +131,6 @@ def signin(request):
             print('Login Failed')
             return redirect('signin')
 
-
     return render(request, 'users/signin.html')
 
 
