@@ -108,7 +108,7 @@ class Work(models.Model):
     resume_selected = models.ManyToManyField(
         UserProfile, related_name='resume_selected')
     hired = models.ManyToManyField(UserProfile, related_name='hired')
-    created_by = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    created_by = models.ForeignKey(RecruiterProfile, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.work_name

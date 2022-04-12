@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Work, CompanyProfile, RecruiterProfile
 # Create your views here.
 
@@ -31,18 +31,16 @@ def createJob(request):
             "salary_or_stipend": request.POST['salary'],
             "tech_stack": request.POST.getlist('stack'),
             "number_of_vacancy": request.POST['opening'],
+            "created_by": company
         }
-        print("Creating job........")
-        # Work.objects.create(**job_details)
+        Work.objects.create(**job_details)
 
-        print("Job Created........")
-
-        return render(request, 'hireup/createjob.html')
+        return redirect('recruiterJobs')
 
     return render(request, 'hireup/createjob.html')
 
 
 def recruiterJobs(request):
-    works = Work.objects.all()
-    data = {'data': works}
-    return render(request, 'admin-ui/hireUp/Admin.html', data)
+    recruiter = RecruiterProfile.objects.filter(username=request.user).first()
+    works = Work.objects.filter(created_by=recruiter)
+    return render(request, 'admin-ui/hireUp/Admin.html', {'data': works})
