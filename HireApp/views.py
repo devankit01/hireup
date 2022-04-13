@@ -5,7 +5,7 @@ from .models import Work, CompanyProfile, RecruiterProfile
 
 def jobs(request):
     jobs = Work.objects.all().order_by('posted')
-    return render(request, 'hireup/jobs.html',{'jobs':jobs})
+    return render(request, 'hireup/jobs.html', {'jobs': jobs})
 
 
 def jobInfo(request, id):
@@ -39,6 +39,27 @@ def createJob(request):
         return redirect('recruiterJobs')
 
     return render(request, 'hireup/createjob.html')
+
+
+def editJob(request, id):
+    if request.method == 'POST':
+        if len(request.POST.getlist('stack')) == 0:
+            print("SELECT ATLEAST ONE!")
+            return render(request, 'hireup/editjob.html', {'error': 'Please select atleast one technology.'})
+        job_details = {
+            "Type": request.POST['jobType'],
+            "emp_type": request.POST['empType'],
+            "work_name": request.POST['jobName'],
+            "experience_or_time": request.POST['experience'],
+            "location": request.POST['location'],
+            "salary_or_stipend": request.POST['salary'],
+            "tech_stack": request.POST.getlist('stack'),
+            "number_of_vacancy": request.POST['opening'],
+        }
+        Work.objects.filter(id=id).update(**job_details)
+        return redirect('recruiterJobs')
+    work = Work.objects.filter(id=id).first()
+    return render(request, 'hireup/editjob.html', {'data': work})
 
 
 def recruiterJobs(request):

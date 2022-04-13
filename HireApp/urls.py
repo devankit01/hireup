@@ -7,6 +7,7 @@ urlpatterns = [
     path('jobs/<id>/', jobInfo, name='jobInfo'),
 
     path('create-job', createJob, name='createJob'),
+    path('edit-job/<id>/', editJob, name='editJob'),
     path('recruiter-jobs', recruiterJobs, name='recruiterJobs'),
 
 
