@@ -319,8 +319,8 @@
               class="is-large"
               required
             >
-              <option value="Active" {% if data.status == 'Active' %} selected {% endif %} >Active</option>
-              <option value="Inactive" {% if data.status == 'Inactive' %} selected {% endif %} >Inactive</option>
+              <option value="Active" {% if data.status == True %} selected {% endif %} >Active</option>
+              <option value="Inactive" {% if data.status == False %} selected {% endif %} >Inactive</option>
             </select>
           </p>
         </div>

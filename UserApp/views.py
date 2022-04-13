@@ -14,6 +14,7 @@ from HireApp.models import RecruiterProfile, UserProfile
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.db.models import F
+from HireApp.models import CompanyProfile
 
 
 class TokenGenerator(PasswordResetTokenGenerator):
@@ -146,9 +147,8 @@ def userprofile(request):
 
             if RecruiterProfile.objects.filter(username=user).count():
                 print('Recruiter')
-
                 companyDetail = RecruiterProfile.objects.filter(
-                    username=user).values(company_name=F('company__company_name'), company_type=F('company__company_type'), company_specialization=F('company__company_specialization'), company_phone=F('company__phone'), company_logo=F('company__company_logo'), about_company=F('company__about_company'), company_site=F('company__company_site'), user_phone=F('phone')).first()
+                    username=user).values(comp_id=F('company__id'), company_name=F('company__company_name'), company_type=F('company__company_type'), company_specialization=F('company__company_specialization'), company_phone=F('company__phone'), company_logo=F('company__company_logo'), about_company=F('company__about_company'), company_site=F('company__company_site'), user_phone=F('phone')).first()
                 companyDetail['first_name'] = user.first_name
                 companyDetail['last_name'] = user.last_name
                 if companyDetail['company_name'] != '' and companyDetail['company_name'] != None:
@@ -176,3 +176,22 @@ def logout(request):
         pass
 
     return redirect('signin')
+
+
+def editCompany(request, id):
+    if request.method == 'POST':
+        company_details = {
+            "company_name": request.POST['company_name'],
+            "company_type": request.POST['company_type'],
+            "company_specialization": request.POST['company_specialization'],
+            "phone": request.POST['phone'],
+            # "company_logo": request.FILES['company_logo'],
+            "about_company": request.POST['about_company'],
+            "company_site": request.POST.getlist('company_site'),
+        }
+        if 'company_logo' in request.FILES:
+            company_details['company_logo'] = request.FILES['company_logo']
+        CompanyProfile.objects.filter(id=id).update(**company_details)
+        return redirect('userprofile')
+    companyProfile = CompanyProfile.objects.filter(id=id).first()
+    return render(request, 'users/editCompany.html', {'data': companyProfile})

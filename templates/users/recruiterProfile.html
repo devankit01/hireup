@@ -34,19 +34,16 @@
         Talent Acquisition | Jobs for Python, Java and Web Developer
       </p>
       <div class="connect__btn">
+        {% if company %}
         <a
           href="{% url 'createJob' %}"
           class="button is-primary"
-          {%
-          if
-          company
-          %}
           style="pointer-events: none"
-          {%
-          endif
-          %}
           >Create Job</a
         >
+        {% else %}
+        <a href="{% url 'createJob' %}" class="button is-primary">Create Job</a>
+        {% endif %}
 
         <!-- <a href="" class="button is-primary-outline has-text-color-primary"
           >Edit Company Info</a
@@ -70,7 +67,9 @@
           <b><a href="{{company_site}}" target="blank">Website</a></b>
         </h5>
         <h5 class="is-size-6">{{about_company}}</h5>
-        <a href="" class="button is-primary has-text-color-primary mt-4"
+        <a
+          href="{% url 'editCompany' comp_id %}"
+          class="button is-primary has-text-color-primary mt-4"
           >Edit Company Info</a
         >
       </div>

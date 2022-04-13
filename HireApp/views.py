@@ -56,6 +56,10 @@ def editJob(request, id):
             "tech_stack": request.POST.getlist('stack'),
             "number_of_vacancy": request.POST['opening'],
         }
+        if request.POST['jobStatus'] == "Inactive":
+            job_details['status'] = False
+        else:
+            job_details['status'] = True
         Work.objects.filter(id=id).update(**job_details)
         return redirect('recruiterJobs')
     work = Work.objects.filter(id=id).first()
