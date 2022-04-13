@@ -153,6 +153,7 @@ def userprofile(request):
                 companyDetail['last_name'] = user.last_name
                 if companyDetail['company_name'] != '' and companyDetail['company_name'] != None:
                     companyDetail['company'] = False
+                    companyDetail['company_list'] = CompanyProfile.objects.all()
                 else:
                     companyDetail['company'] = True
                 return render(request, 'users/recruiterProfile.html', companyDetail)
@@ -178,7 +179,7 @@ def logout(request):
     return redirect('signin')
 
 
-def editCompany(request, id):
+def editCompany(request, id=None):
     if request.method == 'POST':
         company_details = {
             "company_name": request.POST['company_name'],
@@ -191,7 +192,13 @@ def editCompany(request, id):
         }
         if 'company_logo' in request.FILES:
             company_details['company_logo'] = request.FILES['company_logo']
-        CompanyProfile.objects.filter(id=id).update(**company_details)
+        if id:
+            CompanyProfile.objects.filter(id=id).update(**company_details)
+        else:
+            CompanyProfile.objects.create(**company_details)
         return redirect('userprofile')
-    companyProfile = CompanyProfile.objects.filter(id=id).first()
-    return render(request, 'users/editCompany.html', {'data': companyProfile})
+    if id == None:
+        return render(request, 'users/editCompany.html', {'button': 'Save', 'page': 'Add'})
+    else:
+        companyProfile = CompanyProfile.objects.filter(id=id).first()
+        return render(request, 'users/editCompany.html', {'data': companyProfile, 'button': 'Update', 'page': 'Edit'})

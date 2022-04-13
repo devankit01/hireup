@@ -8,6 +8,7 @@ urlpatterns = [
     path('accounts/signin/', signin, name="signin"),
     path('profile/', userprofile, name="userprofile"),
     path('edit-company/<int:id>/', editCompany, name="editCompany"),
+    path('add-company/', editCompany, name="addCompany"),
     # path('recruiter-profile/', recruiterprofile, name="recruiterprofile"),
     path('activate/<uidb64>/<token>', activate, name="activate"),
     path('logout', logout, name="logout"),

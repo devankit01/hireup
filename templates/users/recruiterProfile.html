@@ -55,6 +55,40 @@
     <div class="profile__body">
       <div class="profile__div">
         <h2 class="is-size-5"><b>Company Info</b></h2>
+        {% if company %}
+        <br />
+        <input
+          class="input mx-1"
+          list="company_list"
+          style="max-width: fit-content"
+          placeholder="Search your company"
+        />
+
+        <datalist id="company_list">
+          {% for company in company_list %}
+          <option value="{{company.company_name}}"></option>
+          {% endfor %}
+        </datalist>
+        <button class="button is-success">
+          <span class="icon is-small">
+            <i class="fas fa-check"></i>
+          </span>
+          <span>Save</span>
+        </button>
+        <span class="mx-3 mt-2">OR</span>
+        <button class="button is-primary">
+          <a
+            href="{% url 'addCompany' %}"
+            style="text-decoration: none; color: inherit"
+          >
+            <span class="icon">
+              <i class="fab fa-edit"></i>
+            </span>
+            <span>Add your company</span>
+          </a>
+        </button>
+        <br />
+        {%endif%}
         <img
           src="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/media/{{company_logo}}"
           alt=""
