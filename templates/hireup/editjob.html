@@ -1,0 +1,345 @@
+{% extends "layout.html" %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/prepup/index.css' %}" />
+<link rel="stylesheet" href="{% static 'css/hireup/createJob.css' %}" />
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+/>
+{% endblock %} {% block body %}
+
+<div class="has-background-primary set">
+  <div class="container py-5">
+    <h1 class="is-size-3 has-text-white m-0"><b>Hireup</b></h1>
+    <h2 class="is-size-5 has-text-white"><b>Hireup / Edit Job</b></h2>
+  </div>
+</div>
+
+<section class="section container set">
+  <h2 class="is-size-4 mb-3">Edit Job</h2>
+  <form class="editJob" method="post">
+    {% csrf_token %}
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2 ml-1">Job Name</p>
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="Job Title"
+              name="jobName"
+              id="id"
+              value="{{ data.work_name }}"
+              required
+            />
+          </p>
+        </div>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2">Employment Type</p>
+          <p class="control is-expanded select is-fullwidth">
+            <select id="selectbasic-0" name="empType" class="is-large">
+              <option value="Full Time"  {% if data.emp_type == 'Full Time' %} selected {% endif %} >Full Time</option>
+            </select>
+          </p>
+        </div>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2">Internship or Job</p>
+
+          <p class="control is-expanded select is-fullwidth">
+            <select id="selectbasic-0" name="jobType" class="is-large" required>
+              <option value="Internship" {% if data.Type == 'Internship' %} selected {% endif %}>Internship</option>
+              <option value="Job" {% if data.Type == 'Job' %} selected {% endif %}>Job</option>
+            </select>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2 ml-1">Location (Remote/City)</p>
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="location"
+              name="location"
+              id="location"
+              value="{{ data.location }}"
+              required
+            />
+          </p>
+        </div>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2">Salary</p>
+          <p class="control is-expanded select is-fullwidth">
+            <select id="selectbasic-0" name="salary" class="is-large" required>
+              <option value="Negotiable">Negotiable</option>
+              <option value="1 LPA - 3 LPA" {% if data.salary_or_stipend == '1 LPA - 3 LPA' %} selected {% endif %} >1 LPA - 3 LPA</option>
+              <option value="3 LPA - 5 LPA" {% if data.salary_or_stipend == '3 LPA - 5 LPA' %} selected {% endif %} >3 LPA - 5 LPA</option>
+              <option value="5 LPA - 8 LPA" {% if data.salary_or_stipend == '5 LPA - 8 LPA' %} selected {% endif %} >5 LPA - 8 LPA</option>
+              <option value="10 LPA +" {% if data.salary_or_stipend == '10 LPA +' %} selected {% endif %} >10 LPA +</option>
+            </select>
+          </p>
+        </div>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2">Experience</p>
+
+          <p class="control is-expanded select is-fullwidth">
+            <select
+              id="selectbasic-0"
+              name="experience"
+              class="is-large"
+              required
+            >
+              <option value="Fresher" {% if data.experience_or_time == 'Fresher' %} selected {% endif %} >Fresher</option>
+              <option value="1yr- 2yr" {% if data.experience_or_time == '1yr- 2yr' %} selected {% endif %} >1yr- 2yr</option>
+              <option value="3yr- 5yr" {% if data.experience_or_time == '3yr- 5yr' %} selected {% endif %} >3yr- 5yr</option>
+              <option value="5yr- 10yr" {% if data.experience_or_time == '5yr- 10yr' %} selected {% endif %} >5yr- 10yr</option>
+            </select>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2 ml-1">Skills Required</p>
+          <p class="control is-expanded is-fullwidth skills">
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input
+                  id="mycheckbox"
+                  type="checkbox"
+                  name="stack"
+                  value="Python"
+                  {% if "Python" in data.tech_stack %} checked {% endif %}
+                />
+
+                <span>Python</span>
+              </label> </span
+            >&nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input
+                  id="mycheckbox"
+                  type="checkbox"
+                  name="stack"
+                  value="JavaScript"
+                  {% if "JavaScript" in data.tech_stack %} checked {% endif %}
+                />
+                <span>JavaScript</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input
+                  id="mycheckbox"
+                  name="stack"
+                  type="checkbox"
+                  value="PHP"
+                  {% if "PHP" in data.tech_stack %} checked {% endif %}
+                />
+                <span>PHP</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input
+                  id="mycheckbox"
+                  type="checkbox"
+                  name="stack"
+                  value="NodeJS"
+                  {% if "NodeJS" in data.tech_stack %} checked {% endif %}
+                />
+                <span>NodeJS</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input
+                  id="mycheckbox"
+                  type="checkbox"
+                  name="stack"
+                  value="ExpressJS"
+                  {% if "ExpressJS" in data.tech_stack %} checked {% endif %}
+                />
+                <span>ExpressJS</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input
+                  id="mycheckbox"
+                  type="checkbox"
+                  name="stack"
+                  value="HTML"
+                  {% if "HTML" in data.tech_stack %} checked {% endif %}
+                />
+                <span>HTML</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input
+                  id="mycheckbox"
+                  name="stack"
+                  type="checkbox"
+                  value="CSS"
+                  {% if "CSS" in data.tech_stack %} checked {% endif %}
+                />
+                <span>CSS</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input
+                  id="mycheckbox"
+                  type="checkbox"
+                  name="stack"
+                  value="ReactJS"
+                  {% if "ReactJS" in data.tech_stack %} checked {% endif %}
+                />
+                <span>ReactJS</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input
+                  id="mycheckbox"
+                  type="checkbox"
+                  name="stack"
+                  value="React Native"
+                  {% if "React Native" in data.tech_stack %} checked {% endif %}
+                />
+                <span>React Native</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input
+                  id="mycheckbox"
+                  type="checkbox"
+                  name="stack"
+                  value="Flutter"
+                  {% if "Flutter" in data.tech_stack %} checked {% endif %}
+                />
+                <span>Flutter</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input
+                  id="mycheckbox"
+                  type="checkbox"
+                  name="stack"
+                  value="MySQL"
+                  {% if "MySQL" in data.tech_stack %} checked {% endif %}
+                />
+                <span>MySQL</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input
+                  id="mycheckbox"
+                  type="checkbox"
+                  name="stack"
+                  value="MongoDB"
+                  {% if "MongoDB" in data.tech_stack %} checked {% endif %}
+                />
+                <span>MongoDB</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input
+                  id="mycheckbox"
+                  name="stack"
+                  type="checkbox"
+                  value="Go"
+                  {% if "Go" in data.tech_stack %} checked {% endif %}
+                />
+                <span>Go</span>
+              </label>
+            </span>
+          </p>
+        </div>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2">No. of Openings</p>
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="No. pf Openings"
+              name="opening"
+              id="id"
+              value="{{data.number_of_vacancy}}"
+              required
+            />
+          </p>
+        </div>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2">Job Status</p>
+
+          <p class="control is-expanded select is-fullwidth">
+            <select
+              id="selectbasic-0"
+              name="jobStatus"
+              class="is-large"
+              required
+            >
+              <option value="Active" {% if data.status == True %} selected {% endif %} >Active</option>
+              <option value="Inactive" {% if data.status == False %} selected {% endif %} >Inactive</option>
+            </select>
+          </p>
+        </div>
+      </div>
+    </div>
+    <br />
+
+    {% if error %}
+    <article class="message is-info">
+      <div class="message-header">
+        <p>{{error}}</p>
+      </div>
+    </article>
+
+    {%endif%}
+    <button style="float: left" class="button is-primary" type="submit" href="">
+      Update
+    </button>
+  </form>
+</section>
+
+{% endblock %} {% block script %} {% endblock %}

@@ -1,0 +1,181 @@
+{% extends "layout.html" %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/prepup/index.css' %}" />
+<link rel="stylesheet" href="{% static 'css/hireup/createJob.css' %}" />
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+/>
+{% endblock %} {% block body %}
+
+<div class="has-background-primary set">
+  <div class="container py-5">
+    <h1 class="is-size-3 has-text-white m-0"><b>Hireup</b></h1>
+    <h2 class="is-size-5 has-text-white"><b>Hireup / {{ page }} Company</b></h2>
+  </div>
+</div>
+
+<section class="section container set">
+  <h2 class="is-size-4 mb-3">{{ page }} Company</h2>
+  <form class="editCompany" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2 ml-1">Company Name</p>
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="Company Title"
+              name="company_name"
+              id="company_name"
+              value="{{ data.company_name }}"
+              required
+            />
+          </p>
+        </div>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2">Company Type</p>
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="Company Type"
+              name="company_type"
+              id="company_type"
+              value="{{ data.company_type }}"
+              required
+            />
+          </p>
+        </div>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2">Company Specialization</p>
+
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="Company Specialization"
+              name="company_specialization"
+              id="company_specialization"
+              value="{{ data.company_specialization }}"
+              required
+            />
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2 ml-1">phone</p>
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="phone"
+              name="phone"
+              id="phone"
+              value="{{ data.phone }}"
+              required
+            />
+          </p>
+        </div>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2 ml-1">Location</p>
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="e.g., Lucknow,India"
+              name="location"
+              id="location"
+              value="{{ data.location }}"
+              required
+            />
+          </p>
+        </div>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2">Company site</p>
+
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="Company site"
+              name="company_site"
+              id="company_site"
+              value="{{ data.company_site }}"
+              required
+            />
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2">About company</p>
+
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="About company"
+              name="about_company"
+              id="about_company"
+              value="{{ data.about_company }}"
+              required
+            />
+          </p>
+        </div>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2">Company logo</p>
+          <p class="control is-expanded is-fullwidth file is-primary">
+            <label class="file-label">
+              <input class="file-input" type="file" name="company_logo" />
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label"> Primary file… </span>
+              </span>
+            </label>
+          </p>
+        </div>
+      </div>
+    </div>
+    <br />
+
+    {% if error %}
+    <article class="message is-info">
+      <div class="message-header">
+        <p>{{error}}</p>
+      </div>
+    </article>
+
+    {%endif%}
+    <button style="float: left" class="button is-primary" type="submit" href="">
+      {{button}}
+    </button>
+  </form>
+</section>
+
+{% endblock %} {% block script %} {% endblock %}

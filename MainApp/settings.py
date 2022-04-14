@@ -73,6 +73,16 @@ WSGI_APPLICATION = 'MainApp.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'oslclmiv',
+#         'USER': 'oslclmiv',
+#         'PASSWORD': 'qq-s1raQwNLphI0hQ5gS73q82-ghhLbz',
+#         'HOST': 'ziggy.db.elephantsql.com',
+#         'PORT': '5432',
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -83,7 +93,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 

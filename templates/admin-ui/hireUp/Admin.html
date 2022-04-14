@@ -47,13 +47,15 @@
           <td>{{i.experience_or_time}}</td>
           <td>{{i.location}}</td>
           <td>{{i.salary_or_stipend}}</td>
-          {% if i.status %}
+          {% if i.status == True %}
           <td>Active</td>
           {% else %}
           <td>Inactive</td>
           {% endif %}
           <td><span class="icon">
-            <i class="fas fa-edit"></i>
+            <a
+          href="{% url 'editJob' i.id %}"
+          style="text-decoration: none;color: inherit;" ><i class="fas fa-edit" onclick="editFucntion(id='{{i.id}}')"></i></a>
           </span></td>
         </tr>
 
@@ -62,6 +64,10 @@
       </tbody>
     </table>
   </section>
-  
+  <script>
+    function editFucntion(id){
+      console.log('work ID: ',id);
+    }
+  </script>
 
   {% endblock %} {% block script %} {% endblock %}

@@ -11,7 +11,6 @@
   href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 />
 {% endblock %} {% block body %}
-
 <div class="user__profile container">
   {% if company %}
   <article class="message is-primary" id="popUPMsg">
@@ -29,25 +28,22 @@
       <h2>{{first_name}} {{last_name}}</h2>
       <p class="headline">{{company_name}}</p>
       <p class="bio">
-        <b>Lucknow, India</b>
+        <b>{{company_location}}</b>
       </p>
       <p class="bio">
         Talent Acquisition | Jobs for Python, Java and Web Developer
       </p>
       <div class="connect__btn">
+        {% if company %}
         <a
           href="{% url 'createJob' %}"
           class="button is-primary"
-          {%
-          if
-          company
-          %}
           style="pointer-events: none"
-          {%
-          endif
-          %}
           >Create Job</a
         >
+        {% else %}
+        <a href="{% url 'createJob' %}" class="button is-primary">Create Job</a>
+        {% endif %}
 
         <!-- <a href="" class="button is-primary-outline has-text-color-primary"
           >Edit Company Info</a
@@ -57,23 +53,66 @@
   </div>
   <div class="profile__header mt-5">
     <div class="profile__body">
-      <div class="profile__div">
+      <div class="">
         <h2 class="is-size-5"><b>Company Info</b></h2>
+        {% if company %}
+        <br />
+        <div class="container field is-grouped is-grouped-centered">
+          <input
+            class="input mx-1"
+            list="company_list"
+            style="width: 50%"
+            placeholder="Search your company"
+          />
+
+          <datalist id="company_list">
+            {% for company in company_list %}
+            <option value="{{company.company_name}}"></option>
+            {% endfor %}
+          </datalist>
+          <button class="button is-primary">
+            <span
+              >Save
+              <span class="icon is-small pl-2">
+                <i class="fas fa-check"></i> </span
+            ></span>
+          </button>
+          <span class="mx-3 mt-2">OR</span>
+          <button class="button is-primary">
+            <a
+              href="{% url 'addCompany' %}"
+              style="text-decoration: none; color: inherit"
+            >
+              <span
+                >Add
+                <span class="icon is-small pl-2">
+                  <i class="fas fa-plus"></i> </span
+              ></span>
+            </a>
+          </button>
+        </div>
+        <br />
+        {%endif%}
         <img
           src="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/media/{{company_logo}}"
-          alt=""
+          alt="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/media/{{company_logo}}"
+          style="max-width: 60px"
         />
 
+        {% if not company %}
         <h3 class="is-size-5">{{company_name}}</h3>
         <h3 class="is-size-7">{{company_type}}</h3>
-        <h4 class="is-size-6">Lucknow, India</h4>
+        <h4 class="is-size-6">{{company_location}}</h4>
         <h5 class="is-size-7 my-1">
           <b><a href="{{company_site}}" target="blank">Website</a></b>
         </h5>
         <h5 class="is-size-6">{{about_company}}</h5>
-        <a href="" class="button is-primary has-text-color-primary mt-4"
+        <a
+          href="{% url 'editCompany' comp_id %}"
+          class="button is-primary has-text-color-primary mt-4"
           >Edit Company Info</a
         >
+        {% endif %}
       </div>
     </div>
   </div>
