@@ -1,4 +1,3 @@
-from boto3.session import Session
 import os
 
 from pathlib import Path
