@@ -1,16 +1,20 @@
 
 from django.shortcuts import render,HttpResponse
 from . models import *
+import logging
+logger = logging.getLogger('watchtower-logger')
 # Create your views here.
 def prepIndex(request):
     studymaterials=StudyMaterials.objects.filter(IsApproved=True)
     print(studymaterials)
+    logger.info('Study Page Loaded')
     return render(request, 'prepup/index.html',{'data':studymaterials})
 
 
 def interviewIndex(request):
     Interviews=InterviewPrep.objects.filter(IsApproved=True)
     print(Interviews)
+    logger.info('Interview  Page Loaded')
     return render(request, 'prepup/interviewPrep.html',{'data':Interviews})
 
 

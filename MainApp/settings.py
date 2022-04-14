@@ -1,3 +1,4 @@
+from boto3.session import Session
 import os
 
 from pathlib import Path
@@ -140,3 +141,41 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'hireup.contact@gmail.com'
 EMAIL_HOST_PASSWORD = 'Ankit@98'
+
+CLOUDWATCH_AWS_ID = 'AKIAXLSZRNQVFTPJ5KJE'
+CLOUDWATCH_AWS_KEY = 'a8YluunadlTqL57YivRpHBNgFWgPdmiBFerhHx/N'
+AWS_DEFAULT_REGION = 'us-east-1'  # Be sure to update with your AWS region
+
+
+
+AWS_REGION_NAME = "us-east-1"
+import boto3
+boto3_logs_client = boto3.client("logs", region_name=AWS_REGION_NAME)
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'root': {
+        'level': 'DEBUG',
+        'handlers': ['watchtower', 'console'],
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+        'watchtower': {
+            'class': 'watchtower.CloudWatchLogHandler',
+            'boto3_client': boto3_logs_client,
+            'log_group_name': 'Hire_App',
+            'level': 'DEBUG',
+        }
+    },
+    'loggers': {
+        'django': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+            'propagate': False
+        }
+        # Add any other logger-specific configuration here.
+    }
+}
