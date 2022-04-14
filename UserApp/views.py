@@ -192,7 +192,7 @@ def editCompany(request, id=None):
         }
         if request.FILES.get('company_logo', None):
             company_details['company_logo'] = request.FILES['company_logo']
-        if id:
+        if id:  # will update existing company details
             company = CompanyProfile(id=id)
             company.company_name = company_details['company_name']
             company.company_type = company_details['company_type']
@@ -207,7 +207,7 @@ def editCompany(request, id=None):
             else:
                 company.company_logo = company_details['company_logo']
             company.save()
-        else:
+        else:  # will create new company
             company = CompanyProfile.objects.create(**company_details)
             RecruiterProfile.objects.filter(
                 username=request.user).update(company=company)
@@ -226,3 +226,38 @@ def setCompany(request, name):
             RecruiterProfile.objects.update(company=company)
             return redirect('userprofile')
         return redirect('userprofile')
+
+
+def editRecruiterProfile(request):
+    if request.method == 'POST':
+        user = get_object_or_404(User, username=request.user)
+        if RecruiterProfile.objects.filter(username=user).count():
+            print('Recruiter')
+            RecruiterProfile.objects.filter(
+                username=request.user).update(phone=request.POST['phone'])
+            user_data = {
+                'first_name': request.POST['first_name'],
+                'last_name': request.POST['last_name'],
+                'email': request.POST['email']
+            }
+            User.objects.filter(username=request.user).update(**user_data)
+
+            companyDetail = RecruiterProfile.objects.filter(
+                username=user).values(comp_id=F('company__id'), company_name=F('company__company_name'), company_type=F('company__company_type'), company_specialization=F('company__company_specialization'), company_phone=F('company__phone'), company_logo=F('company__company_logo'), about_company=F('company__about_company'), company_site=F('company__company_site'), company_location=F('company__location'), user_phone=F('phone')).first()
+            companyDetail['first_name'] = request.POST['first_name']
+            companyDetail['last_name'] = request.POST['last_name']
+            if companyDetail['company_name'] != '' and companyDetail['company_name'] != None:
+                companyDetail['company'] = False
+                companyDetail['company_list'] = CompanyProfile.objects.all()
+            else:
+                companyDetail['company'] = True
+            return render(request, 'users/recruiterProfile.html', companyDetail)
+    user_data = User.objects.filter(username=request.user).first()
+    data = {
+        'phone': RecruiterProfile.objects.filter(username=request.user).first().phone,
+        'first_name': user_data.first_name,
+        'last_name': user_data.last_name,
+        'email': user_data.email
+    }
+
+    return render(request, 'users/editRecruiterProfile.html', data)

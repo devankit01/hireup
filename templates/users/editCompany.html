@@ -40,22 +40,20 @@
           </p>
         </div>
       </div>
+
       <div class="field-body">
         <div class="field">
           <p class="mb-2">Company Type</p>
-          <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="Company Type"
-              name="company_type"
-              id="company_type"
-              value="{{ data.company_type }}"
-              required
-            />
+          <p class="control is-expanded select is-fullwidth">
+            <select id="selectbasic-0" name="company_type" class="is-large">
+              <option value="Service Based"  {% if data.company_type == 'Service Based' %} selected {% endif %} >Service Based</option>
+              <option value="Product Based"  {% if data.company_type == 'Product Based' %} selected {% endif %} >Product Based</option>
+              <option value="Startup Based"  {% if data.company_type == 'Startup Based' %} selected {% endif %} >Startup Based</option>
+            </select>
           </p>
         </div>
       </div>
+      
       <div class="field-body">
         <div class="field">
           <p class="mb-2">Company Specialization</p>

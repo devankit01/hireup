@@ -12,5 +12,8 @@ urlpatterns = [
     # path('recruiter-profile/', recruiterprofile, name="recruiterprofile"),
     path('activate/<uidb64>/<token>', activate, name="activate"),
     path('logout', logout, name="logout"),
+    path('edit-recruiter-profile/',
+         editRecruiterProfile, name="editRecruiterProfile"),
+
 
 ]
