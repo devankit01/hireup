@@ -94,17 +94,40 @@
       </div>
       <div class="field-body">
         <div class="field">
-          <p class="mb-2">Company logo</p>
+          <p class="mb-2 ml-1">Location</p>
           <p class="control is-expanded is-fullwidth">
             <input
-              type="file"
-              placeholder="company_logo"
-              name="company_logo"
-              id="company_logo"
+              class="input mx-1"
+              type="text"
+              placeholder="e.g., Lucknow,India"
+              name="location"
+              id="location"
+              value="{{ data.location }}"
+              required
             />
           </p>
         </div>
       </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2">Company site</p>
+
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="Company site"
+              name="company_site"
+              id="company_site"
+              value="{{ data.company_site }}"
+              required
+            />
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
       <div class="field-body">
         <div class="field">
           <p class="mb-2">About company</p>
@@ -122,23 +145,19 @@
           </p>
         </div>
       </div>
-    </div>
-
-    <div class="field is-horizontal">
       <div class="field-body">
         <div class="field">
-          <p class="mb-2">Company site</p>
-
-          <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="Company site"
-              name="company_site"
-              id="company_site"
-              value="{{ data.company_site }}"
-              required
-            />
+          <p class="mb-2">Company logo</p>
+          <p class="control is-expanded is-fullwidth file is-primary">
+            <label class="file-label">
+              <input class="file-input" type="file" name="company_logo" />
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label"> Primary file… </span>
+              </span>
+            </label>
           </p>
         </div>
       </div>

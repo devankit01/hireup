@@ -70,8 +70,9 @@ class CompanyProfile(models.Model):
     company_specialization = models.CharField(max_length=30, null=True)
     phone = models.CharField(max_length=20, null=True)
     company_logo = models.ImageField(upload_to="company_logo", null=True)
-    about_company = models.TextField(max_length=300, null=True)
-    company_site = models.CharField(max_length=50, null=True)
+    about_company = models.TextField(null=True)
+    company_site = models.CharField(max_length=100, null=True)
+    location = models.CharField(max_length=200, null=True, blank=True)
 
 
 class RecruiterProfile(models.Model):
@@ -106,7 +107,8 @@ class Work(models.Model):
     resume_selected = models.ManyToManyField(
         UserProfile, related_name='resume_selected')
     hired = models.ManyToManyField(UserProfile, related_name='hired')
-    created_by = models.ForeignKey(RecruiterProfile, on_delete=models.DO_NOTHING)
+    created_by = models.ForeignKey(
+        RecruiterProfile, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.work_name

@@ -148,7 +148,7 @@ def userprofile(request):
             if RecruiterProfile.objects.filter(username=user).count():
                 print('Recruiter')
                 companyDetail = RecruiterProfile.objects.filter(
-                    username=user).values(comp_id=F('company__id'), company_name=F('company__company_name'), company_type=F('company__company_type'), company_specialization=F('company__company_specialization'), company_phone=F('company__phone'), company_logo=F('company__company_logo'), about_company=F('company__about_company'), company_site=F('company__company_site'), user_phone=F('phone')).first()
+                    username=user).values(comp_id=F('company__id'), company_name=F('company__company_name'), company_type=F('company__company_type'), company_specialization=F('company__company_specialization'), company_phone=F('company__phone'), company_logo=F('company__company_logo'), about_company=F('company__about_company'), company_site=F('company__company_site'), company_location=F('company__location'), user_phone=F('phone')).first()
                 companyDetail['first_name'] = user.first_name
                 companyDetail['last_name'] = user.last_name
                 if companyDetail['company_name'] != '' and companyDetail['company_name'] != None:
@@ -186,19 +186,42 @@ def editCompany(request, id=None):
             "company_type": request.POST['company_type'],
             "company_specialization": request.POST['company_specialization'],
             "phone": request.POST['phone'],
-            # "company_logo": request.FILES['company_logo'],
+            "location": request.POST['location'],
             "about_company": request.POST['about_company'],
-            "company_site": request.POST.getlist('company_site'),
+            "company_site": request.POST['company_site'],
         }
         if 'company_logo' in request.FILES:
             company_details['company_logo'] = request.FILES['company_logo']
+            print('HERE INCOMMING FILE----------',
+                  company_details['company_logo'])
         if id:
-            CompanyProfile.objects.filter(id=id).update(**company_details)
+            company = CompanyProfile(id=id)
+            company.company_name = company_details['company_name']
+            company.company_type = company_details['company_type']
+            company.company_specialization = company_details['company_specialization']
+            company.phone = company_details['phone']
+            company.about_company = company_details['about_company']
+            company.company_site = company_details['company_site']
+            company.location = company_details['location']
+            if 'company_logo' in company_details:
+                company.company_logo = company_details['company_logo']
+            company.save()
         else:
-            CompanyProfile.objects.create(**company_details)
+            company = CompanyProfile.objects.create(**company_details)
+            RecruiterProfile.objects.filter(
+                username=request.user).update(company=company)
         return redirect('userprofile')
     if id == None:
         return render(request, 'users/editCompany.html', {'button': 'Save', 'page': 'Add'})
     else:
         companyProfile = CompanyProfile.objects.filter(id=id).first()
         return render(request, 'users/editCompany.html', {'data': companyProfile, 'button': 'Update', 'page': 'Edit'})
+
+
+def setCompany(request, name):
+    if request.method == 'POST':
+        if name != '' and name != None:
+            company = CompanyProfile.objects.filter(company_name=name).fist()
+            RecruiterProfile.objects.update(company=company)
+            return redirect('userprofile')
+        return redirect('userprofile')
