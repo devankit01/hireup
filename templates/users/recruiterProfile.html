@@ -25,7 +25,17 @@
       <img src="{% static 'images/profile/download.svg' %}" />
     </div>
     <div>
-      <h2>{{first_name}} {{last_name}}</h2>
+      <p>
+        <span style="font-size: x-large">{{first_name}} {{last_name}}</span
+        >&nbsp;&nbsp;<span class="icon has-text-primary">
+          <a
+            href="{% url 'editRecruiterProfile' %}"
+            style="text-decoration: none; color: inherit"
+            ><i class="fas fa-edit has-text-primary"></i
+          ></a>
+        </span>
+      </p>
+
       <p class="headline">{{company_name}}</p>
       <p class="bio">
         <b>{{company_location}}</b>
