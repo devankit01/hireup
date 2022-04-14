@@ -190,10 +190,8 @@ def editCompany(request, id=None):
             "about_company": request.POST['about_company'],
             "company_site": request.POST['company_site'],
         }
-        if 'company_logo' in request.FILES:
+        if request.FILES.get('company_logo', None):
             company_details['company_logo'] = request.FILES['company_logo']
-            print('HERE INCOMMING FILE----------',
-                  company_details['company_logo'])
         if id:
             company = CompanyProfile(id=id)
             company.company_name = company_details['company_name']
@@ -203,7 +201,10 @@ def editCompany(request, id=None):
             company.about_company = company_details['about_company']
             company.company_site = company_details['company_site']
             company.location = company_details['location']
-            if 'company_logo' in company_details:
+            if request.FILES.get('company_logo', None) == None:
+                company.company_logo = CompanyProfile.objects.filter(
+                    id=id).first().company_logo
+            else:
                 company.company_logo = company_details['company_logo']
             company.save()
         else:
