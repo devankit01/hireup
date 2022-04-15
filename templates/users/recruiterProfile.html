@@ -36,9 +36,13 @@
         </span>
       </p>
 
-      <p class="headline">{{company_name}}</p>
+      <p class="headline">
+        {% if company_name %}{{company_name}}{% else %}N/A{% endif %}
+      </p>
       <p class="bio">
-        <b>{{company_location}}</b>
+        <b>
+          {%if company_location%} {{company_location}} {%else%} N/A {%endif%}</b
+        >
       </p>
       <p class="bio">
         Talent Acquisition | Jobs for Python, Java and Web Developer
@@ -105,7 +109,7 @@
         {%endif%}
         <img
           src="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/media/{{company_logo}}"
-          alt="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/media/{{company_logo}}"
+          alt=""
           style="max-width: 60px"
         />
 
