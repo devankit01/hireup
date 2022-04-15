@@ -6,7 +6,7 @@ import logging
 logger = logging.getLogger('watchtower-logger')
 
 def jobs(request):
-    jobs = Work.objects.all().order_by('posted')
+    jobs = Work.objects.filter(status=True).order_by('posted')
     logger.info('All Jobs')
     return render(request, 'hireup/jobs.html', {'jobs': jobs})
 
