@@ -219,10 +219,11 @@ def editCompany(request, id=None):
         return render(request, 'users/editCompany.html', {'data': companyProfile, 'button': 'Update', 'page': 'Edit'})
 
 
-def setCompany(request, name):
+def setCompany(request):
     if request.method == 'POST':
+        name = request.POST.get('company')
         if name != '' and name != None:
-            company = CompanyProfile.objects.filter(company_name=name).fist()
+            company = CompanyProfile.objects.filter(company_name=name).first()
             RecruiterProfile.objects.update(company=company)
             return redirect('userprofile')
         return redirect('userprofile')

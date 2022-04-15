@@ -57,7 +57,9 @@
         >
         {% else %}
         <a href="{% url 'createJob' %}" class="button is-primary">Create Job</a>
-        <a href="{% url 'recruiterJobs' %}" class="button is-primary-outline ">Dashboard</a>
+        <a href="{% url 'recruiterJobs' %}" class="button is-primary-outline"
+          >Dashboard</a
+        >
         {% endif %}
 
         <!-- <a href="" class="button is-primary-outline has-text-color-primary"
@@ -70,32 +72,37 @@
     <div class="profile__body">
       <div class="">
         <h2 class="is-size-5"><b>Company Info</b></h2>
-        <br/>
+        <br />
         {% if company %}
+  
         <br />
         <div class="container field is-grouped is-grouped-centered">
-          <input
-            class="input mx-1"
-            list="company_list"
-            style="width: 50%"
-            placeholder="Search your company"
-          />
+          <form action="{% url 'setCompany' %}" method="POST">
+            {% csrf_token %}
+            <input
+              class="input mx-1"
+              list="company_list"
+              style="width: 50%"
+              name="company"
+              placeholder="Search your company"
+            />
 
-          <datalist id="company_list">
-            {% for company in company_list %}
-            <option value="{{company.company_name}}"></option>
-            {% endfor %}
-          </datalist>
-          <button class="button is-primary">
-            <span
-              >Save
-              <span class="icon is-small pl-2">
-                <i class="fas fa-check"></i> </span
-            ></span>
-          </button>
-          <span class="mx-3 mt-2">OR</span>
-          <button class="button is-primary">
+            <datalist id="company_list">
+              {% for company in company_list %}
+              <option value="{{company.company_name}}"></option>
+              {% endfor %}
+            </datalist>
+            <button class="button is-primary" type="submit">
+              <span
+                >Save
+                <span class="icon is-small pl-2">
+                  <i class="fas fa-check"></i> </span
+              ></span>
+            </button>
+
+            <span class="mx-3 mt-2">OR</span>
             <a
+              class="button is-primary"
               href="{% url 'addCompany' %}"
               style="text-decoration: none; color: inherit"
             >
@@ -105,7 +112,7 @@
                   <i class="fas fa-plus"></i> </span
               ></span>
             </a>
-          </button>
+          </form>
         </div>
         <br />
         {%endif%}

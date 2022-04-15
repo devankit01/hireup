@@ -14,6 +14,7 @@ urlpatterns = [
     path('logout', logout, name="logout"),
     path('edit-recruiter-profile/',
          editRecruiterProfile, name="editRecruiterProfile"),
+    path('update-company', setCompany, name='setCompany'),
 
 
 ]
