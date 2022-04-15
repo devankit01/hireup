@@ -153,8 +153,8 @@ def userprofile(request):
                 companyDetail['last_name'] = user.last_name
                 if companyDetail['company_name'] != '' and companyDetail['company_name'] != None:
                     companyDetail['company'] = False
-                    companyDetail['company_list'] = CompanyProfile.objects.all()
                 else:
+                    companyDetail['company_list'] = CompanyProfile.objects.all()
                     companyDetail['company'] = True
                 return render(request, 'users/recruiterProfile.html', companyDetail)
         else:
