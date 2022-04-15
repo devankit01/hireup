@@ -83,13 +83,14 @@ WSGI_APPLICATION = 'MainApp.wsgi.application'
 #         'PORT': '5432',
 #     }
 # }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'hireup',
         'USER': 'postgres',
-        'PASSWORD': 'Mms1zoBNJpM7dLgrS6WP',
-        'HOST': 'hireup.crj5mpd66hkq.us-east-1.rds.amazonaws.com',
+        'PASSWORD': 'b9bVlgkoGdio7wz0XbUr',
+        'HOST': 'hireup1.crj5mpd66hkq.us-east-1.rds.amazonaws.com',
         'PORT': '5432',
     }
 }

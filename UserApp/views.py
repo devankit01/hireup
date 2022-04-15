@@ -16,6 +16,7 @@ from django.contrib.auth.models import User
 from django.db.models import F
 from HireApp.models import CompanyProfile
 
+from django.contrib.auth.hashers import check_password
 
 class TokenGenerator(PasswordResetTokenGenerator):
     def _make_hash_value(self, user, timestamp):
@@ -120,16 +121,22 @@ def signin(request):
         print(email, password)
         try:
             user = User.objects.filter(username=email).first()
-            user_authenticate = auth.authenticate(
-                username=email, password=password)
-            print(user, user_authenticate)
-            if user.is_active:
+            print(user.password, password)
+            if user.password == password:
+                status = True
+            else:
+                status = False
+            print(status)
+            if status and user.is_active:
+
                 auth.login(request, user)
                 request.session['username'] = email
-                getUser = user.email
-                print()
                 return redirect('userprofile')
+            else:
+                return HttpResponse('Invalid Credential')
+
         except Exception as e:
+            print(e)
             print('Login Failed')
             return redirect('signin')
 
