@@ -86,7 +86,6 @@
             <img
               class=""
               src="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/media/{{i.company.company_logo}}"
-
             />
           </div>
           <div class="card__info">
@@ -127,17 +126,22 @@
         <div class="card__apply mt-3">
           <a class="button is-white py-1 px-0 is-size-6"
             ><p class="date is-size-4" style="font-size: 14px !important">
-             {{i.posted}}
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              &nbsp;{{i.get_date}}
             </p></a
           >
-          <button class="button is-primary py-1" type="button" href="">
+
+          <a
+            class="button is-primary py-1"
+            type="button"
+            href="{% url 'jobInfo' i.id %}"
+          >
             Apply Now
-          </button>
+          </a>
         </div>
       </div>
       {% endfor %}
     </div>
-
   </div>
 </div>
 

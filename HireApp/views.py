@@ -1,9 +1,11 @@
 from django.shortcuts import redirect, render
-from .models import Work, CompanyProfile, RecruiterProfile
+from .models import Work, CompanyProfile, RecruiterProfile, UserProfile
+
 # Create your views here.
 
 import logging
 logger = logging.getLogger('watchtower-logger')
+
 
 def jobs(request):
     jobs = Work.objects.filter(status=True).order_by('posted')
@@ -13,7 +15,26 @@ def jobs(request):
 
 def jobInfo(request, id):
     logger.info('Jobs by ID')
-    return render(request, 'hireup/jobInfo.html')
+    job = Work.objects.filter(id=id).first()
+    user = UserProfile.objects.filter(username=request.user).first()
+
+    if user in job.applicants.all():
+        applied = True
+    else:
+        applied = False
+
+    return render(request, 'hireup/jobInfo.html', {'job': job, 'Isapplied': applied})
+
+
+def applyjob(request, id):
+    user = UserProfile.objects.filter(username=request.user).first()
+    job = Work.objects.filter(id=id).first()
+    if user in job.applicants.all():
+        job.applicants.remove(user)
+    else:
+        job.applicants.add(user)
+
+    return redirect('jobInfo', id)
 
 
 def createJob(request):

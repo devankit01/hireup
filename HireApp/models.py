@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
+from datetime import datetime
 
 
 class UserProfile(models.Model):
@@ -112,6 +113,18 @@ class Work(models.Model):
 
     def __str__(self):
         return self.work_name
+
+    def get_date(self):
+        time = datetime.now()
+        if self.posted.day == time.day:
+            return str(time.hour - self.posted.hour) + " hours ago"
+        else:
+            if self.posted.month == time.month:
+                return str(time.day - self.posted.day) + " days ago"
+            else:
+                if self.posted.year == time.year:
+                    return str(time.month - self.posted.month) + " months ago"
+        return self.posted
 
 
 class Round(models.Model):

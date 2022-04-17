@@ -67,37 +67,39 @@
   <h2 class="jobs__section pb-3">Apply to lastest Jobs !</h2>
 
   <div class="card-container">
+    {% for i in jobs %}
     <div class="card">
       <div class="card__header">
         <div>
           <img
             class=""
-            src="https://media-exp1.licdn.com/dms/image/C4D0BAQG_5pFNSWWLbw/company-logo_200_200/0/1641548084393?e=2147483647&v=beta&t=-gtnFLe3eA7xmYImFwNHsOUHBHNXJQyI9dfqq2ylEQ0"
+            src="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/media/{{i.company.company_logo}}"
           />
         </div>
         <div class="card__info">
-          <h2 class="title is-6 m-0">NodeJS Developer</h2>
-          <p>Noida, Lucknow</p>
+          <h2 class="title is-6 m-0">{{i.work_name}}</h2>
+          <p>{{i.location}}</p>
         </div>
       </div>
       <div class="card__flex">
         <div>
           <p>Experience</p>
-          <h3>1-2 Years</h3>
+          <h3>{{i.experience_or_time}}</h3>
         </div>
         <div>
           <p>Job Type</p>
-          <h3>Full-Time</h3>
+          <h3>{{i.emp_type}}</h3>
         </div>
         <div>
           <p>Salary</p>
-          <h3>4 LPA - 5LPA</h3>
+          <h3>{{i.salary_or_stipend}}</h3>
         </div>
       </div>
       <div class="card__apply mt-3">
         <a class="button is-white py-1 px-0 is-size-6"
           ><p class="date is-size-4" style="font-size: 14px !important">
-            August 20, 2021 &dot; 06:45 AM
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            &nbsp;{{i.get_date}}
           </p></a
         >
         <button class="button is-primary py-1" type="button" href="">
@@ -105,162 +107,7 @@
         </button>
       </div>
     </div>
-
-    <div class="card">
-      <div class="card__header">
-        <div>
-          <img
-            class=""
-            src="https://media-exp1.licdn.com/dms/image/C4D0BAQG_5pFNSWWLbw/company-logo_200_200/0/1641548084393?e=2147483647&v=beta&t=-gtnFLe3eA7xmYImFwNHsOUHBHNXJQyI9dfqq2ylEQ0"
-          />
-        </div>
-        <div class="card__info">
-          <h2 class="title is-6 m-0">NodeJS Developer</h2>
-          <p>Noida, Lucknow</p>
-        </div>
-      </div>
-      <div class="card__flex">
-        <div>
-          <p>Experience</p>
-          <h3>1-2 Years</h3>
-        </div>
-        <div>
-          <p>Job Type</p>
-          <h3>Full-Time</h3>
-        </div>
-        <div>
-          <p>Salary</p>
-          <h3>4 LPA - 5LPA</h3>
-        </div>
-      </div>
-      <div class="card__apply mt-3">
-        <a class="button is-white py-1 px-0 is-size-6"
-          ><p class="date is-size-4" style="font-size: 14px !important">
-            August 20, 2021 &dot; 06:45 AM
-          </p></a
-        >
-        <button class="button is-primary py-1" type="button" href="">
-          Apply Now
-        </button>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card__header">
-        <div>
-          <img
-            class=""
-            src="https://media-exp1.licdn.com/dms/image/C4D0BAQG_5pFNSWWLbw/company-logo_200_200/0/1641548084393?e=2147483647&v=beta&t=-gtnFLe3eA7xmYImFwNHsOUHBHNXJQyI9dfqq2ylEQ0"
-          />
-        </div>
-        <div class="card__info">
-          <h2 class="title is-6 m-0">NodeJS Developer</h2>
-          <p>Noida, Lucknow</p>
-        </div>
-      </div>
-      <div class="card__flex">
-        <div>
-          <p>Experience</p>
-          <h3>1-2 Years</h3>
-        </div>
-        <div>
-          <p>Job Type</p>
-          <h3>Full-Time</h3>
-        </div>
-        <div>
-          <p>Salary</p>
-          <h3>4 LPA - 5LPA</h3>
-        </div>
-      </div>
-      <div class="card__apply mt-3">
-        <a class="button is-white py-1 px-0 is-size-6"
-          ><p class="date is-size-4" style="font-size: 14px !important">
-            August 20, 2021 &dot; 06:45 AM
-          </p></a
-        >
-        <button class="button is-primary py-1" type="button" href="">
-          Apply Now
-        </button>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card__header">
-        <div>
-          <img
-            class=""
-            src="https://media-exp1.licdn.com/dms/image/C4D0BAQG_5pFNSWWLbw/company-logo_200_200/0/1641548084393?e=2147483647&v=beta&t=-gtnFLe3eA7xmYImFwNHsOUHBHNXJQyI9dfqq2ylEQ0"
-          />
-        </div>
-        <div class="card__info">
-          <h2 class="title is-6 m-0">NodeJS Developer</h2>
-          <p>Noida, Lucknow</p>
-        </div>
-      </div>
-      <div class="card__flex">
-        <div>
-          <p>Experience</p>
-          <h3>1-2 Years</h3>
-        </div>
-        <div>
-          <p>Job Type</p>
-          <h3>Full-Time</h3>
-        </div>
-        <div>
-          <p>Salary</p>
-          <h3>4 LPA - 5LPA</h3>
-        </div>
-      </div>
-      <div class="card__apply mt-3">
-        <a class="button is-white py-1 px-0 is-size-6"
-          ><p class="date is-size-4" style="font-size: 14px !important">
-            August 20, 2021 &dot; 06:45 AM
-          </p></a
-        >
-        <button class="button is-primary py-1" type="button" href="">
-          Apply Now
-        </button>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card__header">
-        <div>
-          <img
-            class=""
-            src="https://media-exp1.licdn.com/dms/image/C4D0BAQG_5pFNSWWLbw/company-logo_200_200/0/1641548084393?e=2147483647&v=beta&t=-gtnFLe3eA7xmYImFwNHsOUHBHNXJQyI9dfqq2ylEQ0"
-          />
-        </div>
-        <div class="card__info">
-          <h2 class="title is-6 m-0">NodeJS Developer</h2>
-          <p>Noida, Lucknow</p>
-        </div>
-      </div>
-      <div class="card__flex">
-        <div>
-          <p>Experience</p>
-          <h3>1-2 Years</h3>
-        </div>
-        <div>
-          <p>Job Type</p>
-          <h3>Full-Time</h3>
-        </div>
-        <div>
-          <p>Salary</p>
-          <h3>4 LPA - 5LPA</h3>
-        </div>
-      </div>
-      <div class="card__apply mt-3">
-        <a class="button is-white py-1 px-0 is-size-6"
-          ><p class="date is-size-4" style="font-size: 14px !important">
-            August 20, 2021 &dot; 06:45 AM
-          </p></a
-        >
-        <button class="button is-primary py-1" type="button" href="">
-          Apply Now
-        </button>
-      </div>
-    </div>
+    {% endfor %}
   </div>
 </main>
 

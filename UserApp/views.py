@@ -15,8 +15,8 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from django.db.models import F
 from HireApp.models import CompanyProfile
+from HireApp.models import Work
 
-from django.contrib.auth.hashers import check_password
 
 class TokenGenerator(PasswordResetTokenGenerator):
     def _make_hash_value(self, user, timestamp):
@@ -31,7 +31,8 @@ account_activation_token = TokenGenerator()
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    jobs = Work.objects.filter(status=True)
+    return render(request, 'index.html', {'jobs': jobs})
 
 
 def Usersignup(request):

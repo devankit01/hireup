@@ -7,10 +7,10 @@
 
 <div class="job__info__section container mt-5">
 
-  <h1 class="job__heading">NodeJS Developer</h1>
-  <h2 class="job__company">Appventurez Mobitec Pvt. Ltd.</h2>
+  <h1 class="job__heading">{{job.work_name}}</h1>
+  <h2 class="job__company">{{job.company.company_name}}</h2>
   <br />
-  <p class="has-text-grey"> &nbsp;&nbsp;&nbsp;<i class="fa fa-map-marker " aria-hidden="true"></i> Remote</p>
+  <p class="has-text-grey"> &nbsp;&nbsp;&nbsp;<i class="fa fa-map-marker " aria-hidden="true"></i> &nbsp;{{job.location}}</p>
   <br />
   <div class="card__flex">
     <div class="break">
@@ -21,27 +21,24 @@
 
       <div>
         <p><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp;Experience</p>
-        <h3>1-2 Years</h3>
+        <h3>{{job.experience_or_time}}</h3>
       </div>
     </div>
     <div class="break">
       <div>
         <p><i class="fa fa-briefcase" aria-hidden="true"></i> &nbsp;Job Type</p>
-        <h3>Full-Time</h3>
+        <h3>{{job.emp_type}}</h3>
       </div>
 
       <div>
         <p><i class="fa fa-money" aria-hidden="true"></i> &nbsp;Salary</p>
-        <h3>4 LPA - 5LPA</h3>
+        <h3>{{job.salary_or_stipend}}</h3>
       </div>
     </div>
   </div>
   <h2 class="mt-5 is-size-5"><b>About Company</b></h2>
   <p class="text">
-    At Junoon, we believe that every child is entitled to education and learning; something that is being overlooked,
-    especially when it comes to underprivileged children. We strongly believe that change starts with a few individuals
-    taking a stand and that is what we do. We begin as individuals trying to bring about a difference and in turn
-    develop, motivate and encourage these children who can then become the actual change-makers.
+    {{job.company.about_company}}
 
   </p>
   <h2 class="mt-5 is-size-5"><b>About Job</b></h2>
@@ -51,7 +48,7 @@
       <li>1. Tutoring children with basic subject knowledge from pre-primary to 10th grade</li>
       <li>2. Following up on syllabus tasks</li>
       <li>3. Keeping track of student progress</li>
-      <li>4. Handling assessment of student knowledge</li>
+      <li>4. Handling assessment</li>
     </ul>
   </p>
 
@@ -73,9 +70,17 @@
   <span class="skill">LOR</span>
 
   <h2 class="mt-5 mb-3 is-size-5"><b>Openings</b></h2>
-  <span class=""><b>6</b></span>
+  <span class=""><b>{{job.number_of_vacancy}}</b></span>
   <br>
+  {% if Isapplied %}
+  <a href="{% url 'applyjob' id=job.id %}">
+    <button class="button is-primary my-5">Withdraw Application</button>
+      </a>
+  {% else %}
+  <a href="{% url 'applyjob' id=job.id %}">
 <button class="button is-primary my-5">Apply Now</button>
+  </a>
+  {% endif %}
 </div>
 
 

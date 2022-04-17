@@ -18,7 +18,16 @@
       <img src="{% static 'images/profile/download.svg' %}" />
     </div>
     <div>
-      <h2>Anubhav Singh</h2>
+      <p>
+        <span style="font-size: x-large">
+        Anubhav Singh&nbsp;&nbsp;<span class="icon has-text-primary">
+          <a
+            href="{% url 'editRecruiterProfile' %}"
+            style="text-decoration: none; color: inherit"
+            ><i class="fas fa-edit has-text-primary"></i
+          ></a>
+        </span>
+      </p>
       <p class="headline">DevOps Engineer</p>
       <p class="bio">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil

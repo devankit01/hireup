@@ -4,7 +4,8 @@ from .views import *
 
 urlpatterns = [
     path('', jobs, name='jobs'),
-    path('jobs/<id>/', jobInfo, name='jobInfo'),
+    path('<id>/', jobInfo, name='jobInfo'),
+    path('apply/<id>/', applyjob, name='applyjob'),
 
     path('create-job', createJob, name='createJob'),
     path('edit-job/<id>/', editJob, name='editJob'),
