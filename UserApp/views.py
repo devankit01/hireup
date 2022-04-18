@@ -149,11 +149,21 @@ def userprofile(request):
         if request.session.get('username', None):
             # print(request.session['username'], request.user)
             user = get_object_or_404(User, username=request.user)
-            if UserProfile.objects.filter(username=user).count():
-                print('User')
-                return render(request, 'users/userProfile.html')
+            user_profile = UserProfile.objects.filter(username=user)
+            if user_profile.exists():
+                user_profile = user_profile.first()
+                if not user.first_name:
+                    print('Have to add profile first!')
+                    user_profile.page = 'Add'
+                    user_profile.button = 'Save'
+                    user_profile.month_names = ['January', 'February', 'March', 'April', 'May',
+                                                'June', 'July', 'August', 'September', 'October', 'November', 'December']
+                    user_profile.month = ''
+                    return render(request, 'users/editUserProfile.html', {"data": user_profile})
+                print('User', user_profile)
+                return render(request, 'users/userProfile.html', {"data": user_profile})
 
-            if RecruiterProfile.objects.filter(username=user).count():
+            if RecruiterProfile.objects.filter(username=user).exists():
                 print('Recruiter')
                 companyDetail = RecruiterProfile.objects.filter(
                     username=user).values(comp_id=F('company__id'), company_name=F('company__company_name'), company_type=F('company__company_type'), company_specialization=F('company__company_specialization'), company_phone=F('company__phone'), company_logo=F('company__company_logo'), about_company=F('company__about_company'), company_site=F('company__company_site'), company_location=F('company__location'), user_phone=F('phone')).first()

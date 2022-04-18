@@ -42,7 +42,7 @@ class Certification(models.Model):
 
 
 class Experience(models.Model):
-    organisation = models.CharField(max_length=10)
+    organisation = models.CharField(max_length=10, null=True)
     start_year = models.CharField(max_length=100, null=True)
     end_year = models.CharField(max_length=100, null=True)
     designation = models.CharField(max_length=20, null=True)
