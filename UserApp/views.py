@@ -164,7 +164,10 @@ def userprofile(request):
                 else:
                     companyDetail['company_list'] = CompanyProfile.objects.all()
                     companyDetail['company'] = True
-                return render(request, 'users/recruiterProfile.html', companyDetail)
+                if user.first_name:
+                    return render(request, 'users/recruiterProfile.html', companyDetail)
+                else:
+                    return redirect('editRecruiterProfile')
         else:
             return render(request, 'users/recruiterProfile.html')
 
@@ -260,13 +263,17 @@ def editRecruiterProfile(request):
                 companyDetail['company_list'] = CompanyProfile.objects.all()
             else:
                 companyDetail['company'] = True
+            companyDetail['page'] = 'Edit'
+            companyDetail['button'] = 'Update'
             return render(request, 'users/recruiterProfile.html', companyDetail)
     user_data = User.objects.filter(username=request.user).first()
     data = {
         'phone': RecruiterProfile.objects.filter(username=request.user).first().phone,
         'first_name': user_data.first_name,
         'last_name': user_data.last_name,
-        'email': user_data.email
+        'email': user_data.email,
+        'page': 'Add',
+        "button": "Save"
     }
 
     return render(request, 'users/editRecruiterProfile.html', data)
