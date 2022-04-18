@@ -16,6 +16,7 @@ def jobs(request):
 def jobInfo(request, id):
     logger.info('Jobs by ID')
     job = Work.objects.filter(id=id).first()
+    job.tech_stack = eval(job.tech_stack)
     user = UserProfile.objects.filter(username=request.user).first()
 
     if user in job.applicants.all():

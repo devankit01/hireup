@@ -53,9 +53,11 @@
   </p>
 
   <h2 class="mt-5 mb-3 is-size-5"><b>Skills Required</b></h2>
-  <span class="skill">NodeJS</span>
-  <span class="skill">JavaScript</span>
-  <span class="skill">ReactJS</span>
+  {% for tech in job.tech_stack%}
+  <span class="skill">{{tech}}</span>
+  {% endfor %}
+  <!-- <span class="skill">JavaScript</span> -->
+  <!-- <span class="skill">ReactJS</span> -->
 
   <h2 class="mt-5 mb-3 is-size-5"><b>Minimum Requirements</b></h2>
   <ul>
