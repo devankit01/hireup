@@ -107,3 +107,6 @@ def addExp(request, id=None):
 
 def addEdu(request, id=None):
     return render(request, 'hireup/AddEditEdu.html')
+
+def addCert(request, id=None):
+    return render(request, 'hireup/AddEditCert.html')
