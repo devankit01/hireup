@@ -1,0 +1,266 @@
+{% extends "layout.html" %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/prepup/index.css' %}" />
+<link rel="stylesheet" href="{% static 'css/hireup/createJob.css' %}" />
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+/>
+{% endblock %} {% block body %}
+
+<div class="has-background-primary set">
+  <div class="container py-5">
+    <h1 class="is-size-3 has-text-white m-0"><b>Hireup</b></h1>
+    <h2 class="is-size-5 has-text-white">
+      <b>Hireup / {{data.page}} Profile</b>
+    </h2>
+  </div>
+</div>
+<style>
+  .fa-facebook {
+    background: #3b5998;
+    color: white;
+  }
+</style>
+<section class="section container set">
+  <form
+    class="editUserProfile"
+    action="{% url 'editUserProfile' %}"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %}
+    <h2 class="is-size-5 has-text-black"><u>Basic Details</u></h2>
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2 ml-1">First Name</p>
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="First Name"
+              name="first_name"
+              id="first_name"
+              value="{{ data.first_name }}"
+              required
+            />
+          </p>
+        </div>
+      </div>
+
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2 ml-1">Last Name</p>
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="Last Name"
+              name="last_name"
+              id="last_name"
+              value="{{ data.last_name }}"
+              required
+            />
+          </p>
+        </div>
+      </div>
+
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2">Contact</p>
+
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="+91 8764531234"
+              name="phone"
+              id="phone"
+              value="{{ data.phone }}"
+              required
+            />
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2 ml-1">Email</p>
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="e.g., xvr@gmail.com"
+              name="email"
+              id="email"
+              value="{{ data.email }}"
+              style="max-width: 66%"
+              required
+            />
+          </p>
+        </div>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <div class="input-icons">
+            <p class="mb-2 ml-1">
+              <i class="fab fa-github-square" aria-hidden="true"></i>
+            </p>
+            <p class="control is-expanded is-fullwidth file is-primary"></p>
+
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="e.g., https://github.com/xyz/"
+              name="git"
+              id="git"
+              value="{{ data.git }}"
+              style="max-width: 66%"
+              required
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="field-body">
+        <div class="field">
+          <div class="input-icons">
+            <p class="mb-2 ml-1">
+              <i class="fab fa-facebook-square" aria-hidden="true"></i>
+            </p>
+            <p class="control is-expanded is-fullwidth file is-primary"></p>
+
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="e.g., https://www.facebook.com/profile/"
+              name="fb"
+              id="fb"
+              value="{{ data.fb }}"
+              style="max-width: 66%"
+              required
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div class="field">
+          <div class="input-icons">
+            <p class="mb-2 ml-1"><i class="fab fa-linkedin"></i></p>
+            <p class="control is-expanded is-fullwidth file is-primary"></p>
+
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="e.g., https://linkedin.com/xyz/"
+              name="lkd"
+              id="lkd"
+              value="{{ data.lkd }}"
+              style="max-width: 66%"
+              required
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="field-body">
+        <div class="field">
+          <div class="input-icons">
+            <span><i class="fab fa-hackerrank"></i></span>
+            <p class="control is-expanded is-fullwidth file is-primary"></p>
+
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="e.g., https://hackerrank.com/xyz/"
+              name="hacker"
+              id="hacker"
+              value="{{ data.hacker }}"
+              style="max-width: 66%"
+              required
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2">Resume</p>
+          <p class="control is-expanded is-fullwidth file is-primary">
+            <label class="file-label">
+              <input class="file-input" type="file" name="resume" />
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label"> Upload resume</span>
+              </span>
+            </label>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2 ml-1">Bio</p>
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="Write about yourself"
+              name="bio"
+              id="bio"
+              value="{{ data.bio }}"
+              style="max-width: 66%"
+              required
+            />
+          </p>
+        </div>
+      </div>
+
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2 ml-1">Profile</p>
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="e.g., Python Developer"
+              name="profile"
+              id="profile"
+              value="{{ data.profile }}"
+              style="max-width: 66%"
+              required
+            />
+          </p>
+        </div>
+      </div>
+    </div>
+    <br />
+
+    {% if error %}
+    <article class="message is-info">
+      <div class="message-header">
+        <p>{{error}}</p>
+      </div>
+    </article>
+
+    {%endif%}
+    <button style="float: left" class="button is-primary" type="submit" href="">
+      {{data.button}}
+    </button>
+  </form>
+</section>
+
+{% endblock %} {% block script %} {% endblock %}

@@ -101,12 +101,13 @@ def recruiterJobs(request):
     return render(request, 'admin-ui/hireUp/Admin.html', {'data': works})
 
 
-def addExp(request, id=None):
+def addExp(request):
     return render(request, 'hireup/AddEditExp.html')
 
 
 def addEdu(request, id=None):
     return render(request, 'hireup/AddEditEdu.html')
+
 
 def addCert(request, id=None):
     return render(request, 'hireup/AddEditCert.html')
