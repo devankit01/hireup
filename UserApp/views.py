@@ -156,10 +156,12 @@ def userprofile(request):
                     print('Have to add profile first!')
                     user_profile.page = 'Add'
                     user_profile.button = 'Save'
-                    user_profile.month_names = ['January', 'February', 'March', 'April', 'May',
-                                                'June', 'July', 'August', 'September', 'October', 'November', 'December']
-                    user_profile.month = ''
+                    # user_profile.month_names = ['January', 'February', 'March', 'April', 'May',
+                    #                             'June', 'July', 'August', 'September', 'October', 'November', 'December']
+                    # user_profile.month = ''
                     return render(request, 'users/editUserProfile.html', {"data": user_profile})
+                user_profile.first_name = user.first_name
+                user_profile.last_name = user.last_name
                 print('User', user_profile)
                 return render(request, 'users/userProfile.html', {"data": user_profile})
 
@@ -211,6 +213,7 @@ def editCompany(request, id=None):
             "about_company": request.POST['about_company'],
             "company_site": request.POST['company_site'],
         }
+
         if request.FILES.get('company_logo', None):
             company_details['company_logo'] = request.FILES['company_logo']
         if id:  # will update existing company details
@@ -287,3 +290,62 @@ def editRecruiterProfile(request):
     }
 
     return render(request, 'users/editRecruiterProfile.html', data)
+
+
+def editUserProfile(request):
+    if request.method == 'POST':
+        user = get_object_or_404(User, username=request.user)
+        user_profile = UserProfile.objects.filter(username=user)
+        if user_profile.exists():
+            user_data = {
+                'first_name': request.POST['first_name'],
+                'last_name': request.POST['last_name'],
+                'email': request.POST['email']
+            }
+            User.objects.filter(username=request.user).update(**user_data)
+            user_profile_data = {}
+            user_profile_data['phone'] = request.POST.get('phone', None)
+            user_profile_data['fb'] = request.POST.get('fb', None)
+            user_profile_data['lkd'] = request.POST.get('lkd', None)
+            user_profile_data['git'] = request.POST.get('git', None)
+            user_profile_data['hacker'] = request.POST.get('hacker', None)
+            user_profile_data['bio'] = request.POST.get('bio', None)
+            user_profile_data['profile'] = request.POST.get('profile', None)
+
+            if request.FILES.get('resume', None):
+                user_profile_data['resume'] = request.FILES['resume']
+            else:
+                user_resume_update = UserProfile(username=user)
+                user_resume_update.resume = user_resume_update.resume
+                user_data['resume'] = user_resume_update.resume
+
+            user_profile.update(**user_profile_data)
+
+            if request.FILES.get('resume', None) == False:
+                user_resume_update.save()
+            user_data['phone'] = request.POST.get('phone', None)
+            user_data['fb'] = request.POST.get('fb', None)
+            user_data['lkd'] = request.POST.get('lkd', None)
+            user_data['git'] = request.POST.get('git', None)
+            user_data['hacker'] = request.POST.get('hacker', None)
+            user_data['bio'] = request.POST.get('bio', None)
+            user_data['profile'] = request.POST.get('profile', None)
+            return render(request, 'users/userProfile.html', {"data": user_data})
+    user_data = User.objects.filter(username=request.user).first()
+    user_basic_info = UserProfile.objects.filter(username=request.user).first()
+    data = {
+        'phone': user_basic_info.phone,
+        'first_name': user_data.first_name,
+        'last_name': user_data.last_name,
+        'email': user_data.email,
+        'fb': user_basic_info.fb,
+        'lkd': user_basic_info.lkd,
+        'git': user_basic_info.git,
+        'hacker': user_basic_info.hacker,
+        'bio': user_basic_info.bio,
+        'profile': user_basic_info.profile,
+        'page': 'Add',
+        "button": "Save"
+    }
+    print("-------------------------")
+    return render(request, 'users/editUserProfile.html', {"data": data})

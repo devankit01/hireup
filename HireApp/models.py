@@ -13,6 +13,7 @@ class UserProfile(models.Model):
     phone = models.CharField(max_length=100, null=True, blank=True)
     resume = models.FileField(max_length=210, null=True)
     portfolio = models.CharField(max_length=210, null=True)
+    profile = models.CharField(max_length=210, null=True)
     username = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
