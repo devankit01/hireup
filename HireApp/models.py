@@ -118,7 +118,10 @@ class Work(models.Model):
     def get_date(self):
         time = datetime.now()
         if self.posted.day == time.day:
-            return str(time.hour - self.posted.hour) + " hours ago"
+            try:
+                return str(time.hour - self.posted.hour) + " hours ago"
+            except:
+                return "0 hours ago"
         else:
             if self.posted.month == time.month:
                 return str(time.day - self.posted.day) + " days ago"
