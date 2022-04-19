@@ -13,6 +13,7 @@ urlpatterns = [
 
     # Experience
     path('add-exp', addExp, name ='addExp'),
+    path('add-edu', addEdu, name ='addEdu'),
 
 
 ]

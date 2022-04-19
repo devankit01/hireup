@@ -103,3 +103,7 @@ def recruiterJobs(request):
 
 def addExp(request, id=None):
     return render(request, 'hireup/AddEditExp.html')
+
+
+def addEdu(request, id=None):
+    return render(request, 'hireup/AddEditEdu.html')
