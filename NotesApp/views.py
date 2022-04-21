@@ -58,12 +58,34 @@ def prepUpdate(request, id, status):
     return redirect('PrepupAdmin')
 
 
-def prepEdit(request, id):
-    data = {}
-    data['page'] = "Edit"
-    data['button'] = "Update"
+def prepEdit(request, id=None):
     if request.method == 'POST':
-        print("POST")
-        pass
-    print(id, "EDIT")
-    return render(request, 'prepup/addEditPrep.html', {'data': data})
+        if id != None and id != 'None':
+            material = StudyMaterials(id=id)
+        else:
+            material = StudyMaterials()
+
+        material.Name = request.POST['name']
+        material.subject = request.POST['subject']
+        material.year = request.POST['year']
+        material.Branch = request.POST['branch']
+        material.url = request.POST['url']
+        if request.FILES.get('file', None) == None:
+            if id != None and id != 'None':
+                material.file = StudyMaterials.objects.filter(
+                    id=id).first().file
+        else:
+            material.company_logo = request.FILES['file']
+        material.createdBy = request.user
+        material.save()
+
+        return redirect('PrepupAdmin')
+    data = {'id': None}
+    if id != None and id != 'None':
+        data = StudyMaterials.objects.filter(id=id).first()
+        page = 'Edit'
+        button = 'Update'
+    else:
+        page = 'Add'
+        button = 'Save'
+    return render(request, 'prepup/addEditPrep.html', {'data': data, 'page': page, 'button': button})

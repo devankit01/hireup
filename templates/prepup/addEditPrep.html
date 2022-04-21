@@ -16,7 +16,7 @@
   <div class="container py-5">
     <h1 class="is-size-3 has-text-white m-0"><b>Hireup</b></h1>
     <h2 class="is-size-5 has-text-white">
-      <b>Hireup / {{data.page}} Study Material</b>
+      <b>Hireup / {{page}} Study Material</b>
     </h2>
   </div>
 </div>
@@ -28,8 +28,8 @@
 </style>
 <section class="section container set">
   <form
-    class="editUserProfile"
-    action="{% url 'editUserProfile' %}"
+    class="addEditMaterial"
+    action="{% url 'prepEdit' data.id %}"
     method="post"
     enctype="multipart/form-data"
   >
@@ -46,7 +46,7 @@
               placeholder="What is it about?"
               name="name"
               id="name"
-              value="{{ data.name }}"
+              value="{{ data.Name }}"
               required
             />
           </p>
@@ -103,6 +103,23 @@
           </p>
         </div>
       </div>
+
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2 ml-1">Source</p>
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="Mention source website"
+              name="url"
+              id="url"
+              value="{{ data.url }}"
+            />
+          </p>
+        </div>
+      </div>
+
       <div class="field-body">
         <div class="field">
           <p class="mb-2">File</p>
@@ -136,7 +153,7 @@
 
     {%endif%}
     <button style="float: left" class="button is-primary" type="submit" href="">
-      {{data.button}}
+      {{button}}
     </button>
   </form>
 </section>
