@@ -62,6 +62,7 @@ def prepEdit(request, id=None):
     if request.method == 'POST':
         if id != None and id != 'None':
             material = StudyMaterials(id=id)
+            material.IsApproved = material.IsApproved
         else:
             material = StudyMaterials()
 
@@ -75,10 +76,9 @@ def prepEdit(request, id=None):
                 material.file = StudyMaterials.objects.filter(
                     id=id).first().file
         else:
-            material.company_logo = request.FILES['file']
+            material.file = request.FILES['file']
         material.createdBy = request.user
         material.save()
-
         return redirect('PrepupAdmin')
     data = {'id': None}
     if id != None and id != 'None':
