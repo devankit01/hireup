@@ -7,3 +7,5 @@ NotesApp/__pycache__/
 UserApp/__pycache__/
 HireApp/__pycache__/
 MainApp/__pycache__/
+env
+.vscode/
