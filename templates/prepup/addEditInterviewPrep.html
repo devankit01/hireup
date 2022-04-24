@@ -1,0 +1,144 @@
+{% extends "layout.html" %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/prepup/index.css' %}" />
+<link rel="stylesheet" href="{% static 'css/hireup/createJob.css' %}" />
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+/>
+{% endblock %} {% block body %}
+
+<div class="has-background-primary set">
+  <div class="container py-5">
+    <h1 class="is-size-3 has-text-white m-0"><b>Hireup</b></h1>
+    <h2 class="is-size-5 has-text-white">
+      <b>Hireup / {{page}} Interview Material</b>
+    </h2>
+  </div>
+</div>
+<style>
+  .fa-facebook {
+    background: #3b5998;
+    color: white;
+  }
+</style>
+<section class="section container set">
+  <form
+    class="addEditMaterial"
+    action="{% url 'prepEdit' data.id %}"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %}
+    <h2 class="is-size-5 has-text-black"><u> Material Details</u></h2>
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2 ml-1">Title</p>
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="What is it about?"
+              name="name"
+              id="name"
+              value="{{ data.name }}"
+              required
+            />
+          </p>
+        </div>
+      </div>
+
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2 ml-1">Category</p>
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="Category"
+              name="category"
+              id="category"
+              value="{{ data.category }}"
+              required
+            />
+          </p>
+        </div>
+      </div>
+
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2 ml-1">Tag</p>
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="Tag"
+              name="tag"
+              id="tag"
+              value="{{ data.tag }}"
+              required
+            />
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2 ml-1">Source</p>
+          <p class="control is-expanded is-fullwidth">
+            <input
+              class="input mx-1"
+              type="text"
+              placeholder="Mention source website"
+              name="url"
+              id="url"
+              value="{{ data.url }}"
+            />
+          </p>
+        </div>
+      </div>
+
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2">File</p>
+          <p class="control is-expanded is-fullwidth file is-primary">
+            <label class="file-label">
+              <input class="file-input" type="file" name="file" />
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label"> Upload File</span>
+              </span>
+            </label>
+          </p>
+        </div>
+      </div>
+
+      <div class="field-body"></div>
+    </div>
+
+    <br />
+
+    {% if error %}
+    <article class="message is-info">
+      <div class="message-header">
+        <p>{{error}}</p>
+      </div>
+    </article>
+
+    {%endif%}
+    <button style="float: left" class="button is-primary" type="submit" href="">
+      {{button}}
+    </button>
+  </form>
+</section>
+
+{% endblock %} {% block script %} {% endblock %}
