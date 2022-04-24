@@ -1,10 +1,18 @@
+To be Done Today : 
+
 Ankit :
     -  Login, Register, Home, Prep Index Design (Done)
     -  Profile Design User ( Done )
     -  Profile Design Recruiter (Pending)
+    - Recruiter Dashboard 
 
 
 
 Piyush : 
-    - Notes Admin Panel ( Interview Prep and Study Materials CRUD )
-    - Profile Update User 
+    - Chat App with HR and User
+
+
+Adil Sir :
+    - Prepup Admin Dashboard Update 
+
+
