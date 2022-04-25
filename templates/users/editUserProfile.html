@@ -240,6 +240,125 @@
           </p>
         </div>
       </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2 ml-1">Skills Required</p>
+          <p class="control is-expanded is-fullwidth skills">
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" type="checkbox" name="stack"
+                value="Python" {% if "Python" in data.tech_stack %} checked
+                {%endif%} />
+
+                <span>Python</span>
+              </label> </span
+            >&nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" type="checkbox" name="stack"
+                value="JavaScript" {% if "JavaScript" in data.tech_stack %}
+                checked {% endif %} />
+                <span>JavaScript</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" name="stack" type="checkbox" value="PHP"
+                {% if "PHP" in data.tech_stack %} checked {% endif %} />
+                <span>PHP</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" type="checkbox" name="stack"
+                value="NodeJS" {% if "NodeJS" in data.tech_stack %} checked
+                {%endif%} />
+                <span>NodeJS</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" type="checkbox" name="stack"
+                value="ExpressJS" {% if "ExpressJS" in data.tech_stack %}
+                checked {% endif %} />
+                <span>ExpressJS</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" type="checkbox" name="stack" value="HTML"
+                {% if "HTML" in data.tech_stack %} checked {% endif %} />
+                <span>HTML</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" name="stack" type="checkbox" value="CSS"
+                {% if "CSS" in data.tech_stack %} checked {% endif %} />
+                <span>CSS</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" type="checkbox" name="stack"
+                value="ReactJS" {% if "ReactJS" in data.tech_stack %} checked
+                {%endif%} />
+                <span>ReactJS</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" type="checkbox" name="stack" value="React
+                Native" {% if "React Native" in data.tech_stack %}
+                checked{%endif%} />
+                <span>React Native</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" type="checkbox" name="stack"
+                value="Flutter" {% if "Flutter" in data.tech_stack %} checked
+                {%endif%} />
+                <span>Flutter</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" type="checkbox" name="stack"
+                value="MySQL" {% if "MySQL" in data.tech_stack %} checked
+                {%endif%} />
+                <span>MySQL</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" type="checkbox" name="stack"
+                value="MongoDB" {% if "MongoDB" in data.tech_stack %} checked
+                {%endif%} />
+                <span>MongoDB</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" name="stack" type="checkbox" value="Go"
+                {% if "Go" in data.tech_stack %} checked {% endif %} />
+                <span>Go</span>
+              </label>
+            </span>
+          </p>
+        </div>
+      </div>
     </div>
     <br />
 
@@ -250,7 +369,7 @@
       </div>
     </article>
 
-    {%endif%}
+    {% endif %}
     <button style="float: left" class="button is-primary" type="submit" href="">
       {{data.button}}
     </button>

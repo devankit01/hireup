@@ -24,7 +24,7 @@
         {{data.first_name}}&nbsp;{{data.last_name}}&nbsp;&nbsp;<span class="icon has-text-primary">
           <a
             href="{% url 'editUserProfile' %}"
-            style="text-decoration: none; color: inherit"
+            style="text-decoration: none; color: inherit" 
             ><i class="fas fa-edit has-text-primary"></i
           ></a>
         </span>
@@ -61,37 +61,34 @@
   <div class="profile__body">
     <div class="profile__div">
       <h2 class="mt-5 mb-4 is-size-5"><b>Skills</b></h2>
-      <span class="skill">NodeJS</span>
-      <span class="skill">JavaScript</span>
-      <span class="skill">ReactJS</span>
-      <span class="skill">Python</span>
-      <span class="skill">AWS</span>
-      <span class="skill">CSS</span>
-      <span class="skill">HTML</span>
-      <span class="skill">Web Design</span>
+      {% for tech in data.tech_stack %}
+      <span class="skill">{{tech}}</span>
+      {% endfor %}
     </div>
 
     <div class="profile__div">
       <h2 class="mt-5 mb-4 is-size-5"><b>Education</b>&nbsp;&nbsp;
         <span class="icon has-text-primary">
           <a
-            href=""
+            href="{% url 'addEdu' %}"
             style="text-decoration: none; color: inherit"
             ><i class="fas fa-edit has-text-primary"></i
           ></a>
         </span></h2>
       <ul class="timeline">
+        {% for education in data.education %}
         <li class="timeline-item is-primary">
           <div class="timeline-tag"></div>
           <div class="timeline-content">
-            <p class="is-size-7">March 2015 - March 2016</p>
-            <p>Bal Nikunj Inter College</p>
+            <p class="is-size-7">{{education.start_year}} - {{education.end_year}}</p>
+            <p>{{education.name}}</p>
 
-            <p class="is-size-6">10th</p>
+            <p class="is-size-6">{{education.degree}}</p>
           </div>
         </li>
+        {% endfor %}
 
-        <li class="timeline-item is-primary">
+        <!-- <li class="timeline-item is-primary">
           <div class="timeline-tag"></div>
           <div class="timeline-content">
             <p class="is-size-7">March 2016 - March 2018</p>
@@ -109,7 +106,7 @@
 
             <p class="is-size-6">B.Tech ( CSE )</p>
           </div>
-        </li>
+        </li> -->
       </ul>
     </div>
 

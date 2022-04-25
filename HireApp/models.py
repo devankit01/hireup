@@ -22,7 +22,7 @@ class UserProfile(models.Model):
 
 class Skill(models.Model):
     name = models.CharField(max_length=100)
-    level = models.CharField(max_length=30)
+    level = models.CharField(max_length=30, null=True)
     emoji = models.CharField(max_length=30, null=True)
     username = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
