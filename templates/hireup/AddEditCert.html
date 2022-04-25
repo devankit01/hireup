@@ -23,7 +23,18 @@
 
 <section class="section container set">
   <h2 class="is-size-4 mb-3">Add/Edit Certificate</h2>
-  <form class="createJob" method="post" action="{% url 'addCert' %}">
+  <form
+    class="createJob"
+    method="post"
+    {%
+    if
+    data.id
+    %}
+    action="{% url 'addCert' data.id %}"
+    {%else%}
+    action="{% url 'addCert' %}"
+    {%endif%}
+  >
     {% csrf_token %}
     <div class="field is-horizontal">
       <div class="field-body">
@@ -36,6 +47,7 @@
               placeholder="Certificate Name"
               name="name"
               id="id"
+              value="{{data.name}}"
               required
             />
           </p>
@@ -52,6 +64,7 @@
               placeholder="Organisation Name"
               name="organisation"
               id="id"
+              value="{{data.organisation}}"
               required
             />
           </p>
@@ -67,6 +80,7 @@
               placeholder="Start Year"
               name="issue_date"
               id="id"
+              value="{{data.issue_date}}"
               required
             />
           </p>
@@ -85,6 +99,7 @@
               placeholder="URL"
               name="url"
               id="id"
+              value="{{data.url}}"
             />
           </p>
         </div>

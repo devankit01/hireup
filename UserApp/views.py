@@ -379,6 +379,7 @@ def addEdu(request, id=None):
     if request.method == 'POST':
         if id:
             education_object = Education(id=id)
+            print('-----------education_object-------------------')
         else:
             education_object = Education()
         education_object.name = request.POST['name']
@@ -395,6 +396,10 @@ def addEdu(request, id=None):
         education_object.username = request.user
         education_object.save()
         return redirect('userprofile')
+    if id:
+        data = Education.objects.filter(username=request.user).first()
+        return render(request, 'hireup/AddEditEdu.html', {"data": data})
+
     return render(request, 'hireup/AddEditEdu.html')
 
 
@@ -420,6 +425,9 @@ def addExp(request, id=None):
         experience_object.username = request.user
         experience_object.save()
         return redirect('userprofile')
+    if id:
+        data = Experience.objects.filter(username=request.user).first()
+        return render(request, 'hireup/AddEditExp.html', {"data": data})
     return render(request, 'hireup/AddEditExp.html')
 
 
@@ -442,4 +450,7 @@ def addCert(request, id=None):
         certification_object.username = request.user
         certification_object.save()
         return redirect('userprofile')
+    if id:
+        data = Certification.objects.filter(username=request.user).first()
+        return render(request, 'hireup/AddEditCert.html', {"data": data})
     return render(request, 'hireup/AddEditCert.html')

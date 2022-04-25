@@ -80,7 +80,12 @@
         <li class="timeline-item is-primary">
           <div class="timeline-tag"></div>
           <div class="timeline-content">
-            <p class="is-size-7">{{education.start_year}} - {{education.end_year}}</p>
+            <p class="is-size-7">{{education.start_year}} - {{education.end_year}} &nbsp;
+              <a href="{% url 'addEdu' education.id %}"
+            style="text-decoration: none; color: inherit"
+            ><i class="fas fa-edit has-text-primary"></i
+          ></a>
+        </p>
             <p>{{education.name}}</p>
 
             <p class="is-size-6">{{education.degree}}</p>
@@ -106,7 +111,12 @@
         <li class="timeline-item is-danger">
           <div class="timeline-tag"></div>
           <div class="timeline-content">
-            <p class="is-size-7">{{experience.start_year}} - {{experience.end_year}}</p>
+            <p class="is-size-7">{{experience.start_year}} - {{experience.end_year}} &nbsp;
+              <a  href="{% url 'addExp' experience.id %}"
+            style="text-decoration: none; color: inherit"
+            ><i class="fas fa-edit has-text-primary"></i
+          ></a>
+        </p>
             <p>{{experience.organisation}}</p>
 
             <p class="is-size-6">{{experience.designation}}</p>
@@ -128,7 +138,13 @@
       {% for certification in data.certification %}
       <div class="mb-3 ml-3 certficate">
         <div class="timeline-content">
-          <p class="is-size-6"><b>{{certification.name}}</b></p>
+          <p class="is-size-6"><b>{{certification.name}}</b> &nbsp;
+          <a
+            href="{% url 'addCert' certification.id %}"
+            style="text-decoration: none; color: inherit"
+            ><i class="fas fa-edit has-text-primary"></i
+          ></a>
+          </p>
           <p class="is-size-7">{{certification.organisation}} on {{certification.issue_date}}</p>
           <a href="http://" class="is-size-7">View Certificate</a>
         </div>

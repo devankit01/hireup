@@ -23,7 +23,18 @@
 
 <section class="section container set">
   <h2 class="is-size-4 mb-3">Add/Edit Education</h2>
-  <form class="createJob" method="post" action="{% url 'addEdu' %}">
+  <form
+    class="createJob"
+    method="post"
+    {%
+    if
+    data.id
+    %}
+    action="{% url 'addEdu' data.id %}"
+    {%else%}
+    action="{% url 'addEdu' %}"
+    {%endif%}
+  >
     {% csrf_token %}
     <div class="field is-horizontal">
       <div class="field-body">
@@ -36,6 +47,7 @@
               placeholder="College Name"
               name="name"
               id="id"
+              value="{{data.name}}"
               required
             />
           </p>
@@ -51,6 +63,7 @@
               placeholder="Start Year"
               name="start_year"
               id="id"
+              value="{{data.start_year}}"
               required
             />
           </p>
@@ -67,6 +80,7 @@
               placeholder="End year"
               name="end_year"
               id="id"
+              value="{{data.end_year}}"
               required
             />
           </p>
@@ -85,6 +99,7 @@
               placeholder="Designation"
               name="degree"
               id="id"
+              value="{{data.degree}}"
               required
             />
           </p>
