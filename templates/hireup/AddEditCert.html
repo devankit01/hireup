@@ -23,7 +23,7 @@
 
 <section class="section container set">
   <h2 class="is-size-4 mb-3">Add/Edit Certificate</h2>
-  <form class="createJob" method="post">
+  <form class="createJob" method="post" action="{% url 'addCert' %}">
     {% csrf_token %}
     <div class="field is-horizontal">
       <div class="field-body">
@@ -34,7 +34,7 @@
               class="input mx-1"
               type="text"
               placeholder="Certificate Name"
-              name="organisation"
+              name="name"
               id="id"
               required
             />
@@ -48,7 +48,7 @@
           <p class="control is-expanded is-fullwidth">
             <input
               class="input mx-1"
-              type="url"
+              type="text"
               placeholder="Organisation Name"
               name="organisation"
               id="id"
@@ -72,21 +72,19 @@
           </p>
         </div>
       </div>
-
     </div>
 
     <div class="field is-horizontal">
       <div class="field-body">
         <div class="field">
           <p class="mb-2 ml-1">URL</p>
-          <p class="control is-expanded  is-fullwidth">
+          <p class="control is-expanded is-fullwidth">
             <input
               class="input mx-1"
               type="url"
               placeholder="URL"
               name="url"
               id="id"
-              required
             />
           </p>
         </div>

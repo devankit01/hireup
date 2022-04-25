@@ -10,12 +10,13 @@ from django.utils import six
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
 from django.core.mail import EmailMultiAlternatives
-from HireApp.models import RecruiterProfile, UserProfile
+from HireApp.models import RecruiterProfile, Skill, UserProfile
 from django.contrib import auth
 from django.contrib.auth.models import User
-from django.db.models import F
+from django.db.models import F, Q
 from HireApp.models import CompanyProfile
-from HireApp.models import Work
+from HireApp.models import Work, Education, Experience, Certification
+from datetime import datetime
 
 
 class TokenGenerator(PasswordResetTokenGenerator):
@@ -147,22 +148,34 @@ def signin(request):
 def userprofile(request):
     try:
         if request.session.get('username', None):
-            # print(request.session['username'], request.user)
             user = get_object_or_404(User, username=request.user)
             user_profile = UserProfile.objects.filter(username=user)
             if user_profile.exists():
                 user_profile = user_profile.first()
                 if not user.first_name:
                     print('Have to add profile first!')
-                    user_profile.page = 'Add'
-                    user_profile.button = 'Save'
-                    # user_profile.month_names = ['January', 'February', 'March', 'April', 'May',
-                    #                             'June', 'July', 'August', 'September', 'October', 'November', 'December']
-                    # user_profile.month = ''
+                    user_profile.page = 'Edit'
+                    user_profile.button = 'Update'
                     return render(request, 'users/editUserProfile.html', {"data": user_profile})
                 user_profile.first_name = user.first_name
                 user_profile.last_name = user.last_name
-                print('User', user_profile)
+                user_profile.tech_stack = eval(Skill.objects.filter(
+                    username=request.user).first().name)
+                # EDUCATION
+                user_profile.education = Education.objects.filter(
+                    username=request.user).order_by('start_year')
+                # EDUCATION
+
+                # EXPERIENCE
+                user_profile.experience = Experience.objects.filter(
+                    username=request.user).order_by('start_year')
+                # EXPERIENCE
+
+                # CERTIFICATION
+                user_profile.certification = Certification.objects.filter(
+                    username=request.user).order_by('issue_date')
+                # CERTIFICATION
+
                 return render(request, 'users/userProfile.html', {"data": user_profile})
 
             if RecruiterProfile.objects.filter(username=user).exists():
@@ -320,7 +333,15 @@ def editUserProfile(request):
                 user_data['resume'] = user_resume_update.resume
 
             user_profile.update(**user_profile_data)
-
+            # adding skills
+            skill_objects = Skill.objects.filter(username=request.user)
+            if skill_objects.exists():
+                skill_objects.update(
+                    name=request.POST.getlist('stack'))
+            else:
+                Skill.objects.create(username=request.user,
+                                     name=request.POST.getlist('stack'))
+            # adding skills
             if request.FILES.get('resume', None) == False:
                 user_resume_update.save()
             user_data['phone'] = request.POST.get('phone', None)
@@ -330,9 +351,11 @@ def editUserProfile(request):
             user_data['hacker'] = request.POST.get('hacker', None)
             user_data['bio'] = request.POST.get('bio', None)
             user_data['profile'] = request.POST.get('profile', None)
+            user_data['tech_stack'] = request.POST.getlist('stack')
             return render(request, 'users/userProfile.html', {"data": user_data})
     user_data = User.objects.filter(username=request.user).first()
     user_basic_info = UserProfile.objects.filter(username=request.user).first()
+    skills = Skill.objects.filter(username=request.user).first()
     data = {
         'phone': user_basic_info.phone,
         'first_name': user_data.first_name,
@@ -347,5 +370,76 @@ def editUserProfile(request):
         'page': 'Add',
         "button": "Save"
     }
-    print("-------------------------")
+    if skills:
+        data['tech_stack'] = eval(skills.name)
     return render(request, 'users/editUserProfile.html', {"data": data})
+
+
+def addEdu(request, id=None):
+    if request.method == 'POST':
+        if id:
+            education_object = Education(id=id)
+        else:
+            education_object = Education()
+        education_object.name = request.POST['name']
+        start_year = request.POST['start_year']
+        start_year = datetime.strptime(start_year, '%Y-%m-%d')
+        start_year = datetime.strftime(start_year, '%B %Y')
+        education_object.start_year = start_year
+
+        end_year = request.POST['end_year']
+        end_year = datetime.strptime(end_year, '%Y-%m-%d')
+        end_year = datetime.strftime(end_year, '%B %Y')
+        education_object.end_year = end_year
+        education_object.degree = request.POST['degree']
+        education_object.username = request.user
+        education_object.save()
+        return redirect('userprofile')
+    return render(request, 'hireup/AddEditEdu.html')
+
+
+def addExp(request, id=None):
+    if request.method == 'POST':
+        if id:
+            experience_object = Experience(id=id)
+        else:
+            experience_object = Experience()
+        experience_object.organisation = request.POST['organisation']
+
+        start_year = request.POST['start_year']
+        start_year = datetime.strptime(start_year, '%Y-%m-%d')
+        start_year = datetime.strftime(start_year, '%B %Y')
+        experience_object.start_year = start_year
+
+        end_year = request.POST['end_year']
+        end_year = datetime.strptime(end_year, '%Y-%m-%d')
+        end_year = datetime.strftime(end_year, '%B %Y')
+        experience_object.end_year = end_year
+
+        experience_object.designation = request.POST['designation']
+        experience_object.username = request.user
+        experience_object.save()
+        return redirect('userprofile')
+    return render(request, 'hireup/AddEditExp.html')
+
+
+def addCert(request, id=None):
+    if request.method == 'POST':
+        if id:
+            certification_object = Certification(id=id)
+        else:
+            certification_object = Certification()
+
+        certification_object.name = request.POST['name']
+        certification_object.organisation = request.POST['organisation']
+
+        issue_date = request.POST['issue_date']
+        issue_date = datetime.strptime(issue_date, '%Y-%m-%d')
+        issue_date = datetime.strftime(issue_date, '%B %Y')
+        certification_object.issue_date = issue_date
+
+        certification_object.url = request.POST['url']
+        certification_object.username = request.user
+        certification_object.save()
+        return redirect('userprofile')
+    return render(request, 'hireup/AddEditCert.html')

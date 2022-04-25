@@ -1,5 +1,5 @@
-from django.shortcuts import redirect, render
-from .models import Work, CompanyProfile, RecruiterProfile, UserProfile
+from django.shortcuts import redirect, render, get_object_or_404
+from .models import Work, CompanyProfile, RecruiterProfile, UserProfile, User
 
 # Create your views here.
 
@@ -99,18 +99,3 @@ def recruiterJobs(request):
     recruiter = RecruiterProfile.objects.filter(username=request.user).first()
     works = Work.objects.filter(created_by=recruiter)
     return render(request, 'admin-ui/hireUp/Admin.html', {'data': works})
-
-def manageJob(request,id):
-    work = Work.objects.filter(id=id).first()
-    return render(request, 'admin-ui/hireUp/jobApplicants.html', {'work':work})
-
-def addExp(request):
-    return render(request, 'hireup/AddEditExp.html')
-
-
-def addEdu(request, id=None):
-    return render(request, 'hireup/AddEditEdu.html')
-
-
-def addCert(request, id=None):
-    return render(request, 'hireup/AddEditCert.html')

@@ -13,9 +13,7 @@ urlpatterns = [
     path('manage-job/<id>', manageJob, name='manageJob'),
 
     # Experience
-    path('add-exp', addExp, name ='addExp'),
-    path('add-edu', addEdu, name ='addEdu'),
-    path('add-certificate', addCert, name ='addCert'),
+
 
 
 

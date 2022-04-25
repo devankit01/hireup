@@ -22,7 +22,7 @@ class UserProfile(models.Model):
 
 class Skill(models.Model):
     name = models.CharField(max_length=100)
-    level = models.CharField(max_length=30)
+    level = models.CharField(max_length=30, null=True)
     emoji = models.CharField(max_length=30, null=True)
     username = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
@@ -33,8 +33,7 @@ class Skill(models.Model):
 class Certification(models.Model):
     name = models.CharField(max_length=100)
     organisation = models.CharField(max_length=10)
-    month_name = models.CharField(max_length=30)
-    year = models.CharField(max_length=30)
+    issue_date = models.CharField(max_length=30)
     url = models.CharField(max_length=100)
     username = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
@@ -43,10 +42,10 @@ class Certification(models.Model):
 
 
 class Experience(models.Model):
-    organisation = models.CharField(max_length=10, null=True)
-    start_year = models.CharField(max_length=100, null=True)
-    end_year = models.CharField(max_length=100, null=True)
-    designation = models.CharField(max_length=20, null=True)
+    organisation = models.CharField(max_length=100, null=True)
+    start_year = models.CharField(max_length=20, null=True)
+    end_year = models.CharField(max_length=20, null=True)
+    designation = models.CharField(max_length=100, null=True)
     username = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):

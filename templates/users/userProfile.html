@@ -24,7 +24,7 @@
         {{data.first_name}}&nbsp;{{data.last_name}}&nbsp;&nbsp;<span class="icon has-text-primary">
           <a
             href="{% url 'editUserProfile' %}"
-            style="text-decoration: none; color: inherit"
+            style="text-decoration: none; color: inherit" 
             ><i class="fas fa-edit has-text-primary"></i
           ></a>
         </span>
@@ -61,55 +61,33 @@
   <div class="profile__body">
     <div class="profile__div">
       <h2 class="mt-5 mb-4 is-size-5"><b>Skills</b></h2>
-      <span class="skill">NodeJS</span>
-      <span class="skill">JavaScript</span>
-      <span class="skill">ReactJS</span>
-      <span class="skill">Python</span>
-      <span class="skill">AWS</span>
-      <span class="skill">CSS</span>
-      <span class="skill">HTML</span>
-      <span class="skill">Web Design</span>
+      {% for tech in data.tech_stack %}
+      <span class="skill">{{tech}}</span>
+      {% endfor %}
     </div>
 
     <div class="profile__div">
       <h2 class="mt-5 mb-4 is-size-5"><b>Education</b>&nbsp;&nbsp;
         <span class="icon has-text-primary">
           <a
-            href=""
+            href="{% url 'addEdu' %}"
             style="text-decoration: none; color: inherit"
             ><i class="fas fa-edit has-text-primary"></i
           ></a>
         </span></h2>
       <ul class="timeline">
+        {% for education in data.education %}
         <li class="timeline-item is-primary">
           <div class="timeline-tag"></div>
           <div class="timeline-content">
-            <p class="is-size-7">March 2015 - March 2016</p>
-            <p>Bal Nikunj Inter College</p>
+            <p class="is-size-7">{{education.start_year}} - {{education.end_year}}</p>
+            <p>{{education.name}}</p>
 
-            <p class="is-size-6">10th</p>
+            <p class="is-size-6">{{education.degree}}</p>
           </div>
         </li>
+        {% endfor %}
 
-        <li class="timeline-item is-primary">
-          <div class="timeline-tag"></div>
-          <div class="timeline-content">
-            <p class="is-size-7">March 2016 - March 2018</p>
-            <p>Bal Nikunj Inter College</p>
-
-            <p class="is-size-6">12th ( Science )</p>
-          </div>
-        </li>
-
-        <li class="timeline-item is-primary">
-          <div class="timeline-tag"></div>
-          <div class="timeline-content">
-            <p class="is-size-7">March 2018 - March 2022</p>
-            <p>SR Institute of Management & Technology</p>
-
-            <p class="is-size-6">B.Tech ( CSE )</p>
-          </div>
-        </li>
       </ul>
     </div>
 
@@ -118,68 +96,45 @@
         &nbsp;&nbsp;
         <span class="icon has-text-primary">
           <a
-            href=""
+            href="{% url 'addExp' %}"
             style="text-decoration: none; color: inherit"
             ><i class="fas fa-edit has-text-primary"></i
           ></a>
         </span></h2>
       <ul class="timeline">
+        {% for experience in data.experience %}
         <li class="timeline-item is-danger">
           <div class="timeline-tag"></div>
           <div class="timeline-content">
-            <p class="is-size-7">July 2021 - Dec 2021</p>
-            <p>Yokoso Pvt. Ltd</p>
+            <p class="is-size-7">{{experience.start_year}} - {{experience.end_year}}</p>
+            <p>{{experience.organisation}}</p>
 
-            <p class="is-size-6">Full Stack Developer</p>
+            <p class="is-size-6">{{experience.designation}}</p>
           </div>
         </li>
-
-        <li class="timeline-item is-danger">
-          <div class="timeline-tag"></div>
-          <div class="timeline-content">
-            <p class="is-size-7">Feb 2022 - Present</p>
-            <p class="">Appventurez Mobitech Pvt. Ltd.</p>
-
-            <p class="is-size-6">Python Developer</p>
-          </div>
-        </li>
+        {% endfor %}
+        
       </ul>
     </div>
-
     <div class="profile__div">
       <h2 class="mt-5 mb-4 is-size-5"><b>Certifications</b>&nbsp;&nbsp;
         <span class="icon has-text-primary">
           <a
-            href=""
+            href="{% url 'addCert' %}"
             style="text-decoration: none; color: inherit"
             ><i class="fas fa-edit has-text-primary"></i
           ></a>
         </span></h2>
+      {% for certification in data.certification %}
       <div class="mb-3 ml-3 certficate">
         <div class="timeline-content">
-          <p class="is-size-6"><b>HTML Certificate</b></p>
-          <p class="is-size-7">Sololearn on Jan 2020</p>
+          <p class="is-size-6"><b>{{certification.name}}</b></p>
+          <p class="is-size-7">{{certification.organisation}} on {{certification.issue_date}}</p>
           <a href="http://" class="is-size-7">View Certificate</a>
         </div>
       </div>
-
-      <div class="mb-3 ml-3 certficate">
-        <div class="timeline-content">
-          <p class="is-size-6"><b>Python Certificate</b></p>
-          <p class="is-size-7">Sololearn on Jan 2020</p>
-          <a href="http://" class="is-size-7">View Certificate</a>
-        </div>
-      </div>
-
-      <div class="mb-3 ml-3 certficate">
-        <div class="timeline-content">
-          <p class="is-size-6"><b>Web Design </b></p>
-          <p class="is-size-7">Freecodecamp on Jan 2020</p>
-          <a href="http://" class="is-size-7">View Certificate</a>
-        </div>
-      </div>
+      {% endfor %}      
     </div>
-
     <div class="profile__div">
       <h2 class="mt-5 mb-4 is-size-5"><b>Languages</b></h2>
       <span class="skill">Hindi</span>
