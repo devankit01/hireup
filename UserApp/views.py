@@ -15,7 +15,7 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from django.db.models import F, Q
 from HireApp.models import CompanyProfile
-from HireApp.models import Work, Education
+from HireApp.models import Work, Education, Experience, Certification
 from datetime import datetime
 
 
@@ -165,6 +165,16 @@ def userprofile(request):
                 user_profile.education = Education.objects.filter(
                     username=request.user).order_by('start_year')
                 # EDUCATION
+
+                # EXPERIENCE
+                user_profile.experience = Experience.objects.filter(
+                    username=request.user).order_by('start_year')
+                # EXPERIENCE
+
+                # CERTIFICATION
+                user_profile.certification = Certification.objects.filter(
+                    username=request.user).order_by('issue_date')
+                # CERTIFICATION
 
                 return render(request, 'users/userProfile.html', {"data": user_profile})
 
@@ -365,10 +375,8 @@ def editUserProfile(request):
     return render(request, 'users/editUserProfile.html', {"data": data})
 
 
-def addExp(request, id=None):
+def addEdu(request, id=None):
     if request.method == 'POST':
-        user = get_object_or_404(User, username='adil@yopmail.com')
-        print(user)
         if id:
             education_object = Education(id=id)
         else:
@@ -387,12 +395,51 @@ def addExp(request, id=None):
         education_object.username = request.user
         education_object.save()
         return redirect('userprofile')
-    return render(request, 'hireup/AddEditExp.html')
-
-
-def addEdu(request, id=None):
     return render(request, 'hireup/AddEditEdu.html')
 
 
+def addExp(request, id=None):
+    if request.method == 'POST':
+        if id:
+            experience_object = Experience(id=id)
+        else:
+            experience_object = Experience()
+        experience_object.organisation = request.POST['organisation']
+
+        start_year = request.POST['start_year']
+        start_year = datetime.strptime(start_year, '%Y-%m-%d')
+        start_year = datetime.strftime(start_year, '%B %Y')
+        experience_object.start_year = start_year
+
+        end_year = request.POST['end_year']
+        end_year = datetime.strptime(end_year, '%Y-%m-%d')
+        end_year = datetime.strftime(end_year, '%B %Y')
+        experience_object.end_year = end_year
+
+        experience_object.designation = request.POST['designation']
+        experience_object.username = request.user
+        experience_object.save()
+        return redirect('userprofile')
+    return render(request, 'hireup/AddEditExp.html')
+
+
 def addCert(request, id=None):
+    if request.method == 'POST':
+        if id:
+            certification_object = Certification(id=id)
+        else:
+            certification_object = Certification()
+
+        certification_object.name = request.POST['name']
+        certification_object.organisation = request.POST['organisation']
+
+        issue_date = request.POST['issue_date']
+        issue_date = datetime.strptime(issue_date, '%Y-%m-%d')
+        issue_date = datetime.strftime(issue_date, '%B %Y')
+        certification_object.issue_date = issue_date
+
+        certification_object.url = request.POST['url']
+        certification_object.username = request.user
+        certification_object.save()
+        return redirect('userprofile')
     return render(request, 'hireup/AddEditCert.html')
