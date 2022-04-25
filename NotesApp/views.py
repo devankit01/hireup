@@ -22,6 +22,12 @@ def interviewIndex(request):
     return render(request, 'prepup/interviewPrep.html', {'data': Interviews})
 
 
+def interviewIndexAdmin(request):
+    Interviews = InterviewPrep.objects.all()
+    print(Interviews)
+    logger.info('Interview  Page Loaded')
+    return render(request, 'prepup/InterviewAdmin.html', {'data': Interviews})
+
 # NotesAdmin begin:
 
 
@@ -62,6 +68,7 @@ def prepEdit(request, id=None):
     if request.method == 'POST':
         if id != None and id != 'None':
             material = StudyMaterials(id=id)
+            material.IsApproved = material.IsApproved
         else:
             material = StudyMaterials()
 
@@ -75,10 +82,9 @@ def prepEdit(request, id=None):
                 material.file = StudyMaterials.objects.filter(
                     id=id).first().file
         else:
-            material.company_logo = request.FILES['file']
+            material.file = request.FILES['file']
         material.createdBy = request.user
         material.save()
-
         return redirect('PrepupAdmin')
     data = {'id': None}
     if id != None and id != 'None':
@@ -89,3 +95,47 @@ def prepEdit(request, id=None):
         page = 'Add'
         button = 'Save'
     return render(request, 'prepup/addEditPrep.html', {'data': data, 'page': page, 'button': button})
+
+
+def interviewPrepUpdate(request, id, status):
+    if status == 'update':
+        if InterviewPrep.objects.filter(id=id).first().IsApproved:
+            InterviewPrep.objects.filter(id=id).update(IsApproved=False)
+        else:
+            InterviewPrep.objects.filter(id=id).update(IsApproved=True)
+    if status == 'delete':
+        InterviewPrep.objects.filter(id=id).delete()
+    return redirect('interviewIndexAdmin')
+
+
+def interviewPrepEdit(request, id=None):
+    if request.method == 'POST':
+        if id != None and id != 'None':
+            material = InterviewPrep(id=id)
+            material.IsApproved = material.IsApproved
+        else:
+            material = InterviewPrep()
+
+        material.name = request.POST['name']
+        material.category = request.POST['category']
+
+        material.tags = Tags.objects.filter(name=request.POST['tags'])
+        material.url = request.POST['url']
+        if request.FILES.get('file', None) == None:
+            if id != None and id != 'None':
+                material.file = InterviewPrep.objects.filter(
+                    id=id).first().file
+        else:
+            material.file = request.FILES['file']
+        material.createdBy = request.user
+        material.save()
+        return redirect('interviewIndexAdmin')
+    data = {'id': None}
+    if id != None and id != 'None':
+        data = InterviewPrep.objects.filter(id=id).first()
+        page = 'Edit'
+        button = 'Update'
+    else:
+        page = 'Add'
+        button = 'Save'
+    return render(request, 'prepup/addEditInterviewPrep.html', {'data': data, 'page': page, 'button': button})
