@@ -99,3 +99,8 @@ def recruiterJobs(request):
     recruiter = RecruiterProfile.objects.filter(username=request.user).first()
     works = Work.objects.filter(created_by=recruiter)
     return render(request, 'admin-ui/hireUp/Admin.html', {'data': works})
+
+
+def manageJob(request, id):
+    work = Work.objects.filter(id=id).first()
+    return render(request, 'admin-ui/hireUp/jobApplicants.html', {'work': work})
