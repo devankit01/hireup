@@ -23,18 +23,11 @@
 
 <section class="section container set">
   <h2 class="is-size-4 mb-3">Add/Edit Certificate</h2>
-  <form
-    class="createJob"
-    method="post"
-    {%
-    if
-    data.id
-    %}
-    action="{% url 'addCert' data.id %}"
+  {% if data.id %}
+  <form class="createJob" method="post" action="{% url 'addCert' data.id %}">
     {%else%}
-    action="{% url 'addCert' %}"
+  <form class="createJob" method="post" action="{% url 'addCert' %}">
     {%endif%}
-  >
     {% csrf_token %}
     <div class="field is-horizontal">
       <div class="field-body">
