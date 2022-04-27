@@ -31,7 +31,7 @@
           <p class="mb-2">Employment Type</p>
           <p class="control is-expanded select is-fullwidth">
             <select id="selectbasic-0" name="empType" class="is-large">
-              <option value="Full Time" {% if data.emp_type=='Full Time' %} selected {% endif %}>Full Time</option>
+              <option value="{% if data.emp_type == 'Full Time' %}" selected {% endif %}>Full Time</option>
             </select>
           </p>
         </div>
@@ -42,8 +42,8 @@
 
           <p class="control is-expanded select is-fullwidth">
             <select id="selectbasic-0" name="jobType" class="is-large" required>
-              <option value="Internship" {% if data.Type=='Internship' %} selected {% endif %}>Internship</option>
-              <option value="Job" {% if data.Type=='Job' %} selected {% endif %}>Job</option>
+              <option value="{% if data.Type == 'Internship' %}" selected {% endif %}>Internship</option>
+              <option value="{% if data.Type == 'Job' %}" selected {% endif %}>Job</option>
             </select>
           </p>
         </div>
@@ -66,14 +66,14 @@
           <p class="control is-expanded select is-fullwidth">
             <select id="selectbasic-0" name="salary" class="is-large" required>
               <option value="Negotiable">Negotiable</option>
-              <option value="1 LPA - 3 LPA" {% if data.salary_or_stipend=='1 LPA - 3 LPA' %} selected {% endif %}>1 LPA
+              <option value="{% if data.salary_or_stipend == '1 LPA - 3 LPA' %}" selected {% endif %}>1 LPA
                 - 3 LPA</option>
-              <option value="3 LPA - 5 LPA" {% if data.salary_or_stipend=='3 LPA - 5 LPA' %} selected {% endif %}>3 LPA
+              <option value="{% if data.salary_or_stipend == '3 LPA - 5 LPA' %}" selected {% endif %}>3 LPA
                 - 5 LPA</option>
-              <option value="5 LPA - 8 LPA" {% if data.salary_or_stipend=='5 LPA - 8 LPA' %} selected {% endif %}>5 LPA
+              <option value="{% if data.salary_or_stipend == '5 LPA - 8 LPA' %}" selected {% endif %}>5 LPA
                 - 8 LPA</option>
-              <option value="10 LPA +" {% if data.salary_or_stipend=='10 LPA +' %} selected {% endif %}>10 LPA +
-              </option>
+              <option value="{% if data.salary_or_stipend == '10 LPA +' %}" selected {% endif %}>10 LPA +
+              </option> 
             </select>
           </p>
         </div>
@@ -84,12 +84,12 @@
 
           <p class="control is-expanded select is-fullwidth">
             <select id="selectbasic-0" name="experience" class="is-large" required>
-              <option value="Fresher" {% if data.experience_or_time=='Fresher' %} selected {% endif %}>Fresher</option>
-              <option value="1yr- 2yr" {% if data.experience_or_time=='1yr- 2yr' %} selected {% endif %}>1yr- 2yr
+              <option value="{% if data.experience_or_time == 'Fresher' %} " selected {% endif %}>Fresher</option>
+              <option value="{% if data.experience_or_time == '1yr- 2yr' %}" selected {% endif %}>1yr- 2yr
               </option>
-              <option value="3yr- 5yr" {% if data.experience_or_time=='3yr- 5yr' %} selected {% endif %}>3yr- 5yr
+              <option value="{% if data.experience_or_time == '3yr- 5yr' %} " selected {% endif %}>3yr- 5yr
               </option>
-              <option value="5yr- 10yr" {% if data.experience_or_time=='5yr- 10yr' %} selected {% endif %}>5yr- 10yr
+              <option value="{% if data.experience_or_time == '5yr- 10yr' %}" selected {% endif %}>5yr- 10yr
               </option>
             </select>
           </p>
@@ -104,103 +104,103 @@
           <p class="control is-expanded is-fullwidth skills">
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" type="checkbox" name="stack" value="Python" {% if "Python" in data.tech_stack %}
-                  checked {% endif %} />
+                <input id="mycheckbox" type="checkbox" name="stack" value="{% if 'Python' in data.tech_stack %}" checked
+                  {% endif %} />
 
                 <span>Python</span>
               </label> </span>&nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" type="checkbox" name="stack" value="JavaScript" {% if "JavaScript" in
-                  data.tech_stack %} checked {% endif %} />
+                <input id="mycheckbox" type="checkbox" name="stack" value=" {% if 'JavaScript' in
+                  data.tech_stack %}" checked {% endif %} />
                 <span>JavaScript</span>
               </label>
             </span>
             &nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" name="stack" type="checkbox" value="PHP" {% if "PHP" in data.tech_stack %}
-                  checked {% endif %} />
+                <input id="mycheckbox" name="stack" type="checkbox" value="{% if 'PHP' in data.tech_stack %}" checked {%
+                  endif %} />
                 <span>PHP</span>
               </label>
             </span>
             &nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" type="checkbox" name="stack" value="NodeJS" {% if "NodeJS" in data.tech_stack %}
-                  checked {% endif %} />
+                <input id="mycheckbox" type="checkbox" name="stack" value="{% if 'NodeJS' in data.tech_stack %}" checked
+                  {% endif %} />
                 <span>NodeJS</span>
               </label>
             </span>
             &nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" type="checkbox" name="stack" value="ExpressJS" {% if "ExpressJS" in
-                  data.tech_stack %} checked {% endif %} />
+                <input id="mycheckbox" type="checkbox" name="stack" value="{% if 'ExpressJS' in
+                  data.tech_stack %}" checked {% endif %} />
                 <span>ExpressJS</span>
               </label>
             </span>
             &nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" type="checkbox" name="stack" value="HTML" {% if "HTML" in data.tech_stack %}
-                  checked {% endif %} />
+                <input id="mycheckbox" type="checkbox" name="stack" value="{% if 'HTML' in data.tech_stack %}" checked
+                  {% endif %} />
                 <span>HTML</span>
               </label>
             </span>
             &nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" name="stack" type="checkbox" value="CSS" {% if "CSS" in data.tech_stack %}
-                  checked {% endif %} />
+                <input id="mycheckbox" name="stack" type="checkbox" value="{% if 'CSS' in data.tech_stack %}" checked {%
+                  endif %} />
                 <span>CSS</span>
               </label>
             </span>
             &nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" type="checkbox" name="stack" value="ReactJS" {% if "ReactJS" in data.tech_stack
-                  %} checked {% endif %} />
+                <input id="mycheckbox" type="checkbox" name="stack" value="{% if 'ReactJS' in data.tech_stack
+                  %}" checked {% endif %} />
                 <span>ReactJS</span>
               </label>
             </span>
             &nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" type="checkbox" name="stack" value="React Native" {% if "React Native" in
-                  data.tech_stack %} checked {% endif %} />
+                <input id="mycheckbox" type="checkbox" name="stack" value="{% if 'React Native' in
+                  data.tech_stack %}" checked {% endif %} />
                 <span>React Native</span>
               </label>
             </span>
             &nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" type="checkbox" name="stack" value="Flutter" {% if "Flutter" in data.tech_stack
-                  %} checked {% endif %} />
+                <input id="mycheckbox" type="checkbox" name="stack" value="{% if 'Flutter' in data.tech_stack
+                  %}" checked {% endif %} />
                 <span>Flutter</span>
               </label>
             </span>
             &nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" type="checkbox" name="stack" value="MySQL" {% if "MySQL" in data.tech_stack %}
-                  checked {% endif %} />
+                <input id="mycheckbox" type="checkbox" name="stack" value="{% if 'MySQL' in data.tech_stack %}" checked
+                  {% endif %} />
                 <span>MySQL</span>
               </label>
             </span>
             &nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" type="checkbox" name="stack" value="MongoDB" {% if "MongoDB" in data.tech_stack
-                  %} checked {% endif %} />
+                <input id="mycheckbox" type="checkbox" name="stack" value="{% if 'MongoDB' in data.tech_stack
+                  %}" checked {% endif %} />
                 <span>MongoDB</span>
               </label>
             </span>
             &nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" name="stack" type="checkbox" value="Go" {% if "Go" in data.tech_stack %} checked
-                  {% endif %} />
+                <input id="mycheckbox" name="stack" type="checkbox" value="{% if 'Go' in data.tech_stack %}" checked {%
+                  endif %} />
                 <span>Go</span>
               </label>
             </span>
@@ -222,8 +222,8 @@
 
           <p class="control is-expanded select is-fullwidth">
             <select id="selectbasic-0" name="jobStatus" class="is-large" required>
-              <option value="Active" {% if data.status==True %} selected {% endif %}>Active</option>
-              <option value="Inactive" {% if data.status==False %} selected {% endif %}>Inactive</option>
+              <option value="{% if data.status==True %}" selected {% endif %}>Active</option>
+              <option value="{% if data.status==False %}" selected {% endif %}>Inactive</option>
             </select>
           </p>
         </div>
