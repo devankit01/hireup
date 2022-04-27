@@ -2,14 +2,6 @@
 <link rel="stylesheet" href="{% static 'css/prepup/index.css' %}" />
 <link rel="stylesheet" href="{% static 'css/hireup/createJob.css' %}" />
 
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-/>
 {% endblock %} {% block body %}
 
 <div class="has-background-primary set">
@@ -27,12 +19,7 @@
   }
 </style>
 <section class="section container set">
-  <form
-    class="editUserProfile"
-    action="{% url 'editUserProfile' %}"
-    method="post"
-    enctype="multipart/form-data"
-  >
+  <form class="editUserProfile" action="{% url 'editUserProfile' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <h2 class="is-size-5 has-text-black"><u>Basic Details</u></h2>
     <div class="field is-horizontal">
@@ -40,15 +27,8 @@
         <div class="field">
           <p class="mb-2 ml-1">First Name</p>
           <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="First Name"
-              name="first_name"
-              id="first_name"
-              value="{{ data.first_name }}"
-              required
-            />
+            <input class="input mx-1" type="text" placeholder="First Name" name="first_name" id="first_name"
+              value="{{ data.first_name }}" required />
           </p>
         </div>
       </div>
@@ -57,15 +37,8 @@
         <div class="field">
           <p class="mb-2 ml-1">Last Name</p>
           <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="Last Name"
-              name="last_name"
-              id="last_name"
-              value="{{ data.last_name }}"
-              required
-            />
+            <input class="input mx-1" type="text" placeholder="Last Name" name="last_name" id="last_name"
+              value="{{ data.last_name }}" required />
           </p>
         </div>
       </div>
@@ -75,15 +48,8 @@
           <p class="mb-2">Contact</p>
 
           <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="+91 8764531234"
-              name="phone"
-              id="phone"
-              value="{{ data.phone }}"
-              required
-            />
+            <input class="input mx-1" type="text" placeholder="+91 8764531234" name="phone" id="phone"
+              value="{{ data.phone }}" required />
           </p>
         </div>
       </div>
@@ -94,15 +60,8 @@
         <div class="field">
           <p class="mb-2 ml-1">Email</p>
           <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="e.g., xvr@gmail.com"
-              name="email"
-              id="email"
-              value="{{ data.email }}"
-              style="max-width: 66%"
-            />
+            <input class="input mx-1" type="text" placeholder="e.g., xvr@gmail.com" name="email" id="email"
+              value="{{ data.email }}" style="max-width: 66%" />
           </p>
         </div>
       </div>
@@ -114,15 +73,8 @@
             </p>
             <p class="control is-expanded is-fullwidth file is-primary"></p>
 
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="e.g., https://github.com/xyz/"
-              name="git"
-              id="git"
-              value="{{ data.git }}"
-              style="max-width: 66%"
-            />
+            <input class="input mx-1" type="text" placeholder="e.g., https://github.com/xyz/" name="git" id="git"
+              value="{{ data.git }}" style="max-width: 66%" />
           </div>
         </div>
       </div>
@@ -135,15 +87,8 @@
             </p>
             <p class="control is-expanded is-fullwidth file is-primary"></p>
 
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="e.g., https://www.facebook.com/profile/"
-              name="fb"
-              id="fb"
-              value="{{ data.fb }}"
-              style="max-width: 66%"
-            />
+            <input class="input mx-1" type="text" placeholder="e.g., https://www.facebook.com/profile/" name="fb"
+              id="fb" value="{{ data.fb }}" style="max-width: 66%" />
           </div>
         </div>
       </div>
@@ -155,15 +100,8 @@
             <p class="mb-2 ml-1"><i class="fab fa-linkedin"></i></p>
             <p class="control is-expanded is-fullwidth file is-primary"></p>
 
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="e.g., https://linkedin.com/xyz/"
-              name="lkd"
-              id="lkd"
-              value="{{ data.lkd }}"
-              style="max-width: 66%"
-            />
+            <input class="input mx-1" type="text" placeholder="e.g., https://linkedin.com/xyz/" name="lkd" id="lkd"
+              value="{{ data.lkd }}" style="max-width: 66%" />
           </div>
         </div>
       </div>
@@ -174,15 +112,8 @@
             <span><i class="fab fa-hackerrank"></i></span>
             <p class="control is-expanded is-fullwidth file is-primary"></p>
 
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="e.g., https://hackerrank.com/xyz/"
-              name="hacker"
-              id="hacker"
-              value="{{ data.hacker }}"
-              style="max-width: 66%"
-            />
+            <input class="input mx-1" type="text" placeholder="e.g., https://hackerrank.com/xyz/" name="hacker"
+              id="hacker" value="{{ data.hacker }}" style="max-width: 66%" />
           </div>
         </div>
       </div>
@@ -210,15 +141,8 @@
         <div class="field">
           <p class="mb-2 ml-1">Bio</p>
           <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="Write about yourself"
-              name="bio"
-              id="bio"
-              value="{{ data.bio }}"
-              style="max-width: 66%"
-            />
+            <input class="input mx-1" type="text" placeholder="Write about yourself" name="bio" id="bio"
+              value="{{ data.bio }}" style="max-width: 66%" />
           </p>
         </div>
       </div>
@@ -227,16 +151,8 @@
         <div class="field">
           <p class="mb-2 ml-1">Profile</p>
           <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="e.g., Python Developer"
-              name="profile"
-              id="profile"
-              value="{{ data.profile }}"
-              style="max-width: 66%"
-              required
-            />
+            <input class="input mx-1" type="text" placeholder="e.g., Python Developer" name="profile" id="profile"
+              value="{{ data.profile }}" style="max-width: 66%" required />
           </p>
         </div>
       </div>
@@ -246,69 +162,63 @@
           <p class="control is-expanded is-fullwidth skills">
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" type="checkbox" name="stack"
-                value="Python" {% if "Python" in data.tech_stack %} checked
-                {%endif%} />
+                <input id="mycheckbox" type="checkbox" name="stack" value="Python" {% if "Python" in data.tech_stack %}
+                  checked {%endif%} />
 
                 <span>Python</span>
-              </label> </span
-            >&nbsp;
+              </label> </span>&nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" type="checkbox" name="stack"
-                value="JavaScript" {% if "JavaScript" in data.tech_stack %}
-                checked {% endif %} />
+                <input id="mycheckbox" type="checkbox" name="stack" value="JavaScript" {% if "JavaScript" in
+                  data.tech_stack %} checked {% endif %} />
                 <span>JavaScript</span>
               </label>
             </span>
             &nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" name="stack" type="checkbox" value="PHP"
-                {% if "PHP" in data.tech_stack %} checked {% endif %} />
+                <input id="mycheckbox" name="stack" type="checkbox" value="PHP" {% if "PHP" in data.tech_stack %}
+                  checked {% endif %} />
                 <span>PHP</span>
               </label>
             </span>
             &nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" type="checkbox" name="stack"
-                value="NodeJS" {% if "NodeJS" in data.tech_stack %} checked
-                {%endif%} />
+                <input id="mycheckbox" type="checkbox" name="stack" value="NodeJS" {% if "NodeJS" in data.tech_stack %}
+                  checked {%endif%} />
                 <span>NodeJS</span>
               </label>
             </span>
             &nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" type="checkbox" name="stack"
-                value="ExpressJS" {% if "ExpressJS" in data.tech_stack %}
-                checked {% endif %} />
+                <input id="mycheckbox" type="checkbox" name="stack" value="ExpressJS" {% if "ExpressJS" in
+                  data.tech_stack %} checked {% endif %} />
                 <span>ExpressJS</span>
               </label>
             </span>
             &nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" type="checkbox" name="stack" value="HTML"
-                {% if "HTML" in data.tech_stack %} checked {% endif %} />
+                <input id="mycheckbox" type="checkbox" name="stack" value="HTML" {% if "HTML" in data.tech_stack %}
+                  checked {% endif %} />
                 <span>HTML</span>
               </label>
             </span>
             &nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" name="stack" type="checkbox" value="CSS"
-                {% if "CSS" in data.tech_stack %} checked {% endif %} />
+                <input id="mycheckbox" name="stack" type="checkbox" value="CSS" {% if "CSS" in data.tech_stack %}
+                  checked {% endif %} />
                 <span>CSS</span>
               </label>
             </span>
             &nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" type="checkbox" name="stack"
-                value="ReactJS" {% if "ReactJS" in data.tech_stack %} checked
-                {%endif%} />
+                <input id="mycheckbox" type="checkbox" name="stack" value="ReactJS" {% if "ReactJS" in data.tech_stack
+                  %} checked {%endif%} />
                 <span>ReactJS</span>
               </label>
             </span>
@@ -316,43 +226,39 @@
             <span class="control">
               <label class="is-checkbox is-rounded">
                 <input id="mycheckbox" type="checkbox" name="stack" value="React
-                Native" {% if "React Native" in data.tech_stack %}
-                checked{%endif%} />
+                Native" {% if "React Native" in data.tech_stack %} checked{%endif%} />
                 <span>React Native</span>
               </label>
             </span>
             &nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" type="checkbox" name="stack"
-                value="Flutter" {% if "Flutter" in data.tech_stack %} checked
-                {%endif%} />
+                <input id="mycheckbox" type="checkbox" name="stack" value="Flutter" {% if "Flutter" in data.tech_stack
+                  %} checked {%endif%} />
                 <span>Flutter</span>
               </label>
             </span>
             &nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" type="checkbox" name="stack"
-                value="MySQL" {% if "MySQL" in data.tech_stack %} checked
-                {%endif%} />
+                <input id="mycheckbox" type="checkbox" name="stack" value="MySQL" {% if "MySQL" in data.tech_stack %}
+                  checked {%endif%} />
                 <span>MySQL</span>
               </label>
             </span>
             &nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" type="checkbox" name="stack"
-                value="MongoDB" {% if "MongoDB" in data.tech_stack %} checked
-                {%endif%} />
+                <input id="mycheckbox" type="checkbox" name="stack" value="MongoDB" {% if "MongoDB" in data.tech_stack
+                  %} checked {%endif%} />
                 <span>MongoDB</span>
               </label>
             </span>
             &nbsp;
             <span class="control">
               <label class="is-checkbox is-rounded">
-                <input id="mycheckbox" name="stack" type="checkbox" value="Go"
-                {% if "Go" in data.tech_stack %} checked {% endif %} />
+                <input id="mycheckbox" name="stack" type="checkbox" value="Go" {% if "Go" in data.tech_stack %} checked
+                  {% endif %} />
                 <span>Go</span>
               </label>
             </span>

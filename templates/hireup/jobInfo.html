@@ -1,7 +1,6 @@
 {% extends "layout.html" %} {% load static %} {% block css %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}" />
 <link rel="stylesheet" href="{% static 'css/job.css' %}" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 {% endblock %} {% block body %}
 
 
@@ -10,7 +9,8 @@
   <h1 class="job__heading">{{job.work_name}}</h1>
   <h2 class="job__company">{{job.company.company_name}}</h2>
   <br />
-  <p class="has-text-grey"> &nbsp;&nbsp;&nbsp;<i class="fa fa-map-marker " aria-hidden="true"></i> &nbsp;{{job.location}}</p>
+  <p class="has-text-grey"> &nbsp;&nbsp;&nbsp;<i class="fa fa-map-marker " aria-hidden="true"></i>
+    &nbsp;{{job.location}}</p>
   <br />
   <div class="card__flex">
     <div class="break">
@@ -44,12 +44,12 @@
   <h2 class="mt-5 is-size-5"><b>About Job</b></h2>
   <p class="text">
     Selected Candidate responsibilities : <br />
-    <ul>
-      <li>1. Tutoring children with basic subject knowledge from pre-primary to 10th grade</li>
-      <li>2. Following up on syllabus tasks</li>
-      <li>3. Keeping track of student progress</li>
-      <li>4. Handling assessment</li>
-    </ul>
+  <ul>
+    <li>1. Tutoring children with basic subject knowledge from pre-primary to 10th grade</li>
+    <li>2. Following up on syllabus tasks</li>
+    <li>3. Keeping track of student progress</li>
+    <li>4. Handling assessment</li>
+  </ul>
   </p>
 
   <h2 class="mt-5 mb-3 is-size-5"><b>Skills Required</b></h2>
@@ -77,10 +77,10 @@
   {% if Isapplied %}
   <a href="{% url 'applyjob' id=job.id %}">
     <button class="button is-primary my-5">Withdraw Application</button>
-      </a>
+  </a>
   {% else %}
   <a href="{% url 'applyjob' id=job.id %}">
-<button class="button is-primary my-5">Apply Now</button>
+    <button class="button is-primary my-5">Apply Now</button>
   </a>
   {% endif %}
 </div>

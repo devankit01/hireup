@@ -4,8 +4,7 @@
 <link rel="stylesheet" href="{% static 'css/Admin.css' %}" />
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+
 {% endblock %} {% block body %}
 <div class="has-background-primary set">
   <div class="container py-5">
@@ -47,6 +46,8 @@
         {% else %}
         <td>Inactive</td>
         {% endif %}
+      
+
         <td><span class="icon">
             <a href="{% url 'editJob' i.id %}" style="text-decoration: none;color: inherit;"><i class="fas fa-edit"
                 onclick="editFucntion(id='{{i.id}}')"></i></a>

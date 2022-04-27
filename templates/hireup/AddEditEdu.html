@@ -2,14 +2,6 @@
 <link rel="stylesheet" href="{% static 'css/prepup/index.css' %}" />
 <link rel="stylesheet" href="{% static 'css/hireup/createJob.css' %}" />
 
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-/>
 {% endblock %} {% block body %}
 
 <div class="has-background-primary set">
@@ -25,97 +17,69 @@
   <h2 class="is-size-4 mb-3">Add/Edit Education</h2>
   {% if data.id %}
   <form class="createJob" method="post" action="{% url 'addEdu' data.id %}">
-    {%else%} 
+    {%else%}
     <form class="createJob" method="post" action="{% url 'addEdu' %}">
-    {%endif%} 
-    {% csrf_token %}
-    <div class="field is-horizontal">
-      <div class="field-body">
-        <div class="field">
-          <p class="mb-2 ml-1">College Name</p>
-          <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="College Name"
-              name="name"
-              id="id"
-              value="{{data.name}}"
-              required
-            />
-          </p>
+      {%endif%}
+      {% csrf_token %}
+      <div class="field is-horizontal">
+        <div class="field-body">
+          <div class="field">
+            <p class="mb-2 ml-1">College Name</p>
+            <p class="control is-expanded is-fullwidth">
+              <input class="input mx-1" type="text" placeholder="College Name" name="name" id="id" value="{{data.name}}"
+                required />
+            </p>
+          </div>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="mb-2">Start Year</p>
+            <p class="control is-expanded is-fullwidth">
+              <input class="input mx-1" type="date" placeholder="Start Year" name="start_year" id="id"
+                value="{{data.start_year}}" required />
+            </p>
+          </div>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="mb-2">End Year</p>
+
+            <p class="control is-expanded is-fullwidth">
+              <input class="input mx-1" type="date" placeholder="End year" name="end_year" id="id"
+                value="{{data.end_year}}" required />
+            </p>
+          </div>
         </div>
       </div>
-      <div class="field-body">
-        <div class="field">
-          <p class="mb-2">Start Year</p>
-          <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="date"
-              placeholder="Start Year"
-              name="start_year"
-              id="id"
-              value="{{data.start_year}}"
-              required
-            />
-          </p>
+
+      <div class="field is-horizontal">
+        <div class="field-body">
+          <div class="field">
+            <p class="mb-2 ml-1">Degree</p>
+            <p class="control is-expanded is-fullwidth">
+              <input class="input mx-1" type="text" placeholder="Designation" name="degree" id="id"
+                value="{{data.degree}}" required />
+            </p>
+          </div>
         </div>
+        <div class="field-body"></div>
+        <div class="field-body"></div>
       </div>
-      <div class="field-body">
-        <div class="field">
-          <p class="mb-2">End Year</p>
 
-          <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="date"
-              placeholder="End year"
-              name="end_year"
-              id="id"
-              value="{{data.end_year}}"
-              required
-            />
-          </p>
+      <br />
+
+      {% if error %}
+      <article class="message is-info">
+        <div class="message-header">
+          <p>{{error}}</p>
         </div>
-      </div>
-    </div>
+      </article>
 
-    <div class="field is-horizontal">
-      <div class="field-body">
-        <div class="field">
-          <p class="mb-2 ml-1">Degree</p>
-          <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="Designation"
-              name="degree"
-              id="id"
-              value="{{data.degree}}"
-              required
-            />
-          </p>
-        </div>
-      </div>
-      <div class="field-body"></div>
-      <div class="field-body"></div>
-    </div>
-
-    <br />
-
-    {% if error %}
-    <article class="message is-info">
-      <div class="message-header">
-        <p>{{error}}</p>
-      </div>
-    </article>
-
-    {%endif%}
-    <button style="float: left" class="button is-primary" type="submit" href="">
-      Create
-    </button>
-  </form>
+      {%endif%}
+      <button style="float: left" class="button is-primary" type="submit" href="">
+        Create
+      </button>
+    </form>
 </section>
 
 {% endblock %} {% block script %} {% endblock %}

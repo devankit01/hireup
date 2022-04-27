@@ -2,14 +2,6 @@
 <link rel="stylesheet" href="{% static 'css/prepup/index.css' %}" />
 <link rel="stylesheet" href="{% static 'css/hireup/createJob.css' %}" />
 
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-/>
 {% endblock %} {% block body %}
 
 <div class="has-background-primary set">
@@ -26,95 +18,67 @@
   {% if data.id %}
   <form class="createJob" method="post" action="{% url 'addCert' data.id %}">
     {%else%}
-  <form class="createJob" method="post" action="{% url 'addCert' %}">
-    {%endif%}
-    {% csrf_token %}
-    <div class="field is-horizontal">
-      <div class="field-body">
-        <div class="field">
-          <p class="mb-2 ml-1">Certificate Name</p>
-          <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="Certificate Name"
-              name="name"
-              id="id"
-              value="{{data.name}}"
-              required
-            />
-          </p>
+    <form class="createJob" method="post" action="{% url 'addCert' %}">
+      {%endif%}
+      {% csrf_token %}
+      <div class="field is-horizontal">
+        <div class="field-body">
+          <div class="field">
+            <p class="mb-2 ml-1">Certificate Name</p>
+            <p class="control is-expanded is-fullwidth">
+              <input class="input mx-1" type="text" placeholder="Certificate Name" name="name" id="id"
+                value="{{data.name}}" required />
+            </p>
+          </div>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="mb-2">Organisation Name</p>
+
+            <p class="control is-expanded is-fullwidth">
+              <input class="input mx-1" type="text" placeholder="Organisation Name" name="organisation" id="id"
+                value="{{data.organisation}}" required />
+            </p>
+          </div>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="mb-2">Issue Date</p>
+            <p class="control is-expanded is-fullwidth">
+              <input class="input mx-1" type="date" placeholder="Start Year" name="issue_date" id="id"
+                value="{{data.issue_date}}" required />
+            </p>
+          </div>
         </div>
       </div>
-      <div class="field-body">
-        <div class="field">
-          <p class="mb-2">Organisation Name</p>
 
-          <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="Organisation Name"
-              name="organisation"
-              id="id"
-              value="{{data.organisation}}"
-              required
-            />
-          </p>
+      <div class="field is-horizontal">
+        <div class="field-body">
+          <div class="field">
+            <p class="mb-2 ml-1">URL</p>
+            <p class="control is-expanded is-fullwidth">
+              <input class="input mx-1" type="url" placeholder="URL" name="url" id="id" value="{{data.url}}" />
+            </p>
+          </div>
         </div>
+        <div class="field-body"></div>
+        <div class="field-body"></div>
       </div>
-      <div class="field-body">
-        <div class="field">
-          <p class="mb-2">Issue Date</p>
-          <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="date"
-              placeholder="Start Year"
-              name="issue_date"
-              id="id"
-              value="{{data.issue_date}}"
-              required
-            />
-          </p>
+
+      <br />
+
+      {% if error %}
+      <article class="message is-info">
+        <div class="message-header">
+          <p>{{error}}</p>
         </div>
-      </div>
-    </div>
+      </article>
 
-    <div class="field is-horizontal">
-      <div class="field-body">
-        <div class="field">
-          <p class="mb-2 ml-1">URL</p>
-          <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="url"
-              placeholder="URL"
-              name="url"
-              id="id"
-              value="{{data.url}}"
-            />
-          </p>
-        </div>
-      </div>
-      <div class="field-body"></div>
-      <div class="field-body"></div>
-    </div>
-
-    <br />
-
-    {% if error %}
-    <article class="message is-info">
-      <div class="message-header">
-        <p>{{error}}</p>
-      </div>
-    </article>
-
-    {%endif%}
-    <button style="float: left" class="button is-primary" type="submit" href="">
-      Create
-    </button>
-  </form>
+      {%endif%}
+      <button style="float: left" class="button is-primary" type="submit" href="">
+        Create
+      </button>
+    </form>
 </section>
 
 {% endblock %} {% block script %} {% endblock %}

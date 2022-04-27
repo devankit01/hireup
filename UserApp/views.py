@@ -467,7 +467,7 @@ def profile(request, user):
         user_profile.first_name = user.first_name
         user_profile.last_name = user.last_name
         if Skill.objects.filter(
-            username=user).exists():
+                username=user).exists():
             user_profile.tech_stack = eval(Skill.objects.filter(
                 username=user).first().name)
         # EDUCATION

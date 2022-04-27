@@ -2,14 +2,7 @@
 <link rel="stylesheet" href="{% static 'css/prepup/index.css' %}" />
 <link rel="stylesheet" href="{% static 'css/hireup/createJob.css' %}" />
 
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-/>
+
 {% endblock %} {% block body %}
 
 <div class="has-background-primary set">
@@ -28,15 +21,8 @@
         <div class="field">
           <p class="mb-2 ml-1">Company Name</p>
           <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="Company Title"
-              name="company_name"
-              id="company_name"
-              value="{{ data.company_name }}"
-              required
-            />
+            <input class="input mx-1" type="text" placeholder="Company Title" name="company_name" id="company_name"
+              value="{{ data.company_name }}" required />
           </p>
         </div>
       </div>
@@ -46,28 +32,24 @@
           <p class="mb-2">Company Type</p>
           <p class="control is-expanded select is-fullwidth">
             <select id="selectbasic-0" name="company_type" class="is-large">
-              <option value="Service Based"  {% if data.company_type == 'Service Based' %} selected {% endif %} >Service Based</option>
-              <option value="Product Based"  {% if data.company_type == 'Product Based' %} selected {% endif %} >Product Based</option>
-              <option value="Startup Based"  {% if data.company_type == 'Startup Based' %} selected {% endif %} >Startup Based</option>
+              <option value="Service Based" {% if data.company_type=='Service Based' %} selected {% endif %}>Service
+                Based</option>
+              <option value="Product Based" {% if data.company_type=='Product Based' %} selected {% endif %}>Product
+                Based</option>
+              <option value="Startup Based" {% if data.company_type=='Startup Based' %} selected {% endif %}>Startup
+                Based</option>
             </select>
           </p>
         </div>
       </div>
-      
+
       <div class="field-body">
         <div class="field">
           <p class="mb-2">Company Specialization</p>
 
           <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="Company Specialization"
-              name="company_specialization"
-              id="company_specialization"
-              value="{{ data.company_specialization }}"
-              required
-            />
+            <input class="input mx-1" type="text" placeholder="Company Specialization" name="company_specialization"
+              id="company_specialization" value="{{ data.company_specialization }}" required />
           </p>
         </div>
       </div>
@@ -78,15 +60,8 @@
         <div class="field">
           <p class="mb-2 ml-1">phone</p>
           <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="phone"
-              name="phone"
-              id="phone"
-              value="{{ data.phone }}"
-              required
-            />
+            <input class="input mx-1" type="text" placeholder="phone" name="phone" id="phone" value="{{ data.phone }}"
+              required />
           </p>
         </div>
       </div>
@@ -94,15 +69,8 @@
         <div class="field">
           <p class="mb-2 ml-1">Location</p>
           <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="e.g., Lucknow,India"
-              name="location"
-              id="location"
-              value="{{ data.location }}"
-              required
-            />
+            <input class="input mx-1" type="text" placeholder="e.g., Lucknow,India" name="location" id="location"
+              value="{{ data.location }}" required />
           </p>
         </div>
       </div>
@@ -111,15 +79,8 @@
           <p class="mb-2">Company site</p>
 
           <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="Company site"
-              name="company_site"
-              id="company_site"
-              value="{{ data.company_site }}"
-              required
-            />
+            <input class="input mx-1" type="text" placeholder="Company site" name="company_site" id="company_site"
+              value="{{ data.company_site }}" required />
           </p>
         </div>
       </div>
@@ -131,15 +92,8 @@
           <p class="mb-2">About company</p>
 
           <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="About company"
-              name="about_company"
-              id="about_company"
-              value="{{ data.about_company }}"
-              required
-            />
+            <input class="input mx-1" type="text" placeholder="About company" name="about_company" id="about_company"
+              value="{{ data.about_company }}" required />
           </p>
         </div>
       </div>

@@ -4,8 +4,7 @@
 <link rel="stylesheet" href="{% static 'css/hireup/managejob.css' %}" />
 <link rel="stylesheet" href="{% static 'css/Admin.css' %}" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+
 {% endblock %} {% block body %}
 <div class="has-background-primary set">
     <div class="container py-5">
@@ -48,6 +47,9 @@
                                     <div class="mt-3 ml-3">
                                         <p class="is-size-5 m-0">{{i.username.first_name}} {{i.username.last_name}}</p>
                                         <p class="m-0 is-size-7 has-text-lightgrey">{{i.bio}}</p>
+                                        <a href="{% url 'profile' user=i.username %}" target="_blank"
+                                            class="is-size-7">View Profile</a>
+
                                     </div>
                                 </div>
 
@@ -61,8 +63,9 @@
                                             class="button is-primary px-4 m-0">
                                             Profile</button></a>
 
-                                    <a href="{% url 'selectInterview' userid=i.id jobid=work.id key='resume_selected' %}"> <button
-                                            class="button is-primary-outlined px-4 m-0">Next</button></a>
+                                    <a
+                                        href="{% url 'selectInterview' userid=i.id jobid=work.id key='resume_selected' %}">
+                                        <button class="button is-primary-outlined px-4 m-0">Next</button></a>
                                 </div>
                             </div>
                         </div>
@@ -88,6 +91,9 @@
                                     <div class="mt-3 ml-3">
                                         <p class="is-size-5 m-0">{{i.username.first_name}} {{i.username.last_name}}</p>
                                         <p class="m-0 is-size-7 has-text-lightgrey">{{i.bio}}</p>
+                                        <a href="{% url 'profile' user=i.username %}" target="_blank"
+                                            class="is-size-7">View Profile</a>
+
                                     </div>
                                 </div>
 
@@ -100,8 +106,8 @@
                                     <a href="" target="_blank"><button class="button is-primary px-4 m-0">
                                             Profile</button></a>
 
-                                    <a href="{% url 'selectInterview' userid=i.id jobid=work.id key='interview' %}"> <button
-                                            class="button is-primary-outlined px-4 m-0">Next</button></a>
+                                    <a href="{% url 'selectInterview' userid=i.id jobid=work.id key='interview' %}">
+                                        <button class="button is-primary-outlined px-4 m-0">Next</button></a>
 
                                 </div>
                             </div>
@@ -126,6 +132,8 @@
                                     <div class="mt-3 ml-3">
                                         <p class="is-size-5 m-0">{{i.username.first_name}} {{i.username.last_name}}</p>
                                         <p class="m-0 is-size-7 has-text-lightgrey">{{i.bio}}</p>
+                                        <a href="{% url 'profile' user=i.username %}" target="_blank"
+                                            class="is-size-7">View Profile</a>
                                     </div>
                                 </div>
 
@@ -135,11 +143,10 @@
                                 <a href="#" class="icon_profile_card"><i class='fa fa-mobile'>&nbsp;&nbsp;
                                     </i>{{i.phone}}</a> <br />
                                 <div class="my-3">
-                                    <a href="" target="_blank"><button class="button is-primary px-4 m-0">
-                                            Profile</button></a>
 
-                                    <a href="{% url 'selectInterview' userid=i.id jobid=work.id key='onboard' %}"> <button
-                                            class="button is-primary-outlined px-4 m-0">Next</button></a>
+
+                                    <a href="{% url 'selectInterview' userid=i.id jobid=work.id key='onboard' %}">
+                                        <button class="button is-primary-outlined px-4 m-0">Next</button></a>
 
                                 </div>
                             </div>
@@ -164,6 +171,9 @@
                                     <div class="mt-3 ml-3">
                                         <p class="is-size-5 m-0">{{i.username.first_name}} {{i.username.last_name}}</p>
                                         <p class="m-0 is-size-7 has-text-lightgrey">{{i.bio}}</p>
+                                        <a href="{% url 'profile' user=i.username %}" target="_blank"
+                                            class="is-size-7">View Profile</a>
+
                                     </div>
                                 </div>
 

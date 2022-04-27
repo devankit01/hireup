@@ -11,7 +11,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <link rel="stylesheet" href="{% static 'css/nav.css' %}" />
   <link rel="stylesheet" href="{% static 'css/Admin.css' %}" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
 
 
 
@@ -21,10 +20,10 @@
 
 <body class="">
   <style>
-    .delete:hover{
-    color: #ffffff;
-   background-color: #ff1e0a;
-}
+    .delete:hover {
+      color: #ffffff;
+      background-color: #ff1e0a;
+    }
   </style>
   <!-- Navbar -->
   <nav class="navbar ">
@@ -79,7 +78,7 @@
 
   {% block body %}
   <div class="has-background-primary set">
-    <div class="container py-5" >
+    <div class="container py-5">
       <h1 class="is-size-3 has-text-white m-0"><b>Prepup</b></h1>
       <h2 class="is-size-5 has-text-white"><b>Prepup / Notes Admin / Study Materials</b> </h2>
     </div>
@@ -113,7 +112,9 @@
           {% if i.file %}
           <td>
             <!-- <a href="{% url 'OpenFIle' id=i.id %}"><i class="fa fa-eye"></i></a> &nbsp; -->
-            <a href="http://localhost:8000/media/{{i.file}}" onclick="window.download('http://localhost:8000/media/{{i.file}}');" target="_blank"><i class="fa fa-download"></i></a>
+            <a href="http://localhost:8000/media/{{i.file}}"
+              onclick="window.download('http://localhost:8000/media/{{i.file}}');" target="_blank"><i
+                class="fa fa-download"></i></a>
 
           </td>
           {% else %}
@@ -122,30 +123,28 @@
           {% if i.url %}
           <td>
             <a href="#"><i class="fa fa-eye"></i></a> &nbsp;
-            <a href="#"><i class="fa fa-download"></i></a></td>
+            <a href="#"><i class="fa fa-download"></i></a>
+          </td>
           {% else %}
           <td>{{i.url}}</td>
           {% endif %}
           <td>{{i.createdBy}}</td>
           <td>
             <div class="field">
-              <a
-          href="{% url 'prepUpdate' i.id 'update' %}" 
-          style="text-decoration: none;color: inherit;" ><Button class="UpdateBtn" id=btncheckbox_{{i.id}} style="display: none;">Update</Button></a>
-  <input id=checkbox_{{i.id}} type="checkbox" name="IsApproved" class="switch is-thin" {% if i.IsApproved %}checked{% endif %} onclick="CheckIsApproved(this.id)">
-</div>
+              <a href="{% url 'prepUpdate' i.id 'update' %}" style="text-decoration: none;color: inherit;"><Button
+                  class="UpdateBtn" id=btncheckbox_{{i.id}} style="display: none;">Update</Button></a>
+              <input id=checkbox_{{i.id}} type="checkbox" name="IsApproved" class="switch is-thin" {% if i.IsApproved
+                %}checked{% endif %} onclick="CheckIsApproved(this.id)">
+            </div>
           </td>
           <td>
             <span class="icon">
-            <a
-          href="{% url 'prepEdit' i.id %}"
-          style="text-decoration: none;color: inherit;" ><i class="fas fa-edit" onclick="editFucntion(id='{{i.id}}')"></i></a>
-          </span>
-          <a
-          href="{% url 'prepUpdate' i.id 'delete' %}" 
-          style="text-decoration: none;color: inherit;" >
-          <button class="delete" ></button></a>
-        </td>
+              <a href="{% url 'prepEdit' i.id %}" style="text-decoration: none;color: inherit;"><i class="fas fa-edit"
+                  onclick="editFucntion(id='{{i.id}}')"></i></a>
+            </span>
+            <a href="{% url 'prepUpdate' i.id 'delete' %}" style="text-decoration: none;color: inherit;">
+              <button class="delete"></button></a>
+          </td>
         </tr>
 
         {% endfor %}
@@ -196,8 +195,8 @@
         const dfile = await res.blob();
         var bloburl =
           window.URL && window.URL.createObjectURL ?
-          window.URL.createObjectURL(dfile) :
-          window.webkitURL.createObjectURL(dfile);
+            window.URL.createObjectURL(dfile) :
+            window.webkitURL.createObjectURL(dfile);
 
         var tempLink = document.createElement("a");
         tempLink.style.display = "none";
@@ -214,9 +213,9 @@
         }, 200);
       })
     }
-    
-    function CheckIsApproved(id){
-      document.getElementById("btn"+id).click();
+
+    function CheckIsApproved(id) {
+      document.getElementById("btn" + id).click();
     }
   </script>
 </body>
