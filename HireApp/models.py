@@ -12,7 +12,7 @@ class UserProfile(models.Model):
     hacker = models.CharField(max_length=100)
     bio = models.TextField(max_length=200)
     phone = models.CharField(max_length=100, null=True, blank=True)
-    resume = models.FileField(max_length=210, null=True)
+    resume = models.FileField(upload_to="resume", max_length=210, null=True)
     portfolio = models.CharField(max_length=210, null=True)
     profile = models.CharField(max_length=210, null=True)
     username = models.OneToOneField(User, on_delete=models.CASCADE)
