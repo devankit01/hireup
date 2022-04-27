@@ -87,9 +87,11 @@
   width: 80px;
   height: 80px;
 }
-.card__flex{
+
+.card__flex {
   display: flex;
 }
+
 @media screen and (max-width: 650px) {
   #tsum-tabs label {
     font-size: 0;

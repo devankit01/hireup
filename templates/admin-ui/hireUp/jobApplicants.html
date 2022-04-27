@@ -36,7 +36,7 @@
             <section id="content1">
                 <p>
                 <div class="card__container">
-                    {% for i in work.applicants.all %}
+                    {% for i in applicants %}
                     <div class="card">
                         <div class="card-content">
                             <div class="content">
@@ -55,17 +55,19 @@
                                 <a href="#" class="icon_profile_card"><i class="fa fa-envelope"></i>&nbsp;
                                     {{i.username.email}}</a> <br />
                                 <a href="#" class="icon_profile_card"><i class='fa fa-mobile'>&nbsp;&nbsp;
-                                    </i>{{i.username.phone}}</a> <br />
+                                    </i>{{i.phone}}</a> <br />
                                 <div class="my-3">
-                                    <a href="" target="_blank"><button class="button is-primary px-4 m-0">
+                                    <a href="{% url 'profile' user=i.username %}" target="_blank"><button
+                                            class="button is-primary px-4 m-0">
                                             Profile</button></a>
 
-                                    <button class="button is-primary-outlined px-4 m-0">Select</button>
+                                    <a href="{% url 'selectInterview' userid=i.id jobid=work.id key='next' %}"> <button
+                                            class="button is-primary-outlined px-4 m-0">Select</button></a>
                                 </div>
                             </div>
+                        </div>
                     </div>
-                    </div>
-                
+
                     {% endfor %}
 
                     </p>
@@ -73,80 +75,116 @@
 
             <section id="content2">
                 <p>
-                    <div class="card__container">
-                        {% for i in work.resume_selected.all %}
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="content">
-                                    <div class="card__flex">
-                                        <div>
-                                            <img src="{% static 'images/profile/download.svg' %}" class="card__pic" />
-    
-                                        </div>
-                                        <div class="mt-3 ml-3">
-                                            <p class="is-size-5 m-0">{{i.username.first_name}} {{i.username.last_name}}</p>
-                                            <p class="m-0 is-size-7 has-text-lightgrey">{{i.bio}}</p>
-                                        </div>
+                <div class="card__container">
+                    {% for i in resume_selected %}
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="content">
+                                <div class="card__flex">
+                                    <div>
+                                        <img src="{% static 'images/profile/download.svg' %}" class="card__pic" />
+
                                     </div>
-    
-    
-                                    <a href="#" class="icon_profile_card"><i class="fa fa-envelope"></i>&nbsp;
-                                        {{i.username.email}}</a> <br />
-                                    <a href="#" class="icon_profile_card"><i class='fa fa-mobile'>&nbsp;&nbsp;
-                                        </i>{{i.username.phone}}</a> <br />
-                                    <div class="my-3">
-                                        <a href="" target="_blank"><button class="button is-primary px-4 m-0">
-                                                Profile</button></a>
-    
-                                        <button class="button is-primary-outlined px-4 m-0">Select</button>
+                                    <div class="mt-3 ml-3">
+                                        <p class="is-size-5 m-0">{{i.username.first_name}} {{i.username.last_name}}</p>
+                                        <p class="m-0 is-size-7 has-text-lightgrey">{{i.bio}}</p>
                                     </div>
                                 </div>
+
+
+                                <a href="#" class="icon_profile_card"><i class="fa fa-envelope"></i>&nbsp;
+                                    {{i.username.email}}</a> <br />
+                                <a href="#" class="icon_profile_card"><i class='fa fa-mobile'>&nbsp;&nbsp;
+                                    </i>{{i.phone}}</a> <br />
+                                <div class="my-3">
+                                    <a href="" target="_blank"><button class="button is-primary px-4 m-0">
+                                            Profile</button></a>
+
+                                    <a href="{% url 'selectInterview' userid=i.id jobid=work.id key='next' %}"> <button
+                                            class="button is-primary-outlined px-4 m-0">Select</button></a>
+
+                                </div>
+                            </div>
                         </div>
-                        </div>
-                        {% endfor %}
-                </p>
+                    </div>
+                    {% endfor %}
+                    </p>
             </section>
 
             <section id="content3">
                 <p>
-                    <div class="card__container">
-                        {% for i in work.hired.all %}
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="content">
-                                    <div class="card__flex">
-                                        <div>
-                                            <img src="{% static 'images/profile/download.svg' %}" class="card__pic" />
-    
-                                        </div>
-                                        <div class="mt-3 ml-3">
-                                            <p class="is-size-5 m-0">{{i.username.first_name}} {{i.username.last_name}}</p>
-                                            <p class="m-0 is-size-7 has-text-lightgrey">{{i.bio}}</p>
-                                        </div>
+                <div class="card__container">
+                    {% for i in hired %}
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="content">
+                                <div class="card__flex">
+                                    <div>
+                                        <img src="{% static 'images/profile/download.svg' %}" class="card__pic" />
+
                                     </div>
-    
-    
-                                    <a href="#" class="icon_profile_card"><i class="fa fa-envelope"></i>&nbsp;
-                                        {{i.username.email}}</a> <br />
-                                    <a href="#" class="icon_profile_card"><i class='fa fa-mobile'>&nbsp;&nbsp;
-                                        </i>{{i.username.phone}}</a> <br />
-                                    <div class="my-3">
-                                        <a href="" target="_blank"><button class="button is-primary px-4 m-0">
-                                                Profile</button></a>
-    
-                                        <button class="button is-primary-outlined px-4 m-0">Select</button>
+                                    <div class="mt-3 ml-3">
+                                        <p class="is-size-5 m-0">{{i.username.first_name}} {{i.username.last_name}}</p>
+                                        <p class="m-0 is-size-7 has-text-lightgrey">{{i.bio}}</p>
                                     </div>
                                 </div>
+
+
+                                <a href="#" class="icon_profile_card"><i class="fa fa-envelope"></i>&nbsp;
+                                    {{i.username.email}}</a> <br />
+                                <a href="#" class="icon_profile_card"><i class='fa fa-mobile'>&nbsp;&nbsp;
+                                    </i>{{i.phone}}</a> <br />
+                                <div class="my-3">
+                                    <a href="" target="_blank"><button class="button is-primary px-4 m-0">
+                                            Profile</button></a>
+
+                                    <a href="{% url 'selectInterview' userid=i.id jobid=work.id key='next' %}"> <button
+                                            class="button is-primary-outlined px-4 m-0">Select</button></a>
+
+                                </div>
+                            </div>
                         </div>
-                        </div>
-                        {% endfor %}
-                </p>
+                    </div>
+                    {% endfor %}
+                    </p>
             </section>
 
             <section id="content4">
                 <p>
-                    CONTENT FIR TAB 4
-                </p>
+                <div class="card__container">
+                    {% for i in onboard %}
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="content">
+                                <div class="card__flex">
+                                    <div>
+                                        <img src="{% static 'images/profile/download.svg' %}" class="card__pic" />
+
+                                    </div>
+                                    <div class="mt-3 ml-3">
+                                        <p class="is-size-5 m-0">{{i.username.first_name}} {{i.username.last_name}}</p>
+                                        <p class="m-0 is-size-7 has-text-lightgrey">{{i.bio}}</p>
+                                    </div>
+                                </div>
+
+
+                                <a href="#" class="icon_profile_card"><i class="fa fa-envelope"></i>&nbsp;
+                                    {{i.username.email}}</a> <br />
+                                <a href="#" class="icon_profile_card"><i class='fa fa-mobile'>&nbsp;&nbsp;
+                                    </i>{{i.phone}}</a> <br />
+                                <div class="my-3">
+                                    <a href="" target="_blank"><button class="button is-primary px-4 m-0">
+                                            Profile</button></a>
+
+                                    <a href="{% url 'selectInterview' userid=i.id jobid=work.id key='next' %}"> <button
+                                            class="button is-primary-outlined px-4 m-0">Select</button></a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    </p>
             </section>
 
         </main>

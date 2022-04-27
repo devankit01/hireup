@@ -24,4 +24,7 @@ urlpatterns = [
     path('add-certificate/<int:id>', addCert, name='addCert'),
 
 
+    path('profile/<user>', profile, name='profile')
+
+
 ]

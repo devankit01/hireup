@@ -1,50 +1,62 @@
 .job__page {
   display: flex;
 }
+
 .job__page .filter {
   width: 30%;
   /* border: 1px solid #ccc; */
 }
+
 .job__page .jobs__container {
   width: 70%;
   margin: 0 30px;
 }
+
 .job__card {
   margin: 0 0 20px 0;
 }
+
 .filter__div {
   margin: 0 0 15px 0;
 }
+
 .card__flex {
   display: flex;
   justify-content: flex-start;
   margin: 0 0 0 12px;
 }
+
 .card__flex .break {
   display: flex;
   justify-content: space-between;
   margin: 0 0px 0 0;
 }
+
 .job__heading {
   font-size: 30px;
   font-weight: 500;
 }
+
 .job__company {
   font-size: 18px;
   font-weight: 500;
 }
+
 .text {
   font-size: 16px;
   margin-top: 5px;
 }
+
 ul {
   margin-top: 10px;
 }
+
 li,
 ol {
   list-style-type: none;
   margin: 0 10px;
 }
+
 .skill {
   font-size: 15px;
   margin: 0 10px 0 0;
@@ -52,6 +64,7 @@ ol {
   background: rgb(216, 216, 216);
   border-radius: 3px;
 }
+
 @media all and (max-width: 968px) {
   .filter {
     display: none;
@@ -60,18 +73,22 @@ ol {
   .job__card .card {
     min-width: 100%;
   }
+
   .card__header .card__info {
     padding-left: 10px;
   }
+
   .card__header .card__info p {
     font-size: 12px;
     font-weight: 400;
   }
+
   .card__flex {
     display: flex;
 
     flex-direction: column;
   }
+
   .card__flex .break {
     display: flex;
     justify-content: space-between;
@@ -83,40 +100,49 @@ ol {
 
     color: rgb(138, 138, 138);
   }
+
   .card__flex div h3 {
     font-size: 13px;
     font-weight: bold;
   }
+
   .card__apply {
     display: flex;
     justify-content: flex-start;
     float: left;
   }
+
   .card__apply .date {
     font-size: 14px !important;
     color: rgb(153, 153, 153);
     display: none;
   }
+
   .job__page .jobs__container {
     width: 100%;
     margin: 0 10px;
   }
+
   .job__card {
     margin: 0 0 10px 0;
   }
+
   .job__info__section {
     width: auto;
     margin: 0 12px;
   }
+
   .text,
   li,
   ol {
     font-size: 15px;
     margin-top: 5px;
   }
+
   .skill {
     margin: 10px 10px 0 0;
   }
+
   .profile__body span {
     line-height: 45px;
   }

@@ -147,7 +147,7 @@ def signin(request):
 
 def userprofile(request):
     try:
-        if request.session.get('username', None):
+        if request.session.get('username', None) or user:
             user = get_object_or_404(User, username=request.user)
             user_profile = UserProfile.objects.filter(username=user)
             if user_profile.exists():
@@ -454,3 +454,35 @@ def addCert(request, id=None):
         data = Certification.objects.filter(username=request.user).first()
         return render(request, 'hireup/AddEditCert.html', {"data": data})
     return render(request, 'hireup/AddEditCert.html')
+
+
+def profile(request, user):
+    user = get_object_or_404(User, email=user)
+    print(user)
+    user_profile = UserProfile.objects.filter(username=user).filter()
+    print(user_profile)
+    if user_profile.exists():
+        user_profile = user_profile.first()
+
+        user_profile.first_name = user.first_name
+        user_profile.last_name = user.last_name
+        if Skill.objects.filter(
+            username=user).exists():
+            user_profile.tech_stack = eval(Skill.objects.filter(
+                username=user).first().name)
+        # EDUCATION
+        user_profile.education = Education.objects.filter(
+            username=user).order_by('start_year')
+        # EDUCATION
+
+        # EXPERIENCE
+        user_profile.experience = Experience.objects.filter(
+            username=user).order_by('start_year')
+        # EXPERIENCE
+
+        # CERTIFICATION
+        user_profile.certification = Certification.objects.filter(
+            username=user).order_by('issue_date')
+        # CERTIFICATION
+
+        return render(request, 'users/profile.html', {"data": user_profile})

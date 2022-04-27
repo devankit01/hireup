@@ -103,4 +103,23 @@ def recruiterJobs(request):
 
 def manageJob(request, id):
     work = Work.objects.filter(id=id).first()
-    return render(request, 'admin-ui/hireUp/jobApplicants.html', {'work': work})
+
+    applicants = list(work.applicants.all())
+    resume_selected = list(work.resume_selected.all())
+    hired = list(work.hired.all())
+    onboard = list(work.onboard.all())
+
+    applicants = [item for item in applicants if item not in (
+        resume_selected+hired+onboard)]
+    resume_selected = [
+        item for item in resume_selected if item not in (hired + onboard)]
+    hired = [item for item in hired if item not in onboard]
+
+    return render(request, 'admin-ui/hireUp/jobApplicants.html', {'work': work, 'applicants': applicants, 'resume_selected': resume_selected, 'hired': hired, 'onboard': onboard})
+
+
+def selectInterview(request, userid, jobid, key):
+    work = Work.objects.filter(id=jobid).first()
+    profile = UserProfile.objects.filter(id=userid).first()
+    work.resume_selected.add(profile)
+    return redirect(manageJob, jobid)
