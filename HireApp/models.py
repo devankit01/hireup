@@ -1,3 +1,4 @@
+from unittest import expectedFailure
 from django.db import models
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
@@ -11,7 +12,7 @@ class UserProfile(models.Model):
     hacker = models.CharField(max_length=100)
     bio = models.TextField(max_length=200)
     phone = models.CharField(max_length=100, null=True, blank=True)
-    resume = models.FileField(max_length=210, null=True)
+    resume = models.FileField(upload_to="resume", max_length=210, null=True)
     portfolio = models.CharField(max_length=210, null=True)
     profile = models.CharField(max_length=210, null=True)
     username = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -101,7 +102,7 @@ class Work(models.Model):
     about = RichTextField()
     min_requirement = RichTextField()
     tech_stack = models.CharField(max_length=100)
-    posted = models.DateField(auto_now_add=True)
+    posted = models.DateTimeField(auto_now_add=True)
     number_of_vacancy = models.CharField(max_length=3)
     status = models.BooleanField(default=True)
     applicants = models.ManyToManyField(UserProfile)
@@ -120,7 +121,8 @@ class Work(models.Model):
         if self.posted.day == time.day:
             try:
                 return str(time.hour - self.posted.hour) + " hours ago"
-            except:
+            except Exception as e:
+                print(e)
                 return "0 hours ago"
         else:
             if self.posted.month == time.month:
