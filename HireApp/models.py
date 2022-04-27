@@ -108,6 +108,7 @@ class Work(models.Model):
     resume_selected = models.ManyToManyField(
         UserProfile, related_name='resume_selected')
     hired = models.ManyToManyField(UserProfile, related_name='hired')
+    onboard = models.ManyToManyField(UserProfile, related_name='onboard')
     created_by = models.ForeignKey(
         RecruiterProfile, on_delete=models.DO_NOTHING)
 
