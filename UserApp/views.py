@@ -17,6 +17,7 @@ from django.db.models import F, Q
 from HireApp.models import CompanyProfile
 from HireApp.models import Work, Education, Experience, Certification
 from datetime import datetime
+from django.http import FileResponse
 
 
 class TokenGenerator(PasswordResetTokenGenerator):
@@ -467,7 +468,7 @@ def profile(request, user):
         user_profile.first_name = user.first_name
         user_profile.last_name = user.last_name
         if Skill.objects.filter(
-            username=user).exists():
+                username=user).exists():
             user_profile.tech_stack = eval(Skill.objects.filter(
                 username=user).first().name)
         # EDUCATION
@@ -486,3 +487,12 @@ def profile(request, user):
         # CERTIFICATION
 
         return render(request, 'users/profile.html', {"data": user_profile})
+
+
+def pdf(request):
+    pdf = UserProfile.objects.filter(username=request.user).first()
+    if pdf:
+        try:
+            return FileResponse(open(pdf.resume, 'rb'), content_type='application/pdf')
+        except FileNotFoundError:
+            raise Http404('not found')
