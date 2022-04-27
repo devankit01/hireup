@@ -121,5 +121,12 @@ def manageJob(request, id):
 def selectInterview(request, userid, jobid, key):
     work = Work.objects.filter(id=jobid).first()
     profile = UserProfile.objects.filter(id=userid).first()
-    work.resume_selected.add(profile)
+
+    if key == 'resume_selected':
+        work.resume_selected.add(profile)
+    elif key == 'interview':
+        work.hired.add(profile)
+    elif key == 'onboard':
+        work.onboard.add(profile)
+
     return redirect(manageJob, jobid)

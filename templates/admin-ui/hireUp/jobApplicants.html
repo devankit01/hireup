@@ -25,13 +25,13 @@
             <label for="tab1">Applicants</label>
 
             <input id="tab2" type="radio" name="tabs">
-            <label for="tab2">Interviewed</label>
+            <label for="tab2">Resume Selected</label>
 
             <input id="tab3" type="radio" name="tabs">
-            <label for="tab3">Hired</label>
+            <label for="tab3">Interview Selected</label>
 
             <input id="tab4" type="radio" name="tabs">
-            <label for="tab4">Onboard</label>
+            <label for="tab4">Onboarded</label>
 
             <section id="content1">
                 <p>
@@ -61,8 +61,8 @@
                                             class="button is-primary px-4 m-0">
                                             Profile</button></a>
 
-                                    <a href="{% url 'selectInterview' userid=i.id jobid=work.id key='next' %}"> <button
-                                            class="button is-primary-outlined px-4 m-0">Select</button></a>
+                                    <a href="{% url 'selectInterview' userid=i.id jobid=work.id key='resume_selected' %}"> <button
+                                            class="button is-primary-outlined px-4 m-0">Next</button></a>
                                 </div>
                             </div>
                         </div>
@@ -100,8 +100,8 @@
                                     <a href="" target="_blank"><button class="button is-primary px-4 m-0">
                                             Profile</button></a>
 
-                                    <a href="{% url 'selectInterview' userid=i.id jobid=work.id key='next' %}"> <button
-                                            class="button is-primary-outlined px-4 m-0">Select</button></a>
+                                    <a href="{% url 'selectInterview' userid=i.id jobid=work.id key='interview' %}"> <button
+                                            class="button is-primary-outlined px-4 m-0">Next</button></a>
 
                                 </div>
                             </div>
@@ -138,8 +138,8 @@
                                     <a href="" target="_blank"><button class="button is-primary px-4 m-0">
                                             Profile</button></a>
 
-                                    <a href="{% url 'selectInterview' userid=i.id jobid=work.id key='next' %}"> <button
-                                            class="button is-primary-outlined px-4 m-0">Select</button></a>
+                                    <a href="{% url 'selectInterview' userid=i.id jobid=work.id key='onboard' %}"> <button
+                                            class="button is-primary-outlined px-4 m-0">Next</button></a>
 
                                 </div>
                             </div>
@@ -177,7 +177,7 @@
                                             Profile</button></a>
 
                                     <a href="{% url 'selectInterview' userid=i.id jobid=work.id key='next' %}"> <button
-                                            class="button is-primary-outlined px-4 m-0">Select</button></a>
+                                            class="button is-primary-outlined px-4 m-0">Hire</button></a>
 
                                 </div>
                             </div>
