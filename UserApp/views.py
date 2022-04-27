@@ -17,6 +17,7 @@ from django.db.models import F, Q
 from HireApp.models import CompanyProfile
 from HireApp.models import Work, Education, Experience, Certification
 from datetime import datetime
+from django.http import FileResponse
 
 
 class TokenGenerator(PasswordResetTokenGenerator):
@@ -326,13 +327,15 @@ def editUserProfile(request):
             user_profile_data['profile'] = request.POST.get('profile', None)
 
             if request.FILES.get('resume', None):
-                user_profile_data['resume'] = request.FILES['resume']
+                user_resume_update = UserProfile(username=user)
+                user_resume_update.resume = request.FILES['resume']
             else:
                 user_resume_update = UserProfile(username=user)
                 user_resume_update.resume = user_resume_update.resume
                 user_data['resume'] = user_resume_update.resume
 
             user_profile.update(**user_profile_data)
+            user_resume_update.save()
             # adding skills
             skill_objects = Skill.objects.filter(username=request.user)
             if skill_objects.exists():
@@ -342,8 +345,7 @@ def editUserProfile(request):
                 Skill.objects.create(username=request.user,
                                      name=request.POST.getlist('stack'))
             # adding skills
-            if request.FILES.get('resume', None) == False:
-                user_resume_update.save()
+            # if request.FILES.get('resume', None) == False:
             user_data['phone'] = request.POST.get('phone', None)
             user_data['fb'] = request.POST.get('fb', None)
             user_data['lkd'] = request.POST.get('lkd', None)
@@ -486,3 +488,14 @@ def profile(request, user):
         # CERTIFICATION
 
         return render(request, 'users/profile.html', {"data": user_profile})
+
+
+def resumeViewer(request, user):
+    user = get_object_or_404(User, email=user)
+    pdf = UserProfile.objects.filter(username=user).first()
+    if pdf:
+        try:
+            print(pdf.resume, type(pdf.resume))
+            return FileResponse(open("media/"+str(pdf.resume), 'rb'), content_type='application/pdf')
+        except FileNotFoundError:
+            raise Http404('not found')

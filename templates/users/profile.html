@@ -6,13 +6,54 @@
 {% endblock %} {% block body %}
 
 <div class="user__profile container">
-    <div class="profile__header">
-        <div>
-            <img src="{% static 'images/profile/download.svg' %}" />
-        </div>
-        <div>
-            <p>
-                <span style="font-size: x-large">
+  <div class="profile__header">
+    <div>
+      <img src="{% static 'images/profile/download.svg' %}" />
+    </div>
+    <div>
+      <p>
+        <span style="font-size: x-large">
+          
+        {{data.first_name}}&nbsp;{{data.last_name}}&nbsp;&nbsp;<span class="icon has-text-primary">
+
+        </span>
+      </p>
+      <p class="headline">{{data.profile}}</p>
+      <p class="bio">
+        {{data.bio}}
+      </p>
+      <div class="social__icons">
+        <span><a
+          href="{{data.fb}}"
+          style="text-decoration: none;color: inherit;" ><i class="fab fa-facebook-square" aria-hidden="true"></i></a></span>
+        <span><a
+          href="{{data.lkd}}"
+          style="text-decoration: none;color: inherit;" ><i class="fab fa-instagram" aria-hidden="true"></i></a></span>
+        <span><a
+          href="{{data.fb}}"
+          style="text-decoration: none;color: inherit;" ><i class="fab fa-twitter-square" aria-hidden="true"></i></a></span>
+        <span><a
+          href="{{data.git}}"
+          style="text-decoration: none;color: inherit;" ><i class="fab fa-github-square" aria-hidden="true"></i></a></span>
+        <span><a
+          href="{{data.hacker}}"
+          style="text-decoration: none;color: inherit;" ><i class="fab fa-hackerrank"></i></a></span>
+      </div>
+      <div class="connect__btn">
+        <a href="{% url 'resumeViewer' user=data.username %}" class="button is-primary" target="blank">Resume</a>
+        <a href="" class="button is-primary-outline has-text-color-primary"
+          >Contact</a
+        >
+      </div>
+    </div>
+  </div>
+  <div class="profile__body">
+    <div class="profile__div">
+      <h2 class="mt-5 mb-4 is-size-5"><b>Skills</b></h2>
+      {% for tech in data.tech_stack %}
+      <span class="skill">{{tech}}</span>
+      {% endfor %}
+    </div>
 
                     {{data.first_name}}&nbsp;{{data.last_name}}&nbsp;&nbsp;<span class="icon has-text-primary">
 
