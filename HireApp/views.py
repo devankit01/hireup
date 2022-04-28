@@ -1,5 +1,5 @@
-from django.shortcuts import redirect, render
-from .models import Work, CompanyProfile, RecruiterProfile, UserProfile
+from django.shortcuts import redirect, render, get_object_or_404
+from .models import Work, CompanyProfile, RecruiterProfile, UserProfile, User
 
 # Create your views here.
 
@@ -101,13 +101,32 @@ def recruiterJobs(request):
     return render(request, 'admin-ui/hireUp/Admin.html', {'data': works})
 
 
-def addExp(request):
-    return render(request, 'hireup/AddEditExp.html')
+def manageJob(request, id):
+    work = Work.objects.filter(id=id).first()
+
+    applicants = list(work.applicants.all())
+    resume_selected = list(work.resume_selected.all())
+    hired = list(work.hired.all())
+    onboard = list(work.onboard.all())
+
+    applicants = [item for item in applicants if item not in (
+        resume_selected+hired+onboard)]
+    resume_selected = [
+        item for item in resume_selected if item not in (hired + onboard)]
+    hired = [item for item in hired if item not in onboard]
+
+    return render(request, 'admin-ui/hireUp/jobApplicants.html', {'work': work, 'applicants': applicants, 'resume_selected': resume_selected, 'hired': hired, 'onboard': onboard})
 
 
-def addEdu(request, id=None):
-    return render(request, 'hireup/AddEditEdu.html')
+def selectInterview(request, userid, jobid, key):
+    work = Work.objects.filter(id=jobid).first()
+    profile = UserProfile.objects.filter(id=userid).first()
 
+    if key == 'resume_selected':
+        work.resume_selected.add(profile)
+    elif key == 'interview':
+        work.hired.add(profile)
+    elif key == 'onboard':
+        work.onboard.add(profile)
 
-def addCert(request, id=None):
-    return render(request, 'hireup/AddEditCert.html')
+    return redirect(manageJob, jobid)

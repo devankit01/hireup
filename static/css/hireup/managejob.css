@@ -1,0 +1,110 @@
+#tsum-tabs h1 {
+  padding: 50px 0;
+  font-weight: 400;
+  text-align: center;
+}
+
+#tsum-tabs p {
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+#tsum-tabs main {
+
+  max-width: 100%;
+  padding: 30px;
+  margin: 0 auto;
+  background: #fff;
+}
+
+#tsum-tabs section {
+  display: none;
+  padding: 20px 0 0;
+  border-top: 1px solid #ddd;
+}
+
+#tsum-tabs input {
+  display: none;
+}
+
+#tsum-tabs label {
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 15px 25px;
+  font-weight: 600;
+  text-align: center;
+  color: #bbb;
+  border: 1px solid transparent;
+}
+
+#tsum-tabs label:before {
+  font-family: fontawesome;
+  font-weight: normal;
+  margin-right: 10px;
+}
+
+#tsum-tabs label[for*='1']:before {
+  content: '\f1cb';
+}
+
+#tsum-tabs label[for*='2']:before {
+  content: '\f17d';
+}
+
+#tsum-tabs label[for*='3']:before {
+  content: '\f16b';
+}
+
+#tsum-tabs label[for*='4']:before {
+  content: '\f1a9';
+}
+
+#tsum-tabs label:hover {
+  color: #888;
+  cursor: pointer;
+}
+
+#tsum-tabs input:checked+label {
+  color: #555;
+  border: 1px solid #ddd;
+  border-top: 2px solid orange;
+  border-bottom: 1px solid #fff;
+}
+
+#tsum-tabs #tab1:checked~#content1,
+#tsum-tabs #tab2:checked~#content2,
+#tsum-tabs #tab3:checked~#content3,
+#tsum-tabs #tab4:checked~#content4 {
+  display: block;
+}
+
+.icon_profile_card {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.card__pic {
+  width: 80px;
+  height: 80px;
+}
+
+.card__flex {
+  display: flex;
+}
+
+@media screen and (max-width: 650px) {
+  #tsum-tabs label {
+    font-size: 0;
+  }
+
+  #tsum-tabs label:before {
+    margin: 0;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #tsum-tabs label {
+    padding: 15px;
+  }
+}

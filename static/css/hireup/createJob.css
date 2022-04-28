@@ -1,25 +1,32 @@
 .field-body {
   margin: 0 20px 0 0;
 }
+
 .field-body .field h2 {
   margin: 0 20px 0 0;
 }
+
 .is-horizontal {
   margin: 25px 0 0 0;
 }
+
 @media all and (max-width: 968px) {
   .section {
     margin: 20px 10px;
   }
+
   input {
     width: 306px;
   }
+
   .field-body {
     margin: 20px 10px 0 0;
   }
+
   .field-body .field p {
     margin: 0 20px 0 0;
   }
+
   .skills label input {
     display: inline-block !important;
   }

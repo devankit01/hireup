@@ -2,14 +2,7 @@
 <link rel="stylesheet" href="{% static 'css/job.css' %}" />
 
 <link rel="stylesheet" href="{% static 'css/userprofile.css' %}" />
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-/>
+
 {% endblock %} {% block body %}
 <div class="user__profile container">
   {% if company %}
@@ -26,13 +19,10 @@
     </div>
     <div>
       <p>
-        <span style="font-size: x-large">{{first_name}} {{last_name}}</span
-        >&nbsp;&nbsp;<span class="icon has-text-primary">
-          <a
-            href="{% url 'editRecruiterProfile' %}"
-            style="text-decoration: none; color: inherit"
-            ><i class="fas fa-edit has-text-primary"></i
-          ></a>
+        <span style="font-size: x-large">{{first_name}} {{last_name}}</span>&nbsp;&nbsp;<span
+          class="icon has-text-primary">
+          <a href="{% url 'editRecruiterProfile' %}" style="text-decoration: none; color: inherit"><i
+              class="fas fa-edit has-text-primary"></i></a>
         </span>
       </p>
 
@@ -41,25 +31,17 @@
       </p>
       <p class="bio">
         <b>
-          {%if company_location%} {{company_location}} {%else%} N/A {%endif%}</b
-        >
+          {%if company_location%} {{company_location}} {%else%} N/A {%endif%}</b>
       </p>
       <p class="bio">
         Talent Acquisition | Jobs for Python, Java and Web Developer
       </p>
       <div class="connect__btn">
         {% if company %}
-        <a
-          href="{% url 'createJob' %}"
-          class="button is-primary"
-          style="pointer-events: none"
-          >Create Job</a
-        >
+        <a href="{% url 'createJob' %}" class="button is-primary" style="pointer-events: none">Create Job</a>
         {% else %}
         <a href="{% url 'createJob' %}" class="button is-primary">Create Job</a>
-        <a href="{% url 'recruiterJobs' %}" class="button is-primary-outline"
-          >Dashboard</a
-        >
+        <a href="{% url 'recruiterJobs' %}" class="button is-primary-outline">Dashboard</a>
         {% endif %}
 
         <!-- <a href="" class="button is-primary-outline has-text-color-primary"
@@ -74,18 +56,13 @@
         <h2 class="is-size-5"><b>Company Info</b></h2>
         <br />
         {% if company %}
-  
+
         <br />
         <div class="container field is-grouped is-grouped-centered">
           <form action="{% url 'setCompany' %}" method="POST">
             {% csrf_token %}
-            <input
-              class="input mx-1"
-              list="company_list"
-              style="width: 50%"
-              name="company"
-              placeholder="Search your company"
-            />
+            <input class="input mx-1" list="company_list" style="width: 50%" name="company"
+              placeholder="Search your company" />
 
             <datalist id="company_list">
               {% for company in company_list %}
@@ -93,34 +70,23 @@
               {% endfor %}
             </datalist>
             <button class="button is-primary" type="submit">
-              <span
-                >Save
+              <span>Save
                 <span class="icon is-small pl-2">
-                  <i class="fas fa-check"></i> </span
-              ></span>
+                  <i class="fas fa-check"></i> </span></span>
             </button>
 
             <span class="mx-3 mt-2">OR</span>
-            <a
-              class="button is-primary"
-              href="{% url 'addCompany' %}"
-              style="text-decoration: none; color: inherit"
-            >
-              <span
-                >Add
+            <a class="button is-primary" href="{% url 'addCompany' %}" style="text-decoration: none; color: inherit">
+              <span>Add
                 <span class="icon is-small pl-2">
-                  <i class="fas fa-plus"></i> </span
-              ></span>
+                  <i class="fas fa-plus"></i> </span></span>
             </a>
           </form>
         </div>
         <br />
         {%endif%}
-        <img
-          src="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/media/{{company_logo}}"
-          alt=""
-          style="max-width: 60px"
-        />
+        <img src="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/media/{{company_logo}}" alt=""
+          style="max-width: 60px" />
 
         {% if not company %}
         <h3 class="is-size-5">{{company_name}}</h3>
@@ -130,11 +96,8 @@
           <b><a href="{{company_site}}" target="blank">Website</a></b>
         </h5>
         <h5 class="is-size-6">{{about_company}}</h5>
-        <a
-          href="{% url 'editCompany' comp_id %}"
-          class="button is-primary has-text-color-primary mt-4"
-          >Edit Company Info</a
-        >
+        <a href="{% url 'editCompany' comp_id %}" class="button is-primary has-text-color-primary mt-4">Edit Company
+          Info</a>
         {% endif %}
       </div>
     </div>

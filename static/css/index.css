@@ -3,44 +3,55 @@ img {
   height: auto;
   padding: 15%;
 }
+
 .landing__hero {
   padding: 10% 5% 0 6%;
 }
+
 .header__section {
   background: #f1f1f1;
 }
+
 .header__container {
   width: 90%;
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
 }
-.header__container h1{
+
+.header__container h1 {
   font-size: 38px;
-  font-weight:600;
+  font-weight: 600;
 }
+
 .header__content {
   padding: 12% 40px 0 0px;
   width: 50%;
 
 }
+
 .header__img {
   width: auto;
   height: auto;
 }
+
 .header__content h1 {
   line-height: 50px;
 }
-.header__content p,.para {
+
+.header__content p,
+.para {
   line-height: 35px;
   font-size: 22px;
   color: grey;
   margin: 15px 0px 10px 0px;
 
 }
+
 .blue {
   color: #1d61fb;
 }
+
 .header__btn {
   margin: 10px 15px 0px 0px;
   outline: none;
@@ -53,16 +64,20 @@ img {
   box-shadow: 5px 10px 25px rgba(0, 0, 0, 0.25);
   cursor: pointer;
 }
+
 /*  */
 /* hide scrollbar but allow scrolling */
 .card-container {
-  -ms-overflow-style: none; /* for Internet Explorer, Edge */
-  scrollbar-width: none; /* for Firefox */
+  -ms-overflow-style: none;
+  /* for Internet Explorer, Edge */
+  scrollbar-width: none;
+  /* for Firefox */
   overflow-y: scroll;
 }
 
 .card-container::-webkit-scrollbar {
-  display: none; /* for Chrome, Safari, and Opera */
+  display: none;
+  /* for Chrome, Safari, and Opera */
 }
 
 .card-container {
@@ -89,88 +104,107 @@ img {
 .card__header {
   display: flex;
 }
+
 .card__header img {
   width: 45px;
- 
+
   height: auto;
 }
+
 .card__header .card__info {
   padding-left: 12px;
 }
+
 .card__header .card__info p {
   font-size: 14px;
   font-weight: 400;
 }
-.card__flex{
+
+.card__flex {
   display: flex;
   justify-content: space-between;
 }
-.card__flex div {
-  margin:5px 50px 5px 0px;
-}
-.card__flex div p{
-  font-size:12px;
-  font-weight:bold;
 
-  color:rgb(138, 138, 138);
+.card__flex div {
+  margin: 5px 50px 5px 0px;
 }
-.card__flex div h3{
-  font-size:15px;
-  font-weight:bold;
+
+.card__flex div p {
+  font-size: 12px;
+  font-weight: bold;
+
+  color: rgb(138, 138, 138);
 }
-.card__apply{
+
+.card__flex div h3 {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.card__apply {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
 }
-.card__apply .date{
-  font-size:16px!important;
-  color:rgb(153, 153, 153);
+
+.card__apply .date {
+  font-size: 16px !important;
+  color: rgb(153, 153, 153);
 }
+
 /*  */
 
 .jobs__section {
-  font-size:30px;
-  font-weight:600;
+  font-size: 30px;
+  font-weight: 600;
 
 }
+
 .para {
-  width:60%;
+  width: 60%;
   margin: 0 auto;
-  font-size:20px;
+  font-size: 20px;
 }
+
 @media all and (max-width: 968px) {
   .header__container {
     width: 100%;
     padding: 20px 0;
     flex-direction: column;
   }
+
   .header__img {
     display: none;
   }
+
   .header__content {
     padding: 20px 20px;
     width: 100%;
   }
+
   .header__content h1 {
     line-height: 34px;
     font-size: 26px;
   }
-  .header__content p ,.para{
+
+  .header__content p,
+  .para {
     line-height: 30px;
     font-size: 18px;
     font-weight: 18px;
     color: rgb(151, 151, 151);
     margin-top: 10px;
   }
+
   .jobs__section {
-    font-size:26px;
-    font-weight:600;
-  
+    font-size: 26px;
+    font-weight: 600;
+
   }
+
   .para {
-    width:100%;
+    width: 100%;
     margin: 0 auto;
-    font-size:15px;
+    font-size: 15px;
     line-height: 20px;
   }
 }

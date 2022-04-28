@@ -16,6 +16,16 @@ urlpatterns = [
          editRecruiterProfile, name="editRecruiterProfile"),
     path('update-company', setCompany, name='setCompany'),
     path('edit-user-profile/', editUserProfile, name='editUserProfile'),
+    path('add-exp', addExp, name='addExp'),
+    path('add-exp/<int:id>', addExp, name='addExp'),
+    path('add-edu', addEdu, name='addEdu'),
+    path('add-edu/<int:id>', addEdu, name='addEdu'),
+    path('add-certificate', addCert, name='addCert'),
+    path('add-certificate/<int:id>', addCert, name='addCert'),
+
+
+    path('profile/<user>', profile, name='profile'),
+    path('resume/<user>', resumeViewer, name='resumeViewer'),
 
 
 ]

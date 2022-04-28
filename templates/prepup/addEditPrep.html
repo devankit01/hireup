@@ -2,14 +2,7 @@
 <link rel="stylesheet" href="{% static 'css/prepup/index.css' %}" />
 <link rel="stylesheet" href="{% static 'css/hireup/createJob.css' %}" />
 
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-/>
+
 {% endblock %} {% block body %}
 
 <div class="has-background-primary set">
@@ -27,12 +20,7 @@
   }
 </style>
 <section class="section container set">
-  <form
-    class="addEditMaterial"
-    action="{% url 'prepEdit' data.id %}"
-    method="post"
-    enctype="multipart/form-data"
-  >
+  <form class="addEditMaterial" action="{% url 'prepEdit' data.id %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <h2 class="is-size-5 has-text-black"><u> Material Details</u></h2>
     <div class="field is-horizontal">
@@ -40,15 +28,8 @@
         <div class="field">
           <p class="mb-2 ml-1">Title</p>
           <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="What is it about?"
-              name="name"
-              id="name"
-              value="{{ data.Name }}"
-              required
-            />
+            <input class="input mx-1" type="text" placeholder="What is it about?" name="name" id="name"
+              value="{{ data.Name }}" required />
           </p>
         </div>
       </div>
@@ -57,15 +38,8 @@
         <div class="field">
           <p class="mb-2 ml-1">Subject</p>
           <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="Subject"
-              name="subject"
-              id="subject"
-              value="{{ data.subject }}"
-              required
-            />
+            <input class="input mx-1" type="text" placeholder="Subject" name="subject" id="subject"
+              value="{{ data.subject }}" required />
           </p>
         </div>
       </div>
@@ -76,10 +50,10 @@
 
           <p class="control is-expanded select is-fullwidth">
             <select id="selectbasic-0" name="year" class="is-large">
-              <option value="1st Year"  {% if data.year == '1st Year' %} selected {% endif %} >1st Year</option>
-              <option value="2nd Year"  {% if data.year == '2nd Year' %} selected {% endif %} >2nd Year</option>
-              <option value="3rd Year"  {% if data.year == '3rd Year' %} selected {% endif %} >3rd Year</option>
-              <option value="4th Year"  {% if data.year == '4th Year' %} selected {% endif %} >4th Year</option>
+              <option value="1st Year" {% if data.year=='1st Year' %} selected {% endif %}>1st Year</option>
+              <option value="2nd Year" {% if data.year=='2nd Year' %} selected {% endif %}>2nd Year</option>
+              <option value="3rd Year" {% if data.year=='3rd Year' %} selected {% endif %}>3rd Year</option>
+              <option value="4th Year" {% if data.year=='4th Year' %} selected {% endif %}>4th Year</option>
             </select>
           </p>
         </div>
@@ -93,12 +67,12 @@
 
           <p class="control is-expanded select is-fullwidth">
             <select id="selectbasic-0" name="branch" class="is-large">
-              <option value="CSE"  {% if data.branch == 'CSE' %} selected {% endif %} >CSE</option>
-              <option value="IT"  {% if data.branch == 'IT' %} selected {% endif %} >IT</option>
-              <option value="ME"  {% if data.branch == 'ME' %} selected {% endif %} >ME</option>
-              <option value="AG"  {% if data.branch == 'AG' %} selected {% endif %} >AG</option>
-              <option value="CE"  {% if data.branch == 'CE' %} selected {% endif %} >CE</option>
-              <option value="BT"  {% if data.branch == 'BT' %} selected {% endif %} >BT</option>
+              <option value="CSE" {% if data.branch=='CSE' %} selected {% endif %}>CSE</option>
+              <option value="IT" {% if data.branch=='IT' %} selected {% endif %}>IT</option>
+              <option value="ME" {% if data.branch=='ME' %} selected {% endif %}>ME</option>
+              <option value="AG" {% if data.branch=='AG' %} selected {% endif %}>AG</option>
+              <option value="CE" {% if data.branch=='CE' %} selected {% endif %}>CE</option>
+              <option value="BT" {% if data.branch=='BT' %} selected {% endif %}>BT</option>
             </select>
           </p>
         </div>
@@ -108,14 +82,8 @@
         <div class="field">
           <p class="mb-2 ml-1">Source</p>
           <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="Mention source website"
-              name="url"
-              id="url"
-              value="{{ data.url }}"
-            />
+            <input class="input mx-1" type="text" placeholder="Mention source website" name="url" id="url"
+              value="{{ data.url }}" />
           </p>
         </div>
       </div>
@@ -138,10 +106,10 @@
       </div>
 
       <div class="field-body">
-        
+
       </div>
     </div>
-    
+
     <br />
 
     {% if error %}

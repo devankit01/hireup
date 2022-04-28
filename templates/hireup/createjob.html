@@ -2,15 +2,6 @@
 <link rel="stylesheet" href="{% static 'css/prepup/index.css' %}" />
 <link rel="stylesheet" href="{% static 'css/hireup/createJob.css' %}" />
 
-
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-/>
 {% endblock %} {% block body %}
 
 <div class="has-background-primary set">
@@ -22,231 +13,212 @@
 
 <section class="section container set">
   <h2 class="is-size-4 mb-3">Create Job</h2>
-<form class="createJob" method="post">
-  {% csrf_token %}
-  <div class="field is-horizontal">
-    <div class="field-body">
-      <div class="field">
-        <p class="mb-2 ml-1">Job Name</p>
-        <p class="control is-expanded is-fullwidth">
-          <input
-            class="input mx-1"
-            type="text"
-            placeholder="Job Title"
-            name="jobName"
-            id="id" required
-          />
-        </p>
+  <form class="createJob" method="post">
+    {% csrf_token %}
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2 ml-1">Job Name</p>
+          <p class="control is-expanded is-fullwidth">
+            <input class="input mx-1" type="text" placeholder="Job Title" name="jobName" id="id" required />
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="mb-2">Employment Type</p>
-        <p class="control is-expanded select is-fullwidth">
-          <select id="selectbasic-0" name="empType" class="is-large">
-            <option value="Full Time">Full Time</option>
-          </select>
-        </p>
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2">Employment Type</p>
+          <p class="control is-expanded select is-fullwidth">
+            <select id="selectbasic-0" name="empType" class="is-large">
+              <option value="Full Time">Full Time</option>
+            </select>
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="mb-2">Internship or Job</p>
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2">Internship or Job</p>
 
-        <p class="control is-expanded select is-fullwidth">
-          <select id="selectbasic-0" name="jobType" class="is-large" required>
-            <option value="Internship">Internship</option>
-            <option value="Job">Job</option>
-          </select>
-        </p>
+          <p class="control is-expanded select is-fullwidth">
+            <select id="selectbasic-0" name="jobType" class="is-large" required>
+              <option value="Internship">Internship</option>
+              <option value="Job">Job</option>
+            </select>
+          </p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="field is-horizontal">
-    <div class="field-body">
-      <div class="field">
-        <p class="mb-2 ml-1">Location (Remote/City)</p>
-        <p class="control is-expanded is-fullwidth">
-          <input
-            class="input mx-1"
-            type="text"
-            placeholder="location"
-            name="location"
-            id="location" required
-          />
-        </p>
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2 ml-1">Location (Remote/City)</p>
+          <p class="control is-expanded is-fullwidth">
+            <input class="input mx-1" type="text" placeholder="location" name="location" id="location" required />
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="mb-2">Salary</p>
-        <p class="control is-expanded select is-fullwidth">
-          <select id="selectbasic-0" name="salary" class="is-large" required>
-            <option value="Negotiable">Negotiable</option>
-            <option value="1 LPA - 3 LPA">1 LPA - 3 LPA</option>
-            <option value="3 LPA - 5 LPA">3 LPA - 5 LPA</option>
-            <option value="5 LPA - 8 LPA">5 LPA - 8 LPA</option>
-            <option value="10 LPA +">10 LPA +</option>
-          </select>
-        </p>
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2">Salary</p>
+          <p class="control is-expanded select is-fullwidth">
+            <select id="selectbasic-0" name="salary" class="is-large" required>
+              <option value="Negotiable">Negotiable</option>
+              <option value="1 LPA - 3 LPA">1 LPA - 3 LPA</option>
+              <option value="3 LPA - 5 LPA">3 LPA - 5 LPA</option>
+              <option value="5 LPA - 8 LPA">5 LPA - 8 LPA</option>
+              <option value="10 LPA +">10 LPA +</option>
+            </select>
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="mb-2">Experience</p>
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2">Experience</p>
 
-        <p class="control is-expanded select is-fullwidth">
-          <select id="selectbasic-0" name="experience" class="is-large" required>
-            <option value="Fresher">Fresher</option>
-            <option value="1yr- 2yr">1yr- 2yr</option>
-            <option value="3yr- 5yr">3yr- 5yr</option>
-            <option value="5yr- 10yr">5yr- 10yr</option>
-          </select>
-        </p>
+          <p class="control is-expanded select is-fullwidth">
+            <select id="selectbasic-0" name="experience" class="is-large" required>
+              <option value="Fresher">Fresher</option>
+              <option value="1yr- 2yr">1yr- 2yr</option>
+              <option value="3yr- 5yr">3yr- 5yr</option>
+              <option value="5yr- 10yr">5yr- 10yr</option>
+            </select>
+          </p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="field is-horizontal">
-    <div class="field-body">
-      <div class="field">
-        <p class="mb-2 ml-1">Skills Required</p>
-        <p class="control is-expanded is-fullwidth skills">
-          <span class="control">
-            <label class="is-checkbox is-rounded">
-              <input id="mycheckbox" type="checkbox" name='stack'  value="Python" />
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2 ml-1">Skills Required</p>
+          <p class="control is-expanded is-fullwidth skills">
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" type="checkbox" name='stack' value="Python" />
 
-              <span>Python</span>
-            </label> </span
-          >&nbsp;
-          <span class="control">
-            <label class="is-checkbox is-rounded">
-              <input id="mycheckbox" type="checkbox" name='stack'  value="JavaScript" />
-              <span>JavaScript</span>
-            </label>
-          </span>
-          &nbsp;
-          <span class="control">
-            <label class="is-checkbox is-rounded">
-              <input id="mycheckbox" name='stack' type="checkbox" value="PHP" />
-              <span>PHP</span>
-            </label>
-          </span>
-          &nbsp;
-          <span class="control">
-            <label class="is-checkbox is-rounded">
-              <input id="mycheckbox" type="checkbox" name='stack'  value="NodeJS" />
-              <span>NodeJS</span>
-            </label>
-          </span>
-          &nbsp;
-          <span class="control">
-            <label class="is-checkbox is-rounded">
-              <input id="mycheckbox" type="checkbox" name='stack'  value="ExpressJS" />
-              <span>ExpressJS</span>
-            </label>
-          </span>
-          &nbsp;
-          <span class="control">
-            <label class="is-checkbox is-rounded">
-              <input id="mycheckbox" type="checkbox" name='stack'  value="HTML" />
-              <span>HTML</span>
-            </label>
-          </span>
-          &nbsp;
-          <span class="control">
-            <label class="is-checkbox is-rounded">
-              <input id="mycheckbox" name='stack' type="checkbox" value="CSS" />
-              <span>CSS</span>
-            </label>
-          </span>
-          &nbsp;
-          <span class="control">
-            <label class="is-checkbox is-rounded">
-              <input id="mycheckbox" type="checkbox" name='stack'  value="ReactJS" />
-              <span>ReactJS</span>
-            </label>
-          </span>
-          &nbsp;
-          <span class="control">
-            <label class="is-checkbox is-rounded">
-              <input id="mycheckbox" type="checkbox" name='stack' value="React Native" />
-              <span>React Native</span>
-            </label>
-          </span>
-          &nbsp;
-          <span class="control">
-            <label class="is-checkbox is-rounded">
-              <input id="mycheckbox" type="checkbox" name='stack'  value="Flutter" />
-              <span>Flutter</span>
-            </label>
-          </span>
-          &nbsp;
-          <span class="control">
-            <label class="is-checkbox is-rounded">
-              <input id="mycheckbox" type="checkbox" name='stack'  value="MySQL" />
-              <span>MySQL</span>
-            </label>
-          </span>
-          &nbsp;
-          <span class="control">
-            <label class="is-checkbox is-rounded">
-              <input id="mycheckbox" type="checkbox" name='stack'  value="MongoDB" />
-              <span>MongoDB</span>
-            </label>
-          </span>
-          &nbsp;
-          <span class="control">
-            <label class="is-checkbox is-rounded">
-              <input id="mycheckbox" name='stack' type="checkbox" value="Go" />
-              <span>Go</span>
-            </label>
-          </span>
-        </p>
+                <span>Python</span>
+              </label> </span>&nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" type="checkbox" name='stack' value="JavaScript" />
+                <span>JavaScript</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" name='stack' type="checkbox" value="PHP" />
+                <span>PHP</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" type="checkbox" name='stack' value="NodeJS" />
+                <span>NodeJS</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" type="checkbox" name='stack' value="ExpressJS" />
+                <span>ExpressJS</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" type="checkbox" name='stack' value="HTML" />
+                <span>HTML</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" name='stack' type="checkbox" value="CSS" />
+                <span>CSS</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" type="checkbox" name='stack' value="ReactJS" />
+                <span>ReactJS</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" type="checkbox" name='stack' value="React Native" />
+                <span>React Native</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" type="checkbox" name='stack' value="Flutter" />
+                <span>Flutter</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" type="checkbox" name='stack' value="MySQL" />
+                <span>MySQL</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" type="checkbox" name='stack' value="MongoDB" />
+                <span>MongoDB</span>
+              </label>
+            </span>
+            &nbsp;
+            <span class="control">
+              <label class="is-checkbox is-rounded">
+                <input id="mycheckbox" name='stack' type="checkbox" value="Go" />
+                <span>Go</span>
+              </label>
+            </span>
+          </p>
+        </div>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2">No. of Openings</p>
+          <p class="control is-expanded is-fullwidth">
+            <input class="input mx-1" type="text" placeholder="No. pf Openings" name="opening" id="id" required />
+          </p>
+        </div>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="mb-2">Job Status</p>
+
+          <p class="control is-expanded select is-fullwidth">
+            <select id="selectbasic-0" name="jobStatus" class="is-large" required>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+          </p>
+        </div>
       </div>
     </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="mb-2">No. of Openings</p>
-        <p class="control is-expanded is-fullwidth">
-          <input
-            class="input mx-1"
-            type="text"
-            placeholder="No. pf Openings"
-            name="opening"
-            id="id" required
-          />
-        </p>
-      </div>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="mb-2">Job Status</p>
+    <br />
 
-        <p class="control is-expanded select is-fullwidth">
-          <select id="selectbasic-0" name="jobStatus" class="is-large" required>
-            <option value="Active">Active</option>
-            <option value="Inactive">Inactive</option>
-          </select>
-        </p>
-      </div>
-    </div>
-  </div>
-  <br/>
 
- 
-  {% if error %}
-  <article class="message is-info">
-    <div class="message-header">
-      <p>{{error}}</p>
-     
-    </div>
-    
-  </article>
-  
-  {%endif%}
-  <button style="float: left;" class="button is-primary" type="submit" href="">Create</button>
+    {% if error %}
+    <article class="message is-info">
+      <div class="message-header">
+        <p>{{error}}</p>
+
+      </div>
+
+    </article>
+
+    {%endif%}
+    <button style="float: left;" class="button is-primary" type="submit" href="">Create</button>
   </form>
 </section>
 

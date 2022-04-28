@@ -2,14 +2,7 @@
 <link rel="stylesheet" href="{% static 'css/prepup/index.css' %}" />
 <link rel="stylesheet" href="{% static 'css/hireup/createJob.css' %}" />
 
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-/>
+
 {% endblock %} {% block body %}
 
 <div class="has-background-primary set">
@@ -27,12 +20,8 @@
   }
 </style>
 <section class="section container set">
-  <form
-    class="addEditMaterial"
-    action="{% url 'prepEdit' data.id %}"
-    method="post"
-    enctype="multipart/form-data"
-  >
+  <form class="addEditMaterial" action="{% url 'interviewPrepEdit' data.id %}" method="post"
+    enctype="multipart/form-data">
     {% csrf_token %}
     <h2 class="is-size-5 has-text-black"><u> Material Details</u></h2>
     <div class="field is-horizontal">
@@ -40,15 +29,8 @@
         <div class="field">
           <p class="mb-2 ml-1">Title</p>
           <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="What is it about?"
-              name="name"
-              id="name"
-              value="{{ data.name }}"
-              required
-            />
+            <input class="input mx-1" type="text" placeholder="What is it about?" name="name" id="name"
+              value="{{ data.name }}" required />
           </p>
         </div>
       </div>
@@ -57,15 +39,8 @@
         <div class="field">
           <p class="mb-2 ml-1">Category</p>
           <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="Category"
-              name="category"
-              id="category"
-              value="{{ data.category }}"
-              required
-            />
+            <input class="input mx-1" type="text" placeholder="Category" name="category" id="category"
+              value="{{ data.category }}" required />
           </p>
         </div>
       </div>
@@ -74,15 +49,8 @@
         <div class="field">
           <p class="mb-2 ml-1">Tag</p>
           <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="Tag"
-              name="tag"
-              id="tag"
-              value="{{ data.tag }}"
-              required
-            />
+            <input class="input mx-1" type="text" placeholder="Tag" name="tag" id="tag" value="{{ data.tag }}"
+              required />
           </p>
         </div>
       </div>
@@ -93,14 +61,8 @@
         <div class="field">
           <p class="mb-2 ml-1">Source</p>
           <p class="control is-expanded is-fullwidth">
-            <input
-              class="input mx-1"
-              type="text"
-              placeholder="Mention source website"
-              name="url"
-              id="url"
-              value="{{ data.url }}"
-            />
+            <input class="input mx-1" type="text" placeholder="Mention source website" name="url" id="url"
+              value="{{ data.url }}" />
           </p>
         </div>
       </div>

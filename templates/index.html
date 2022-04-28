@@ -1,9 +1,5 @@
 {% extends "layout.html" %} {% load static %} {% block css %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}" />
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
 {% endblock %} {% block body %}
 
 <!-- Landing Page -->
@@ -12,12 +8,8 @@
     <div class="header__content">
       <h1>Prepare youself with Prepup and Get hired ith hireup.</h1>
       <p>Hireup is the platform for both job seekers and talent hunters.</p>
-      <a href="{% url 'Recruitersignup' %}"
-        ><button class="header__btn">For Companies</button></a
-      >
-      <a href="{% url 'Usersignup' %}"
-        ><button class="header__btn outline">Job Seekers</button></a
-      >
+      <a href="{% url 'Recruitersignup' %}"><button class="header__btn">For Companies</button></a>
+      <a href="{% url 'Usersignup' %}"><button class="header__btn outline">Job Seekers</button></a>
     </div>
     <div class="header__img showImage">
       <img src="{% static 'images/landing.svg' %}" alt="" />
@@ -45,13 +37,7 @@
       </div>
       <div class="field mr-1 is-hidden-mobile">
         <p class="control has-icons-left has-icons-right">
-          <input
-            class="input"
-            type="text"
-            placeholder="Location"
-            class="is-small"
-            size="5"
-          />
+          <input class="input" type="text" placeholder="Location" class="is-small" size="5" />
           <span class="icon is-small is-left">
             <i class="fa fa-map-marker"></i>
           </span>
@@ -71,10 +57,7 @@
     <div class="card">
       <div class="card__header">
         <div>
-          <img
-            class=""
-            src="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/media/{{i.company.company_logo}}"
-          />
+          <img class="" src="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/media/{{i.company.company_logo}}" />
         </div>
         <div class="card__info">
           <h2 class="title is-6 m-0">{{i.work_name}}</h2>
@@ -96,12 +79,12 @@
         </div>
       </div>
       <div class="card__apply mt-3">
-        <a class="button is-white py-1 px-0 is-size-6"
-          ><p class="date is-size-4" style="font-size: 14px !important">
+        <a class="button is-white py-1 px-0 is-size-6">
+          <p class="date is-size-4" style="font-size: 14px !important">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
             &nbsp;{{i.get_date}}
-          </p></a
-        >
+          </p>
+        </a>
         <button class="button is-primary py-1" type="button" href="">
           Apply Now
         </button>
@@ -123,9 +106,7 @@
         Prepup provides you notes for subjects and interview preparation guides.
       </p>
 
-      <a href="{% url 'prepIndex' %}"
-        ><button class="header__btn outline">Let's Prepare</button></a
-      >
+      <a href="{% url 'prepIndex' %}"><button class="header__btn outline">Let's Prepare</button></a>
     </div>
   </div>
 </div>
