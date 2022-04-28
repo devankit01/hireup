@@ -67,22 +67,7 @@ WSGI_APPLICATION = 'MainApp.wsgi.application'
 ASGI_APPLICATION = 'MainApp.asgi.application'
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'hireup',
-#         'USER': 'postgres',
-#         'PASSWORD': 'b9bVlgkoGdio7wz0XbUr',
-#         'HOST': 'hireup1.crj5mpd66hkq.us-east-1.rds.amazonaws.com',
-#         'PORT': '5432',
-#     }
-# }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+
 
 AWS_S3_ENDPOINT_URL = 'https://s3.amazonaws.com'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
