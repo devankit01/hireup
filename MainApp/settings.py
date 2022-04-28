@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'UserApp',
     'NotesApp',
     'ckeditor',
+    'django_s3_sqlite',
     'channels',
     'chatapp',
 ]
@@ -65,8 +66,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'MainApp.wsgi.application'
 ASGI_APPLICATION = 'MainApp.asgi.application'
-
-
 
 
 AWS_S3_ENDPOINT_URL = 'https://s3.amazonaws.com'
