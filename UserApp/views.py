@@ -160,8 +160,10 @@ def userprofile(request):
                     return render(request, 'users/editUserProfile.html', {"data": user_profile})
                 user_profile.first_name = user.first_name
                 user_profile.last_name = user.last_name
-                user_profile.tech_stack = eval(Skill.objects.filter(
-                    username=request.user).first().name)
+                skill_object = Skill.objects.filter(
+                    username=request.user)
+                if skill_object.exists():
+                    user_profile.tech_stack = eval(skill_object.first().name)
                 # EDUCATION
                 user_profile.education = Education.objects.filter(
                     username=request.user).order_by('start_year')
@@ -333,7 +335,6 @@ def editUserProfile(request):
                 user_resume_update = UserProfile(username=user)
                 user_resume_update.resume = user_resume_update.resume
                 user_data['resume'] = user_resume_update.resume
-
             user_profile.update(**user_profile_data)
             user_resume_update.save()
             # adding skills
@@ -362,7 +363,7 @@ def editUserProfile(request):
         'phone': user_basic_info.phone,
         'first_name': user_data.first_name,
         'last_name': user_data.last_name,
-        'email': user_data.email,
+        'email': user_data,
         'fb': user_basic_info.fb,
         'lkd': user_basic_info.lkd,
         'git': user_basic_info.git,
