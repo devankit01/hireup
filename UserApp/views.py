@@ -148,7 +148,7 @@ def signin(request):
 
 def userprofile(request):
     try:
-        if request.session.get('username', None) or user:
+        if request.session.get('username', None):
             user = get_object_or_404(User, username=request.user)
             user_profile = UserProfile.objects.filter(username=user)
             if user_profile.exists():
