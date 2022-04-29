@@ -26,19 +26,30 @@ def homechat(request):
 def Chatroom(request,user):
     print(request.session)
     if request.session.get('username', None):
-            
             user_main = get_object_or_404(User, username=request.user)
         # if RecruiterProfile.objects.filter(username=user_main).exists():
         #     recuiter=RecruiterProfile.objects.filter(username=user_main).first()
             user1=user_main
-            print(user1)
             user2=User.objects.get(username=user)
-            print("hua")
             threads=SplitThread(user1,user2)
             if threads:
                 thread=Thread.objects.filter(name=threads.name).first()
                 chats=Message.objects.filter(thread=thread)
-                return render(request,"chatapp/index.html",{'chatuser':user,'chats':chats})
+                # other_chats=Message.objects.exclude(thread=thread)
+                print("mychat")
+                for i in chats:
+                    if (i.sender.email==user):
+                         print("mychats")
+                         print(i.text)
+                    else:
+                        print("other chats")
+                        print(i.text)
+                        
+                # print("otherchats")
+                # for i in other_chats:
+                #     print(i.sender)
+                print(user)
+                return render(request,"chatapp/index.html",{'chatuser':user,'ourchats':chats,'user':user_main.email})
             else:
                 us1=user1.id
                 us2=user2.id

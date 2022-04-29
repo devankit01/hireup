@@ -14,7 +14,6 @@ class Thread(TrackingModel):
         ('personal', 'Personal'),
         ('group', 'Group')
     )
-
     name = models.CharField(max_length=50, null=True, blank=True)
     thread_type = models.CharField(max_length=15, choices=THREAD_TYPE, default='personal')
     users = models.ManyToManyField('auth.User')

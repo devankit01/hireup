@@ -83,7 +83,8 @@
 									<span class="msg_time">8:40 AM, Today</span>
 								</div>
 							</div>
-							{% for i in chats %} 
+							{% for i in ourchats %} 
+							{% if  i.sender.email != chatuser %}
 							<div class="d-flex justify-content-end mb-4">
 								<div class="msg_cotainer_send">
 									{{i.text}}
@@ -93,16 +94,18 @@
 									<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
 								</div>
 							</div>
-							{% endfor %}
+							{% else %}
 							<div class="d-flex justify-content-start mb-4">
 								<div class="img_cont_msg">
 									<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
 								</div>
 								<div class="msg_cotainer">
-									I am good too, thank you for your chat template
+									{{i.text}}
 									<span class="msg_time">9:00 AM, Today</span>
 								</div>
 							</div>
+							{% endif %}
+							{% endfor %}
 						</div>
 						<div class="card-footer">
 							<div class="input-group">
@@ -120,9 +123,12 @@
 			</div>
 		</div>
 		{{ chatuser|json_script:"group-name"}}
+		{{user|json_script:"Sender"}}
         <script>
             const groupname=JSON.parse(document.getElementById('group-name').textContent)
+			const sender=JSON.parse(document.getElementById('Sender').textContent)
             alert(groupname)
+			
             {% comment %} var ws= new WebSocket('ws://127.0.0.1:8000/ws/sc/') {% endcomment %}
             var ws=new WebSocket('ws://'+window.location.host+'/ws/user/sc/'+groupname+'/')
             ws.onopen=function(){
@@ -133,19 +139,32 @@
                 const data=JSON.parse(event.data)
                 console.log(data.msg)
                 console.log("data",data)
-                //document.querySelector('#chat-log').innerHtml+=(data.msg+
-                //'\n')
 				const div = document.createElement('div');
 				div.class="d-flex justify-content-end mb-4";
-				div.innerHTML=`<div class="d-flex justify-content-end mb-4">
-					<div class="msg_cotainer_send">
-						${data.msg}
-						<span class="msg_time_send">8:55 AM, Today</span>
-					</div>
-					<div class="img_cont_msg">
-						<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
-					</div>
-				</div>`
+				console.log(data)
+				if(data.sender==sender){
+					div.innerHTML=`<div class="d-flex justify-content-end mb-4">
+						<div class="msg_cotainer_send">
+							${data.msg}
+							<span class="msg_time_send">8:55 AM, Today</span>
+						</div>
+						<div class="img_cont_msg">
+							<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
+						</div>
+					</div>`
+				}
+				else{
+					div.innerHTML=`<div class="d-flex justify-content-start mb-4">
+						<div class="img_cont_msg">
+							<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
+						</div>
+						<div class="msg_cotainer">
+							${data.msg}
+							<span class="msg_time">9:00 AM, Today</span>
+						</div>
+					</div>`
+				}
+				
 				
 				document.getElementById('chat-log').appendChild(div);
             }
@@ -160,7 +179,10 @@
                 
                 const messageInputDom=document.getElementById('chat-message-input').value;
                 ws.send(JSON.stringify({
-                    'msg':messageInputDom
+                    'msg':messageInputDom,
+					'Reciever':groupname,
+					'sender':sender
+								
                 }))
                 document.getElementById('chat-message-input').value="";
             }
