@@ -9,3 +9,5 @@ sqlparse==0.4.2
 psycopg2-binary==2.8.6
 django_s3_sqlite
 channels==3.0.4
+django-storages
+boto3
