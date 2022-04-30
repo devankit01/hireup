@@ -76,11 +76,17 @@ AWS_SECRET_ACCESS_KEY = 'qvvCnNapK6ZfRzm7WgPrgSX3ocrQ3BxiYNnAOCr/'
 AWS_STORAGE_BUCKET_NAME = 'hireup-project'
 AWS_DEFAULT_ACL = None
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django_s3_sqlite",
+#         "NAME": "db.sqlite3",
+#         "BUCKET": "hireup-project",
+#     }
+# }
 DATABASES = {
-    "default": {
-        "ENGINE": "django_s3_sqlite",
-        "NAME": "db.sqlite3",
-        "BUCKET": "hireup-project",
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
