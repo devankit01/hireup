@@ -11,3 +11,4 @@ django_s3_sqlite
 channels==3.0.4
 django-storages
 boto3
+channels-redis==3.4.0
