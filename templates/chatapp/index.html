@@ -178,13 +178,20 @@
             document.getElementById('chat-message-submit').onclick=function(event){
                 
                 const messageInputDom=document.getElementById('chat-message-input').value;
-                ws.send(JSON.stringify({
-                    'msg':messageInputDom,
-					'Reciever':groupname,
-					'sender':sender
-								
-                }))
-                document.getElementById('chat-message-input').value="";
+				$("#chat-message-input").keypress(function(event) {
+					console.log(event)
+					if (event.keyCode == 13) {
+						event.preventDefault();
+						ws.send(JSON.stringify({
+							'msg':messageInputDom,
+							'Reciever':groupname,
+							'sender':sender
+										
+						}));
+						document.getElementById('chat-message-input').value="";
+					}
+				});
+                
             }
 
         </script>

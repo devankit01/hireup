@@ -77,10 +77,13 @@ AWS_STORAGE_BUCKET_NAME = 'hireup-project'
 AWS_DEFAULT_ACL = None
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django_s3_sqlite",
-        "NAME": "db.sqlite3",
-        "BUCKET": "hireup-project",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'hireup',
+        'USER': 'postgres',
+        'PASSWORD': 'b9bVlgkoGdio7wz0XbUr',
+        'HOST': 'hireup1.crj5mpd66hkq.us-east-1.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
