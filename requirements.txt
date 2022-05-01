@@ -51,6 +51,7 @@ django-restframework==0.0.1
 django-storages==1.12.3
 django-templated-mail==1.1.1
 django-utils-six==2.0
+<<<<<<< HEAD
 djangochannelsrestframework==1.0.0
 djangorestframework==3.13.1
 djangorestframework-simplejwt==5.1.0
@@ -181,3 +182,14 @@ xkit==0.0.0
 zappa==0.54.1
 zipp==1.0.0
 zope.interface==5.4.0
+=======
+Pillow==9.1.0
+pytz==2022.1
+sqlparse==0.4.2
+psycopg2-binary==2.8.6
+django_s3_sqlite
+channels==3.0.4
+django-storages
+boto3
+channels-redis==3.4.0
+>>>>>>> 6f63ee2f73954fbc1a9b5c8f0119793b18964595

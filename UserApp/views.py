@@ -319,24 +319,31 @@ def editUserProfile(request):
                 'email': request.POST['email']
             }
             User.objects.filter(username=request.user).update(**user_data)
-            user_profile_data = {}
-            user_profile_data['phone'] = request.POST.get('phone', None)
-            user_profile_data['fb'] = request.POST.get('fb', None)
-            user_profile_data['lkd'] = request.POST.get('lkd', None)
-            user_profile_data['git'] = request.POST.get('git', None)
-            user_profile_data['hacker'] = request.POST.get('hacker', None)
-            user_profile_data['bio'] = request.POST.get('bio', None)
-            user_profile_data['profile'] = request.POST.get('profile', None)
 
+            user_resume_update = UserProfile(id=user_profile.first().id)
+
+            user_resume_update.phone = user_data['phone'] = request.POST.get(
+                'phone', None)
+            user_resume_update.fb = user_data['fb'] = request.POST.get(
+                'fb', None)
+            user_resume_update.lkd = user_data['lkd'] = request.POST.get(
+                'lkd', None)
+            user_resume_update.git = user_data['git'] = request.POST.get(
+                'git', None)
+            user_resume_update.hacker = user_data['hacker'] = request.POST.get(
+                'hacker', None)
+            user_resume_update.bio = user_data['bio'] = request.POST.get(
+                'bio', None)
+            user_resume_update.profile = user_data['profile'] = request.POST.get(
+                'profile', None)
+            user_resume_update.username = user
             if request.FILES.get('resume', None):
-                user_resume_update = UserProfile(username=user)
                 user_resume_update.resume = request.FILES['resume']
             else:
-                user_resume_update = UserProfile(username=user)
                 user_resume_update.resume = user_resume_update.resume
                 user_data['resume'] = user_resume_update.resume
-            user_profile.update(**user_profile_data)
             user_resume_update.save()
+
             # adding skills
             skill_objects = Skill.objects.filter(username=request.user)
             if skill_objects.exists():
@@ -345,15 +352,7 @@ def editUserProfile(request):
             else:
                 Skill.objects.create(username=request.user,
                                      name=request.POST.getlist('stack'))
-            # adding skills
-            # if request.FILES.get('resume', None) == False:
-            user_data['phone'] = request.POST.get('phone', None)
-            user_data['fb'] = request.POST.get('fb', None)
-            user_data['lkd'] = request.POST.get('lkd', None)
-            user_data['git'] = request.POST.get('git', None)
-            user_data['hacker'] = request.POST.get('hacker', None)
-            user_data['bio'] = request.POST.get('bio', None)
-            user_data['profile'] = request.POST.get('profile', None)
+
             user_data['tech_stack'] = request.POST.getlist('stack')
             return render(request, 'users/userProfile.html', {"data": user_data})
     user_data = User.objects.filter(username=request.user).first()
