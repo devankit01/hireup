@@ -1,4 +1,4 @@
-body,html{
+/* body,html{
     height: 100%;
     margin: 0;
     background: #7F7FD5;
@@ -221,4 +221,84 @@ background-color: rgba(0,0,0,0.2);
 .contacts_card{
 margin-bottom: 15px !important;
 }
+} */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.main_container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.main_container .main_heading{
+    width: 100%;
+    color: white;
+    padding: 2rem 0;
+    background: slategrey;
+}
+.main_container .main_heading h1{
+    text-align: center;
+    font-size: xx-large;
+}
+.main_container .msg_container{
+    width: 90%;
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+}
+.msg_container .left_msg{
+    float: left;
+    margin-top: 4rem;
+    display: flex;
+    justify-content: end;
+}
+.msg_container .left_msg span{
+    padding: 10px 15px;
+    background-color: #45bf45;
+    color: white;
+    border-radius: 6px;
+}
+.msg_container .right_msg{
+    float: right;
+    margin-top: 4rem;
+}
+.msg_container .right_msg span{
+    padding: 10px 15px;
+    background-color: #4598bf;
+    color: white;
+    border-radius: 6px;
+}
+.main_container .send_div{
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    width: 100%;
+    padding: 1rem 0;
+    align-items: center;
+    justify-content: center;
+    background: white;
+}
+.send_div .input_div{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.send_div .input_div input{
+    padding: 5px 1rem;
+    width: 95%;
+}
+.send_div .btn_div{
+    display: flex;
+    width: 12%;
+    justify-content: left;
+    align-items: center;
+}
+.send_div .btn_div span{
+    background-color: #3273dc;
+    color: white;
+    padding: 3px 22px;
 }
