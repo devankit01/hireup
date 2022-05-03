@@ -35,20 +35,6 @@ def Chatroom(request,user):
             if threads:
                 thread=Thread.objects.filter(name=threads.name).first()
                 chats=Message.objects.filter(thread=thread)
-                # other_chats=Message.objects.exclude(thread=thread)
-                print("mychat")
-                for i in chats:
-                    if (i.sender.email==user):
-                         print("mychats")
-                         print(i.text)
-                    else:
-                        print("other chats")
-                        print(i.text)
-                        
-                # print("otherchats")
-                # for i in other_chats:
-                #     print(i.sender)
-                print(user)
                 return render(request,"chatapp/index.html",{'chatuser':user,'ourchats':chats,'user':user_main.email})
             else:
                 us1=user1.id
@@ -62,7 +48,7 @@ def Chatroom(request,user):
                 return render(request,"chatapp/index.html",{'chatuser':user})
 
 def SplitThread(user1,user2):
-    # try:
+    try:
         threads=Thread.objects.filter(thread_type ='personal')
         print(user1.id,user2.id)
         threads=threads.filter(users__in=[user1.id,user2.id]).distinct()
@@ -73,5 +59,19 @@ def SplitThread(user1,user2):
             print(i.name[:user11en],user1.id,"---------", i.name[-user2len:],user2.id)
             if (int(i.name[:user11en])==user1.id and int(i.name[-user2len:])==user2.id) or (int(i.name[:user11en])==user2.id and int(i.name[-user2len:])==user1.id):
                 return i
-    # except:
-    #     return None
+    except:
+        return None
+
+
+def mychats(request):
+    print("hua")
+    if request.session.get('username', None):
+        user_main = get_object_or_404(User, username=request.user)
+        # if RecruiterProfile.objects.filter(username=user_main).exists():
+        #     recuiter=RecruiterProfile.objects.filter(username=user_main).first()
+        user1=user_main
+        threads=Thread.objects.filter(users=user1)
+        print("hua")
+        print(threads)
+        return HttpResponse("ok done")
+           

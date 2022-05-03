@@ -9,12 +9,13 @@
 	<head>
 		<title>Chat  </title>
 		{% comment %} <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> {% endcomment %}
+		
+        {% block css %}
+		<link rel="stylesheet" href="{% static 'css/chatapp/chatapp.css' %}" />
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
-        {% block css %}
-		<link rel="stylesheet" href="{% static 'css/chatapp/chatapp.css' %}" />
 		{% endblock %}
 	</head>
 	<!--Coded With Love By Mutiullah Samim-->
@@ -26,7 +27,7 @@
 			</div>
 			<div class="msg_container" id="chat-log">
 				{% for i in ourchats %}
-				{% if i.sender.email != chatuser %}
+				{% if i.sender.email == chatuser %}
 				<div class="right_msg">
 					<span>{{i.text}} </span>
 				</div>
@@ -41,81 +42,79 @@
 				<div class="input_div">
 					<input type="text" id="chat-message-input"  placeholder="Type your message..."/>
 				</div>
-				<div class="btn_div">
-					<span id="chat-message-submit">Send</span>
+				<div class="btn_div" id="chat-message-submit">
+					<span >Send</span>
 				</div>
 			</div>
 		</div>
 		{{ chatuser|json_script:"group-name"}}
 		{{user|json_script:"Sender"}}
-		{% endblock %}
-		
-		{% block script %}
 		<script>
+		{% comment %} window.open("{% url 'Chatroom' user=chatuser %}",width=500,height=500) {% endcomment %}
 		const groupname=JSON.parse(document.getElementById('group-name').textContent)
-const sender=JSON.parse(document.getElementById('Sender').textContent)
-{% comment %} document.getElementById('chat-log').scrollBy(0,-20); {% endcomment %}
-{% comment %} var ws= new WebSocket('ws://127.0.0.1:8000/ws/sc/') {% endcomment %}
-var ws=new WebSocket('ws://'+window.location.host+'/ws/user/sc/'+groupname+'/')
-ws.onopen=function(){
-console.log("websocket connection open...") 
-}
-ws.onmessage=function(event){
-console.log("websocke message recieved from the server side",event)
-const data=JSON.parse(event.data)
-console.log(data.msg)
-console.log("data",data)
-alert("ojdjddl")
-div.class="d-flex justify-content-end mb-4";
-console.log(data)
-if(data.sender==sender){
-div.innerHTML=`<div class="right_msg">
-	<span>${data.msg}</span>
-</div>`
-}
-else{
-div.innerHTML=`<div class="left_msg">
-	<span>${data.msg}</span>
-</div>`
-}
-document.getElementById('chat-log').appendChild(div);
-}
-ws.onerror=function(event){
-console.log("error ",event)
-}
-ws.onclose=function(event){
-console.log("websocket has been close ")
-}
+		const sender=JSON.parse(document.getElementById('Sender').textContent)
+		var ws=new WebSocket('ws://'+window.location.host+'/ws/user/sc/'+groupname+'/')
+		ws.onopen=function(){
+		console.log("websocket connection open...") 
+		}
+		ws.onmessage=function(event){
+		console.log("websocke message recieved from the server side",event)
+		const data=JSON.parse(event.data)
+		const div = document.createElement('div');
+		
+			console.log(data)
+			if(data.sender==sender){
+				div.classList.add("left_msg")
+				div.innerHTML=`
+					<span>${data.msg}</span>
+				`
+				}
+			else{
+				div.classList.add("right_msg")
+				div.innerHTML=`
+					<span>${data.msg}</span>
+				`
+			}
+		document.getElementById('chat-log').appendChild(div);
+		}
+		ws.onerror=function(event){
+			console.log("error ",event)
+		}
+		ws.onclose=function(event){
+			console.log("websocket has been close ")
+		}
 
-{% comment %} document.getElementById('chat-message-submit').onclick=function(event){ {% endcomment %}
-$("#chat-message-input").keypress(function(event) {
-const messageInputDom=document.getElementById('chat-message-input').value;
-console.log(event)
-if (event.which==13) {
-event.preventDefault();
-ws.send(JSON.stringify({
-'msg':messageInputDom,
-'Reciever':groupname,
-'sender':sender
-}));
-alert("hua")
-document.getElementById('chat-message-input').value=""; 
-}
-else 
-{
-document.getElementById('chat-message-submit').onclick=function(event){
-event.preventDefault();
-ws.send(JSON.stringify({
-'msg':messageInputDom,
-'Reciever':groupname,
-'sender':sender
-}));
-document.getElementById('chat-message-input').value=""; 
-alert("hogyA")
-}
-}
+		{% comment %} document.getElementById('chat-message-submit').onclick=function(event){ {% endcomment %}
+		$("#chat-message-input").keypress(function(event) {
+		const messageInputDom=document.getElementById('chat-message-input').value;
+		console.log(event)
+		
+		if (event.which==13) {
+		event.preventDefault();
+		ws.send(JSON.stringify({
+		'msg':messageInputDom,
+		'Reciever':groupname,
+		'sender':sender
+		}));
+		alert("hua")
+		document.getElementById('chat-message-input').value=""; 
+		}
+		else 
+		{
+		document.getElementById('chat-message-submit').onclick=function(event){
+		
+		event.preventDefault();
+		ws.send(JSON.stringify({
+		'msg':messageInputDom,
+		'Reciever':groupname,
+		'sender':sender
+		}));
+		document.getElementById('chat-message-input').value=""; 
+		alert("hogyA")
+		}
+		}
 
-});
+		});
 </script>
-		{% endblock %}
+{% endblock %}
 

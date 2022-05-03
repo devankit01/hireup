@@ -487,7 +487,7 @@ def profile(request, user):
             username=user).order_by('issue_date')
         # CERTIFICATION
 
-        return render(request, 'users/profile.html', {"data": user_profile})
+        return render(request, 'users/profile.html', {"data": user_profile,'user':user})
 
 
 def resumeViewer(request, user):

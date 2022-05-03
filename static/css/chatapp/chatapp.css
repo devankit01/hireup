@@ -251,7 +251,7 @@ margin-bottom: 15px !important;
 }
 .msg_container .left_msg{
     float: left;
-    margin-top: 4rem;
+    margin-bottom: 4rem;
     display: flex;
     justify-content: end;
 }
@@ -263,7 +263,7 @@ margin-bottom: 15px !important;
 }
 .msg_container .right_msg{
     float: right;
-    margin-top: 4rem;
+    margin-bottom: 6rem;
 }
 .msg_container .right_msg span{
     padding: 10px 15px;

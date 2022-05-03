@@ -13,9 +13,7 @@
     <div>
       <p>
         <span style="font-size: x-large">
-          
         {{data.first_name}}&nbsp;{{data.last_name}}&nbsp;&nbsp;<span class="icon has-text-primary">
-
         </span>
       </p>
       <p class="headline">{{data.profile}}</p>
@@ -42,7 +40,7 @@
       <div class="connect__btn">
         <a href="{% url 'resumeViewer' user=data.username %}" class="button is-primary" target="blank">Resume</a>
         <a href="" class="button is-primary-outline has-text-color-primary"
-          >Contact</a
+          onclick="ChatNow()">Chat Now</a
         >
       </div>
     </div>
@@ -123,6 +121,11 @@
             <span class="skill">English</span>
         </div>
     </div>
-
+    <script>
+      function ChatNow(){
+        window.open("{% url 'Chatroom' user=user %}",width=10,height=10)
+      }
+      
+    </script>
     {% endblock %} {% block script %} {% endblock %}
 </div>
