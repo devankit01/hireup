@@ -486,6 +486,8 @@ def profile(request, user):
         user_profile.certification = Certification.objects.filter(
             username=user).order_by('issue_date')
         # CERTIFICATION
+        user_profile.resume = "https://shift-agreements.s3.ap-south-1.amazonaws.com/" + \
+            str(user_profile.resume)
 
         return render(request, 'users/profile.html', {"data": user_profile,'user':user})
 
@@ -495,7 +497,8 @@ def resumeViewer(request, user):
     pdf = UserProfile.objects.filter(username=user).first()
     if pdf:
         try:
-            print(pdf.resume, type(pdf.resume))
-            return FileResponse(open("media/"+str(pdf.resume), 'rb'), content_type='application/pdf')
+            print(
+                "https://shift-agreements.s3.ap-south-1.amazonaws.com/"+str(pdf.resume))
+            return FileResponse(open("https://shift-agreements.s3.ap-south-1.amazonaws.com/"+str(pdf.resume), 'rb'), content_type='application/pdf')
         except FileNotFoundError:
             raise Http404('not found')
