@@ -1,0 +1,224 @@
+{% extends "layout.html" %} {% load static %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Chat  </title>
+		{% comment %} <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> {% endcomment %}
+		
+        {% block css %}
+		<link rel="stylesheet" href="{% static 'css/chatapp/mychats.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/chatapp/chatapp.css' %}" />
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+		{% endblock %}
+	</head>
+
+	<!--Coded With Love By Mutiullah Samim-->
+	{% block body %}
+    
+    <div id="container">
+        <aside>
+
+            <ul>
+                {% for i in others_chats %}
+                <li>
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg" alt="">
+                    <div>
+                        <a href="#">
+                        <h2>{{i.first_name}} {{i.last_name}}</h2>
+                        <h3>
+                            <span class="status orange"></span>
+                            offline
+                        </h3>
+                    </a>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </aside>
+        <main>
+            <header>
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg" alt="">
+                <div>
+                    <h2>Chat with Vincent Porter</h2>
+                    <h3>already 1902 messages</h3>
+                </div>
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_star.png" alt="">
+            </header>
+
+            <div class="msg_container chat_msg" id="chat-log">
+				{% for i in ourchats %}
+				{% if i.sender.email == chatuser %}
+				<div class="right_msg">
+					<span>{{i.text}} </span>
+				</div>
+				{% else %}
+				<div class="left_msg">
+					<span>{{i.text}}</span>
+				</div>
+				{% endif %}
+				{% endfor %}
+			
+			</div>
+			<div class="send_div chat_send_div">
+				<div class="input_div">
+					<input type="text" id="chat-message-input"  placeholder="Type your message..."/>
+				</div>
+				<div class="btn_div" id="chat-message-submit">
+					<span >Send</span>
+				</div>
+			</div>
+            {% comment %} <ul id="chat">
+                <li class="you">
+                    <div class="entete">
+                        <span class="status green"></span>
+                        <h2>Vincent</h2>
+                        <h3>10:12AM, Today</h3>
+                    </div>
+                    <div class="triangle"></div>
+                    <div class="message">
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                    </div>
+                </li>
+                <li class="me">
+                    <div class="entete">
+                        <h3>10:12AM, Today</h3>
+                        <h2>Vincent</h2>
+                        <span class="status blue"></span>
+                    </div>
+                    <div class="triangle"></div>
+                    <div class="message">
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                    </div>
+                </li>
+                <li class="me">
+                    <div class="entete">
+                        <h3>10:12AM, Today</h3>
+                        <h2>Vincent</h2>
+                        <span class="status blue"></span>
+                    </div>
+                    <div class="triangle"></div>
+                    <div class="message">
+                        OK
+                    </div>
+                </li>
+                <li class="you">
+                    <div class="entete">
+                        <span class="status green"></span>
+                        <h2>Vincent</h2>
+                        <h3>10:12AM, Today</h3>
+                    </div>
+                    <div class="triangle"></div>
+                    <div class="message">
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                    </div>
+                </li>
+                <li class="me">
+                    <div class="entete">
+                        <h3>10:12AM, Today</h3>
+                        <h2>Vincent</h2>
+                        <span class="status blue"></span>
+                    </div>
+                    <div class="triangle"></div>
+                    <div class="message">
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                    </div>
+                </li>
+                <li class="me">
+                    <div class="entete">
+                        <h3>10:12AM, Today</h3>
+                        <h2>Vincent</h2>
+                        <span class="status blue"></span>
+                    </div>
+                    <div class="triangle"></div>
+                    <div class="message">
+                        OK
+                    </div>
+                </li>
+            </ul>
+            <footer>
+                <textarea placeholder="Type your message"></textarea>
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_picture.png" alt="">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_file.png" alt="">
+                <a href="#">Send</a>
+            </footer> {% endcomment %}
+        </main>
+    </div>
+    {{ chatuser|json_script:"group-name"}}
+		{{user|json_script:"Sender"}}
+		<script>
+		{% comment %} window.open("{% url 'Chatroom' user=chatuser %}",width=500,height=500) {% endcomment %}
+		const groupname=JSON.parse(document.getElementById('group-name').textContent)
+		const sender=JSON.parse(document.getElementById('Sender').textContent)
+		var ws=new WebSocket('ws://'+window.location.host+'/ws/user/sc/'+groupname+'/')
+		ws.onopen=function(){
+		console.log("websocket connection open...") 
+		}
+		ws.onmessage=function(event){
+		console.log("websocke message recieved from the server side",event)
+		const data=JSON.parse(event.data)
+		const div = document.createElement('div');
+		
+			console.log(data)
+			if(data.sender==sender){
+				div.classList.add("left_msg")
+				div.innerHTML=`
+					<span>${data.msg}</span>
+				`
+				}
+			else{
+				div.classList.add("right_msg")
+				div.innerHTML=`
+					<span>${data.msg}</span>
+				`
+			}
+		document.getElementById('chat-log').appendChild(div);
+		}
+		ws.onerror=function(event){
+			console.log("error ",event)
+		}
+		ws.onclose=function(event){
+			console.log("websocket has been close ")
+		}
+
+		{% comment %} document.getElementById('chat-message-submit').onclick=function(event){ {% endcomment %}
+		$("#chat-message-input").keypress(function(event) {
+		const messageInputDom=document.getElementById('chat-message-input').value;
+		console.log(event)
+		
+		if (event.which==13) {
+		event.preventDefault();
+		ws.send(JSON.stringify({
+		'msg':messageInputDom,
+		'Reciever':groupname,
+		'sender':sender
+		}));
+		alert("hua")
+		document.getElementById('chat-message-input').value=""; 
+		}
+		else 
+		{
+		document.getElementById('chat-message-submit').onclick=function(event){
+		
+		event.preventDefault();
+		ws.send(JSON.stringify({
+		'msg':messageInputDom,
+		'Reciever':groupname,
+		'sender':sender
+		}));
+		document.getElementById('chat-message-input').value=""; 
+		alert("hogyA")
+		}
+		}
+
+		});
+</script>
+{% endblock %}
+

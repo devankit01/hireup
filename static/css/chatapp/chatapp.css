@@ -233,6 +233,9 @@ margin-bottom: 15px !important;
     align-items: center;
     flex-direction: column;
 }
+/* aside css begins*/
+
+/* end of aside css begins */
 .main_container .main_heading{
     width: 100%;
     color: white;
@@ -249,6 +252,7 @@ margin-bottom: 15px !important;
     display: flex;
     flex-direction: column;
 }
+
 .msg_container .left_msg{
     float: left;
     margin-bottom: 4rem;
@@ -263,7 +267,7 @@ margin-bottom: 15px !important;
 }
 .msg_container .right_msg{
     float: right;
-    margin-bottom: 6rem;
+    margin-bottom: 4rem;
 }
 .msg_container .right_msg span{
     padding: 10px 15px;
@@ -281,6 +285,7 @@ margin-bottom: 15px !important;
     justify-content: center;
     background: white;
 }
+
 .send_div .input_div{
     width: 90%;
     display: flex;
