@@ -82,17 +82,13 @@ def mychats(request):
         user1=user_main
         mychats=[]
         threads=Thread.objects.filter(users=user1)
-        
         for i in threads:
             print(i.users.all())
             for j in i.users.all().exclude(email=user1.email):
                 mychats.append(j)
                 print(j.first_name,j.last_name)
         user2=mychats[0]
-        
         threads=SplitThread(user1,user2)
-        print(user2.email)
-        print("dekho")
         if threads:
             thread=Thread.objects.filter(name=threads.name).first()
             chats=Message.objects.filter(thread=thread)
@@ -103,7 +99,24 @@ def mychats(request):
                     print(i.text)
             return render(request,"chatapp/mychats.html",{'chatuser':user2.email,'ourchats':chats,'user':user_main.email,'others_chats':mychats})
            
-
+def Userchats(request,user):
+    if request.session.get('username', None):
+            user_main = get_object_or_404(User, username=request.user)
+        # if RecruiterProfile.objects.filter(username=user_main).exists():
+        #     recuiter=RecruiterProfile.objects.filter(username=user_main).first()
+            user1=user_main
+            user2=User.objects.get(username=user)
+            mychats=[]
+            threads=Thread.objects.filter(users=user1)
+            for i in threads:
+                print(i.users.all())
+                for j in i.users.all().exclude(email=user1.email):
+                    mychats.append(j)
+            threads=SplitThread(user1,user2)
+            if threads:
+                thread=Thread.objects.filter(name=threads.name).first()
+                chats=Message.objects.filter(thread=thread)
+                return render(request,"chatapp/mychats.html",{'chatuser':user,'ourchats':chats,'user':user_main.email,'others_chats':mychats})
 
 def SplitThread(user1,user2):
     # try:
