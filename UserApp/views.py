@@ -130,6 +130,9 @@ def signin(request):
             else:
                 status = False
             print(status)
+            if user.is_superuser:
+                return redirect('interviewIndexAdmin')
+
             if status and user.is_active:
 
                 auth.login(request, user)
@@ -489,7 +492,7 @@ def profile(request, user):
         user_profile.resume = "https://shift-agreements.s3.ap-south-1.amazonaws.com/" + \
             str(user_profile.resume)
 
-        return render(request, 'users/profile.html', {"data": user_profile,'user':user})
+        return render(request, 'users/profile.html', {"data": user_profile, 'user': user})
 
 
 def resumeViewer(request, user):

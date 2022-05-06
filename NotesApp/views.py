@@ -8,6 +8,17 @@ logger = logging.getLogger('watchtower-logger')
 # Create your views here.
 
 
+def checkSuperUser(request):
+    if request.user:
+        user = request.user
+        userObj = User.objects.filter(username=user).first()
+        print(userObj.is_superuser)
+        if userObj.is_superuser:
+            return True
+        else:
+            return False
+
+
 def prepIndex(request):
     studymaterials = StudyMaterials.objects.filter(IsApproved=True)
     print(studymaterials)
@@ -23,18 +34,25 @@ def interviewIndex(request):
 
 
 def interviewIndexAdmin(request):
-    Interviews = InterviewPrep.objects.all()
-    print(Interviews)
-    logger.info('Interview  Page Loaded')
-    return render(request, 'prepup/InterviewAdmin.html', {'data': Interviews})
+    if checkSuperUser(request):
+        Interviews = InterviewPrep.objects.all()
+        print(Interviews)
+        logger.info('Interview  Page Loaded')
+        return render(request, 'prepup/InterviewAdmin.html', {'data': Interviews})
+    else:
+        return redirect('signin')
 
 # NotesAdmin begin:
 
 
 def PrepupAdmin(request):
-    studymaterials = StudyMaterials.objects.all()
-    print(studymaterials)
-    return render(request, 'prepup/Admin.html', {'data': studymaterials})
+    if checkSuperUser(request):
+
+        studymaterials = StudyMaterials.objects.all()
+        print(studymaterials)
+        return render(request, 'prepup/Admin.html', {'data': studymaterials})
+    else:
+        return redirect('signin')
 
 
 def OpenFIle(request, id):
@@ -50,92 +68,97 @@ def OpenFIle(request, id):
     with open(file, 'rb') as pdf:
         response = HttpResponse(pdf.read(), content_type='application/pdf')
         return response
-    pdf.closed
 
 
 def prepUpdate(request, id, status):
-    if status == 'update':
-        if StudyMaterials.objects.filter(id=id).first().IsApproved:
-            StudyMaterials.objects.filter(id=id).update(IsApproved=False)
-        else:
-            StudyMaterials.objects.filter(id=id).update(IsApproved=True)
-    if status == 'delete':
-        StudyMaterials.objects.filter(id=id).delete()
-    return redirect('PrepupAdmin')
+    if checkSuperUser(request):
+
+        if status == 'update':
+            if StudyMaterials.objects.filter(id=id).first().IsApproved:
+                StudyMaterials.objects.filter(id=id).update(IsApproved=False)
+            else:
+                StudyMaterials.objects.filter(id=id).update(IsApproved=True)
+        if status == 'delete':
+            StudyMaterials.objects.filter(id=id).delete()
+        return redirect('PrepupAdmin')
+    else:
+        return redirect('signin')
 
 
 def prepEdit(request, id=None):
-    if request.method == 'POST':
-        if id != None and id != 'None':
-            material = StudyMaterials(id=id)
-            material.IsApproved = material.IsApproved
-        else:
-            material = StudyMaterials()
+    if checkSuperUser(request):
 
-        material.Name = request.POST['name']
-        material.subject = request.POST['subject']
-        material.year = request.POST['year']
-        material.Branch = request.POST['branch']
-        material.url = request.POST['url']
-        if request.FILES.get('file', None) == None:
+        if request.method == 'POST':
             if id != None and id != 'None':
-                material.file = StudyMaterials.objects.filter(
-                    id=id).first().file
+                material = StudyMaterials(id=id)
+                material.IsApproved = material.IsApproved
+            else:
+                material = StudyMaterials()
+
+            material.Name = request.POST['name']
+            material.subject = request.POST['subject']
+            material.year = request.POST['year']
+            material.Branch = request.POST['branch']
+            material.url = request.POST['url']
+            if request.FILES.get('file', None) == None:
+                if id != None and id != 'None':
+                    material.file = StudyMaterials.objects.filter(
+                        id=id).first().file
+            else:
+                material.file = request.FILES['file']
+            material.createdBy = request.user
+            material.save()
+            return redirect('PrepupAdmin')
+        data = {'id': None}
+        if id != None and id != 'None':
+            data = StudyMaterials.objects.filter(id=id).first()
+            page = 'Edit'
+            button = 'Update'
         else:
-            material.file = request.FILES['file']
-        material.createdBy = request.user
-        material.save()
-        return redirect('PrepupAdmin')
-    data = {'id': None}
-    if id != None and id != 'None':
-        data = StudyMaterials.objects.filter(id=id).first()
-        page = 'Edit'
-        button = 'Update'
+            page = 'Add'
+            button = 'Save'
+        return render(request, 'prepup/addEditPrep.html', {'data': data, 'page': page, 'button': button})
     else:
-        page = 'Add'
-        button = 'Save'
-    return render(request, 'prepup/addEditPrep.html', {'data': data, 'page': page, 'button': button})
+        return redirect('signin')
 
 
 def interviewPrepUpdate(request, id, status):
-    if status == 'update':
-        if InterviewPrep.objects.filter(id=id).first().IsApproved:
-            InterviewPrep.objects.filter(id=id).update(IsApproved=False)
-        else:
-            InterviewPrep.objects.filter(id=id).update(IsApproved=True)
-    if status == 'delete':
-        InterviewPrep.objects.filter(id=id).delete()
-    return redirect('interviewIndexAdmin')
+    if checkSuperUser(request):
+
+        if status == 'update':
+            if InterviewPrep.objects.filter(id=id).first().IsApproved:
+                InterviewPrep.objects.filter(id=id).update(IsApproved=False)
+            else:
+                InterviewPrep.objects.filter(id=id).update(IsApproved=True)
+        if status == 'delete':
+            InterviewPrep.objects.filter(id=id).delete()
+        return redirect('interviewIndexAdmin')
+    else:
+        return redirect('signin')
 
 
 def interviewPrepEdit(request, id=None):
-    if request.method == 'POST':
-        if id != None and id != 'None':
-            material = InterviewPrep(id=id)
-            material.IsApproved = material.IsApproved
-        else:
-            material = InterviewPrep()
+    if checkSuperUser(request):
 
-        material.name = request.POST['name']
-        material.category = request.POST['category']
-
-        material.tags = Tags.objects.filter(name=request.POST['tags'])
-        material.url = request.POST['url']
-        if request.FILES.get('file', None) == None:
+        if request.method == 'POST':
             if id != None and id != 'None':
-                material.file = InterviewPrep.objects.filter(
-                    id=id).first().file
-        else:
-            material.file = request.FILES['file']
-        material.createdBy = request.user
-        material.save()
-        return redirect('interviewIndexAdmin')
-    data = {'id': None}
-    if id != None and id != 'None':
-        data = InterviewPrep.objects.filter(id=id).first()
-        page = 'Edit'
-        button = 'Update'
+                material = InterviewPrep(id=id)
+                material.IsApproved = material.IsApproved
+            else:
+                material = InterviewPrep()
+
+            material.name = request.POST['name']
+            material.category = request.POST['category']
+
+            material.tags = Tags.objects.filter(name=request.POST['tags'])
+            material.url = request.POST['url']
+            if request.FILES.get('file', None) == None:
+                if id != None and id != 'None':
+                    material.file = InterviewPrep.objects.filter(
+                        id=id).first().file
+            else:
+                material.file = request.FILES['file']
+            material.createdBy = request.user
+            material.save()
     else:
-        page = 'Add'
-        button = 'Save'
-    return render(request, 'prepup/addEditInterviewPrep.html', {'data': data, 'page': page, 'button': button})
+        return redirect('signin')

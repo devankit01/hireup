@@ -131,8 +131,7 @@
               <a href="{% url 'interviewPrepUpdate' i.id 'update' %}"
                 style="text-decoration: none;color: inherit;"><Button class="UpdateBtn" id=btncheckbox_{{i.id}}
                   style="display: none;">Update</Button></a>
-              <input id=checkbox_{{i.id}} type="checkbox" name="IsApproved" class="switch is-thin" {% if i.IsApproved
-                %}checked{% endif %} onclick="CheckIsApproved(this.id)">
+              <input id=checkbox_{{i.id}} type="checkbox" name="IsApproved" class="switch is-thin" {% if i.IsApproved %}checked{% endif %} onclick="CheckIsApproved(this.id)">
             </div>
           </td>
           <td>{{i.tags}}</td>
