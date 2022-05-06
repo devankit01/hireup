@@ -62,9 +62,9 @@ def Usersignup(request):
                 mail_subject, message, 'youremail', [to_email])
             msg.attach_alternative(message, "text/html")
             msg.send()
-            return HttpResponse('Please confirm your email address to complete the registration')
+            return render(request, 'users/userSignup.html', {"data": 'Please confirm your email address to complete the registration'})
         else:
-            return HttpResponse('User Already Registered')
+            return render(request, 'users/userSignup.html', {"data": 'User Already Registered'})
 
     return render(request, 'users/userSignup.html')
 
