@@ -121,28 +121,22 @@ def signin(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-        print(email, password)
         try:
             user = User.objects.filter(username=email).first()
-            print(user.password, password)
             if user.password == password:
                 status = True
             else:
                 status = False
-            print(status)
             if status and user.is_active:
 
                 auth.login(request, user)
                 request.session['username'] = email
                 return redirect('userprofile')
             else:
-                return HttpResponse('Invalid Credential')
+                return render(request, 'users/signin.html', {'data': 'Invalid Credentials'})
 
         except Exception as e:
-            print(e)
-            print('Login Failed')
             return redirect('signin')
-
     return render(request, 'users/signin.html')
 
 
@@ -207,7 +201,6 @@ def userprofile(request):
 def logout(request):
 
     uid = User.objects.get(username=request.user)
-    print(uid)
     auth.logout(request)
 
     if request.session.has_key('username'):
@@ -489,7 +482,7 @@ def profile(request, user):
         user_profile.resume = "https://shift-agreements.s3.ap-south-1.amazonaws.com/" + \
             str(user_profile.resume)
 
-        return render(request, 'users/profile.html', {"data": user_profile,'user':user})
+        return render(request, 'users/profile.html', {"data": user_profile, 'user': user})
 
 
 def resumeViewer(request, user):
