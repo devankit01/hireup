@@ -97,7 +97,7 @@ def mychats(request):
                 if (i.sender.email==user2.email):
                     print("my chats")
                     print(i.text)
-            return render(request,"chatapp/mychats.html",{'chatuser':user2.email,'ourchats':chats,'user':user_main.email,'others_chats':mychats})
+            return render(request,"chatapp/mychats.html",{'chatuser':user2.email,'ourchats':chats,'user':user_main.email,'others_chats':mychats,'user_detail':user2})
            
 def Userchats(request,user):
     if request.session.get('username', None):
@@ -116,7 +116,7 @@ def Userchats(request,user):
             if threads:
                 thread=Thread.objects.filter(name=threads.name).first()
                 chats=Message.objects.filter(thread=thread)
-                return render(request,"chatapp/mychats.html",{'chatuser':user,'ourchats':chats,'user':user_main.email,'others_chats':mychats})
+                return render(request,"chatapp/mychats.html",{'chatuser':user,'ourchats':chats,'user':user_main.email,'others_chats':mychats,'user_detail':user2})
 
 def SplitThread(user1,user2):
     # try:
