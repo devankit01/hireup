@@ -62,9 +62,9 @@ def Usersignup(request):
                 mail_subject, message, 'youremail', [to_email])
             msg.attach_alternative(message, "text/html")
             msg.send()
-            return HttpResponse('Please confirm your email address to complete the registration')
+            return render(request, 'users/userSignup.html', {"data": 'Please confirm your email address to complete the registration'})
         else:
-            return HttpResponse('User Already Registered')
+            return render(request, 'users/userSignup.html', {"data": 'User Already Registered'})
 
     return render(request, 'users/userSignup.html')
 
@@ -110,9 +110,9 @@ def Recruitersignup(request):
                 mail_subject, message, 'youremail', [to_email])
             msg.attach_alternative(message, "text/html")
             msg.send()
-            return HttpResponse('Please confirm your email address to complete the registration')
+            return render(request, 'users/recruiterSignup.html', {"data": 'Please confirm your email address to complete the registration'})
         else:
-            return HttpResponse('User Already Registered')
+            return render(request, 'users/recruiterSignup.html', {"data": 'User Already Registered'})
 
     return render(request, 'users/recruiterSignup.html')
 
@@ -121,10 +121,8 @@ def signin(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-        print(email, password)
         try:
             user = User.objects.filter(username=email).first()
-            print(user.password, password)
             if user.password == password:
                 status = True
             else:
@@ -139,13 +137,10 @@ def signin(request):
                 request.session['username'] = email
                 return redirect('userprofile')
             else:
-                return HttpResponse('Invalid Credential')
+                return render(request, 'users/signin.html', {'data': 'Invalid Credentials'})
 
         except Exception as e:
-            print(e)
-            print('Login Failed')
             return redirect('signin')
-
     return render(request, 'users/signin.html')
 
 
@@ -210,7 +205,6 @@ def userprofile(request):
 def logout(request):
 
     uid = User.objects.get(username=request.user)
-    print(uid)
     auth.logout(request)
 
     if request.session.has_key('username'):

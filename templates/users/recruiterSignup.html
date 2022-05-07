@@ -12,28 +12,50 @@
     <h3 class="is-size-4"><b>Create your account as Recruiter</b></h3>
     <br />
 
-
-
-
     <form action="" method="post" class="container">
       {% csrf_token %}
 
       <div class="field">
         <label class="label" for="the_email">Email Address</label>
-        <input type="email" name="email" id="the_email" class="input" />
+        <input
+          type="email"
+          name="email"
+          id="the_email"
+          class="input"
+          required
+        />
       </div>
       <div class="field">
         <label class="label" for="the_email">Password</label>
-        <input type="password" name="password" id="the_email" class="input" />
+        <input
+          type="password"
+          name="password"
+          id="the_email"
+          class="input"
+          required
+        />
       </div>
       <div class="field">
         <label class="label" for="the_email">Confirm Password</label>
-        <input type="password" name="password2" id="the_email" class="input" />
+        <input
+          type="password"
+          name="password2"
+          id="the_email"
+          class="input"
+          required
+        />
       </div>
 
       <div class="field">
         <input type="submit" class="button is-primary" />
       </div>
+      {% if data %}
+      <article class="">
+        <div class="message-header" style="background: red">
+          <p>{{data}}</p>
+        </div>
+      </article>
+      {% endif %}
     </form>
   </div>
 </div>
