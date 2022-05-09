@@ -1,5 +1,25 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Work, CompanyProfile, RecruiterProfile, UserProfile, User
+from django.shortcuts import render
+from django.contrib.auth import get_user_model
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.contrib.sites.shortcuts import get_current_site
+from django.shortcuts import render, HttpResponse, Http404, get_object_or_404, redirect
+from django.core.mail import send_mail
+from django.http import HttpResponse
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.utils import six
+from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes, force_text
+from django.core.mail import EmailMultiAlternatives
+from HireApp.models import RecruiterProfile, Skill, UserProfile
+from django.contrib import auth
+from django.contrib.auth.models import User
+from django.db.models import F, Q
+from HireApp.models import CompanyProfile
+from HireApp.models import Work, Education, Experience, Certification
+from datetime import datetime
+from django.http import FileResponse
 
 # Create your views here.
 
@@ -124,9 +144,28 @@ def selectInterview(request, userid, jobid, key):
 
     if key == 'resume_selected':
         work.resume_selected.add(profile)
+        mail_subject = 'Your resume is selected.'
+        content=f"Your resume is selected, you are moving for interview round of {work.work_name}  {work.company.company_name}"
     elif key == 'interview':
         work.hired.add(profile)
+        mail_subject = 'You are selected for the interview.'
+        content=f"Hurrah! You are selected in the interview round of {work.work_name}  {work.company.company_name}."
     elif key == 'onboard':
         work.onboard.add(profile)
+        mail_subject = 'Finally You are onboard.'
+        content=f"Congratulations, You have successfully onboarded of {work.work_name}  {work.company.company_name}."
 
+    message = render_to_string('email/confirmation_email.html', {
+        'user': profile,
+        'content':content
+        
+    })
+    to_email = profile.username
+    
+    # send_mail(mail_subject, message, 'youremail', [to_email])
+    msg = EmailMultiAlternatives(
+        mail_subject, message, 'youremail', [to_email])
+    msg.attach_alternative(message, "text/html")
+    msg.send()
+    print("mail has been send")
     return redirect(manageJob, jobid)
