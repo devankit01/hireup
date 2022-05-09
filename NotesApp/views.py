@@ -28,7 +28,9 @@ def prepIndex(request):
 
 def interviewIndex(request):
     Interviews = InterviewPrep.objects.filter(IsApproved=True)
-    print(Interviews)
+    for inter in Interviews:
+        inter.file = "https://shift-agreements.s3.ap-south-1.amazonaws.com/" + \
+            str(inter.file)
     logger.info('Interview  Page Loaded')
     return render(request, 'prepup/interviewPrep.html', {'data': Interviews})
 

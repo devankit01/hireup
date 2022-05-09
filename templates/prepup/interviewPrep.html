@@ -1,7 +1,6 @@
 {% extends "layout.html" %} {% load static %} {% block css %}
 <link rel="stylesheet" href="{% static 'css/prepup/index.css' %}" />
 
-
 {% endblock %} {% block body %}
 
 <div class="has-background-primary set">
@@ -39,7 +38,7 @@
           </p>
           <p class="m-0 is-size-6 mt-2 mb-1">{{i.category.name}}</p>
           <a href="#"><i class="fa fa-eye"></i></a> &nbsp;
-          <a href="#"><i class="fa fa-download"></i></a>
+          <a href="{{i.file}}" target="blank"><i class="fa fa-download"></i></a>
         </div>
       </div>
     </div>
