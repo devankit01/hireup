@@ -169,3 +169,4 @@ def selectInterview(request, userid, jobid, key):
     msg.send()
     print("mail has been send")
     return redirect(manageJob, jobid)
+

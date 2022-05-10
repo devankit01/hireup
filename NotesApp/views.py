@@ -138,6 +138,23 @@ def interviewPrepUpdate(request, id, status):
     else:
         return redirect('signin')
 
+def SearchPreup(request):
+    
+    q=request.GET['q']
+    try:
+        studymaterials=StudyMaterials.objects.filter(Name__icontains=q,IsApproved=True).order_by('-id')
+    except:
+        studymaterials=[]
+    return render(request, 'prepup/index.html', {'data': studymaterials})
+
+def SearchInterview(request):
+    q=request.GET['q']
+    try:
+        studymaterials=InterviewPrep.objects.filter(name__icontains=q,IsApproved=True).order_by('-id')
+    except:
+        studymaterials=[]
+    return render(request, 'prepup/interviewPrep.html', {'data': studymaterials})
+
 
 def interviewPrepEdit(request, id=None):
     if checkSuperUser(request):

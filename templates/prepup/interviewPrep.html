@@ -9,20 +9,20 @@
     <h2 class="is-size-5 has-text-white"><b>Prepup / Interview Prep</b></h2>
   </div>
 </div>
-
+<form action="{% url 'SearchInterview' %}" >
 <div class="container field is-grouped mt-5 set">
   <div class="field mr-1">
     <p class="control has-icons-left has-icons-right">
-      <input class="input" type="text" placeholder="Search  here..." />
+      <input class="input" type="text" placeholder="Search  here..."  name="q"/>
       <span class="icon is-small is-left">
         <i class="fa fa-search" aria-hidden="true"></i>
       </span>
     </p>
   </div>
 
-  <button class="button is-primary" type="button" href="">Search</button>
+  <button class="button is-primary" type="button">Search</button>
 </div>
-
+</form>
 <!-- Notes -->
 <section class="section container set">
   <div class="card__container">

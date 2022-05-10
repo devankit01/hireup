@@ -17,6 +17,8 @@ urlpatterns = [
     path('interview-prep-edit/<str:id>',
          interviewPrepEdit, name="interviewPrepEdit"),
     path('interview-prep-edit/', interviewPrepEdit, name="interviewPrepEdit"),
+    path('search/Prep/',SearchPreup,name="SearchPreup"),
+    path('search/Study/',SearchInterview,name="SearchInterview"),
 
 
 ]

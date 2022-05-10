@@ -10,11 +10,11 @@
     <h2 class="is-size-5 has-text-white"><b>Prepup / Study Materials</b></h2>
   </div>
 </div>
-
+<form action="{% url 'SearchPreup' %}" >
 <div class="container field is-grouped mt-5 set">
   <div class="field mr-1">
     <p class="control has-icons-left has-icons-right">
-      <input class="input" type="text" placeholder="Search notes here..." />
+      <input class="input" type="text" placeholder="Search notes here..." name="q" />
       <span class="icon is-small is-left">
         <i class="fa fa-search" aria-hidden="true"></i>
       </span>
@@ -23,6 +23,7 @@
 
   <button class="button is-primary" type="button" href="">Search</button>
 </div>
+</form>
 
 <!-- Notes -->
 <section class="section container set">
