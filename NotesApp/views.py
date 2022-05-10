@@ -4,6 +4,7 @@ from django.http import FileResponse, Http404
 from django.shortcuts import redirect, render, HttpResponse
 from . models import *
 import logging
+from django.db.models import Q
 logger = logging.getLogger('watchtower-logger')
 # Create your views here.
 
@@ -142,7 +143,7 @@ def SearchPreup(request):
     
     q=request.GET['q']
     try:
-        studymaterials=StudyMaterials.objects.filter(Q(Name__icontains=q,IsApproved=True) | Q(subject__icontains=q,IsApproved=True)).order_by('-id')
+        studymaterials=StudyMaterials.objects.filter(Q(Name__icontains=q,IsApproved=True) | Q(subject__icontains=q,IsApproved=True) | Q(years__icontains=q,IsApproved=True) | Q(Branch__icontains=q,IsApproved=True) ).order_by('-id')
     except:
         studymaterials=[]
 
