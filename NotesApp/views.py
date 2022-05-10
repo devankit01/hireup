@@ -142,9 +142,10 @@ def SearchPreup(request):
     
     q=request.GET['q']
     try:
-        studymaterials=StudyMaterials.objects.filter(Name__icontains=q,IsApproved=True).order_by('-id')
+        studymaterials=StudyMaterials.objects.filter(Q(Name__icontains=q,IsApproved=True) | Q(subject__icontains=q,IsApproved=True)).order_by('-id')
     except:
         studymaterials=[]
+
     return render(request, 'prepup/index.html', {'data': studymaterials})
 
 def SearchInterview(request):
