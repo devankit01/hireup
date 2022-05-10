@@ -158,6 +158,9 @@ def userprofile(request):
                     return render(request, 'users/editUserProfile.html', {"data": user_profile})
                 user_profile.first_name = user.first_name
                 user_profile.last_name = user.last_name
+                user_profile.resume = "https://shift-agreements.s3.ap-south-1.amazonaws.com/" + \
+            str(user_profile.resume)
+                
                 skill_object = Skill.objects.filter(
                     username=request.user)
                 if skill_object.exists():
