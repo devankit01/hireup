@@ -22,8 +22,8 @@ class StudyMaterials(models.Model):
         ("CE", "CE"),
         ("BT", "BT"),
     )
-    Name = models.CharField(max_length=200)
     subject = models.CharField(max_length=200)
+    Name = models.CharField(max_length=200)
     years = models.CharField(max_length=100, choices=Years)
     Branch = models.CharField(max_length=200, choices=Banches, default=None)
     file = models.FileField(
