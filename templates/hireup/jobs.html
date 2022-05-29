@@ -8,16 +8,18 @@
     <h2 class="is-size-4 mb-5" align="center">
       <b><i class="fa fa-filter" aria-hidden="true"></i> Filters</b>
     </h2>
-    <div class="filter__div">
-      <label for=""><b>Category</b></label>
-      <input class="input mt-2" type="text" placeholder="Type Web, Android, " class="is-small" />
-    </div>
-
-    <div class="filter__div">
-      <label for=""><b>Location</b></label>
-      <input class="input mt-2" type="text" placeholder="Lucknow" class="is-small" />
-    </div>
-    <button class="button is-primary" type="button" href="">Search</button>
+    <form action="{% url 'SearchJob' %}" >
+      <div class="filter__div">
+        <label for=""><b>Category</b></label>
+        <input class="input mt-2" type="text" placeholder="Type Web, Android, " class="is-small" name="c" />
+      </div>
+  
+      <div class="filter__div">
+        <label for=""><b>Location</b></label>
+        <input class="input mt-2" type="text" placeholder="Lucknow" class="is-small"  name="l"/>
+      </div>
+      <button class="button is-primary" type="submit">Search</button>
+    </form>
   </div>
 
   <div class="jobs__container">

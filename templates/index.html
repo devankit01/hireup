@@ -26,25 +26,28 @@
       Finding the right job made easy now. Apply to the best jobs ! Get
       Headhunted By Top Recruiters. Register Now!
     </h2>
-    <div class="container field is-grouped is-grouped-centered">
-      <div class="field mr-1">
-        <p class="control has-icons-left has-icons-right">
-          <input class="input" type="text" placeholder="Search jobs here..." />
-          <span class="icon is-small is-left">
-            <i class="fa fa-search" aria-hidden="true"></i>
-          </span>
-        </p>
+    <form action="{% url 'SearchJob' %}" >
+      <div class="container field is-grouped is-grouped-centered">
+        <div class="field mr-1">
+          <p class="control has-icons-left has-icons-right">
+            <input class="input" type="text" placeholder="Search jobs here..." name="c" />
+            <span class="icon is-small is-left">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+          </p>
+        </div>
+        
+        <div class="field mr-1 is-hidden-mobile">
+          <p class="control has-icons-left has-icons-right">
+            <input class="input" type="text" placeholder="Location" class="is-small" size="5" name="l"/>
+            <span class="icon is-small is-left">
+              <i class="fa fa-map-marker"></i>
+            </span>
+          </p>
+        </div>
+        <button class="button is-primary" type="submit">Search</button>
       </div>
-      <div class="field mr-1 is-hidden-mobile">
-        <p class="control has-icons-left has-icons-right">
-          <input class="input" type="text" placeholder="Location" class="is-small" size="5" />
-          <span class="icon is-small is-left">
-            <i class="fa fa-map-marker"></i>
-          </span>
-        </p>
-      </div>
-      <button class="button is-primary" type="button" href="">Search</button>
-    </div>
+    </form>
   </div>
 </div>
 <!--  -->
