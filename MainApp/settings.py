@@ -133,9 +133,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'hireup.contact@gmail.com'
-EMAIL_HOST_PASSWORD = 'Ankit@987'
+# EMAIL_HOST_USER = 'hireup.contact@gmail.com'
+# EMAIL_HOST_PASSWORD = 'Ankit@987'
 
+EMAIL_HOST_USER='no.reply.django3@gmail.com'
+EMAIL_HOST_PASSWORD='Ankit@98'
 # CLOUDWATCH_AWS_ID = 'AKIAXLSZRNQVFTPJ5KJE'
 # CLOUDWATCH_AWS_KEY = 'a8YluunadlTqL57YivRpHBNgFWgPdmiBFerhHx/N'
 # AWS_DEFAULT_REGION = 'us-east-1'  # Be sure to update with your AWS region
