@@ -374,7 +374,7 @@ def editUserProfile(request):
     }
     if skills:
         data['tech_stack'] = eval(skills.name)
-    return render(request, 'users/editUserProfile.html', {"data": data})
+    return redirect('userprofile')
 
 
 def addEdu(request, id=None):
