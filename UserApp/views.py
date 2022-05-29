@@ -158,7 +158,7 @@ def userprofile(request):
                     return render(request, 'users/editUserProfile.html', {"data": user_profile})
                 user_profile.first_name = user.first_name
                 user_profile.last_name = user.last_name
-                user_profile.resume = "https://shift-agreements.s3.ap-south-1.amazonaws.com/" + \
+                user_profile.resume = "https://hireup-pdfs.s3.amazonaws.com/" + \
             str(user_profile.resume)
                 
                 skill_object = Skill.objects.filter(
@@ -486,7 +486,7 @@ def profile(request, user):
         user_profile.certification = Certification.objects.filter(
             username=user).order_by('issue_date')
         # CERTIFICATION
-        user_profile.resume = "https://shift-agreements.s3.ap-south-1.amazonaws.com/" + \
+        user_profile.resume = "https://hireup-pdfs.s3.amazonaws.com/" + \
             str(user_profile.resume)
 
         return render(request, 'users/profile.html', {"data": user_profile, 'user': user})
@@ -498,7 +498,7 @@ def resumeViewer(request, user):
     if pdf:
         try:
             print(
-                "https://shift-agreements.s3.ap-south-1.amazonaws.com/"+str(pdf.resume))
-            return FileResponse(open("https://shift-agreements.s3.ap-south-1.amazonaws.com/"+str(pdf.resume), 'rb'), content_type='application/pdf')
+                "https://hireup-pdfs.s3.amazonaws.com/"+str(pdf.resume))
+            return FileResponse(open("https://hireup-pdfs.s3.amazonaws.com/"+str(pdf.resume), 'rb'), content_type='application/pdf')
         except FileNotFoundError:
             raise Http404('not found')
