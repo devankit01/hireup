@@ -33,7 +33,12 @@ class StudyMaterials(models.Model):
     IsApproved = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.Name
+        return str(self.Name) + str(self.subject)
+
+    def getFile(self):
+        domain = 'https://hireup-pdfs.s3.amazonaws.com/'
+        url = str(domain) + str(self.file)
+        return url
 
 
 # models of Interview Prep
@@ -63,3 +68,8 @@ class InterviewPrep(models.Model):
 
     def __str__(self):
         return self.name
+
+    def getFile(self):
+        domain = 'https://hireup-pdfs.s3.amazonaws.com/'
+        url = str(domain) + str(self.file)
+        return url
