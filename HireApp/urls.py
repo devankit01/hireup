@@ -14,6 +14,7 @@ urlpatterns = [
     
     path('select-interview/<userid>/<key>/<jobid>',
          selectInterview, name='selectInterview'),
+    path('search/Jobs/',SearchJob,name="SearchJob"),
 
     # Experience
 

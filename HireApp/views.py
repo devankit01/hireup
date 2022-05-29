@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Work, CompanyProfile, RecruiterProfile, UserProfile, User
 from django.shortcuts import render
@@ -170,3 +171,9 @@ def selectInterview(request, userid, jobid, key):
     print("mail has been send")
     return redirect(manageJob, jobid)
 
+
+def SearchJob(request):
+    c=request.GET['c']
+    l=request.GET['l']
+    jobs = Work.objects.filter(status=True,work_name__icontains=c,location__icontains=l).order_by('posted')
+    return render(request, 'hireup/jobs.html', {'jobs': jobs})

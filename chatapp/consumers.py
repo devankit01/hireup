@@ -32,6 +32,8 @@ class MyChatConsumer(AsyncConsumer):
         self.other_username=self.scope['url_route']['kwargs']['username']
         
         self.thread_obj=await self.thread_object(me,self.other_username)
+        print("hua hai okkk ")
+        print(self.channel_name)
         print(self.thread_obj)
         await self.channel_layer.group_add(self.thread_obj,self.channel_name)
         print("websocket is connected...")
