@@ -1,5 +1,6 @@
-# Hireup Application
-## This a django MVT based application for hiring management of users.
+# Django Project 
+## Hireup Application
+ This a django MVT based application for hiring management of users.
 ## Features : 
 ### 1. User can register, login, make profile and upload resume.
 ### 2. Recruiters can register, login, create jobs, track application, schedule interviews.
